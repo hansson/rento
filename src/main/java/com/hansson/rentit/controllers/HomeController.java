@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.hansson.rentit.appartments.AppartmentsInterface;
 import com.hansson.rentit.appartments.TrossoWamoAppartments;
+import com.hansson.rentit.entitys.Appartment;
 
 /**
  * Handles requests for the application home page.
@@ -44,9 +45,16 @@ public class HomeController {
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate);
+		List<Appartment> appartmentList = new LinkedList<Appartment>();
 		for (AppartmentsInterface currentLandlord : landlords) {
-			currentLandlord.getAvailableAppartments();
+			appartmentList.addAll(currentLandlord.getAvailableAppartments());
 		}
+		model.addAttribute("appartments", appartmentList);
 		return "home";
+	}
+
+	@RequestMapping(value = "/flat", method = RequestMethod.GET)
+	public String flat(Locale locale, Model model) {
+		return "flat";
 	}
 }
