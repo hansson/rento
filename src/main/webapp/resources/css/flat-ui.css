@@ -180,18 +180,18 @@ you can use the generic selector below, but it's slower:
   border-bottom-color: #34495e !important;
   border-top-color: #34495e !important;
 }
-.demo-headline {
+.headline {
   padding: 73px 0 110px;
   text-align: center;
 }
-.demo-logo {
+.main-logo {
   font-size: 90px;
   font-weight: 900;
   letter-spacing: -2px;
   line-height: 100px;
 }
-.demo-logo .logo {
-  background: url(../images/demo/logo-mask.png) center 0 no-repeat;
+.main-logo .logo {
+  background: url(../images/logo.png) center 0 no-repeat;
   background-size: 256px 186px;
   height: 186px;
   margin: 0 auto 26px;
@@ -199,7 +199,7 @@ you can use the generic selector below, but it's slower:
   text-indent: -9999em;
   width: 256px;
 }
-.demo-logo small {
+.main-logo small {
   color: rgba(52, 73, 94, 0.30000000000000004);
   display: block;
   font-size: 22px;
@@ -207,54 +207,54 @@ you can use the generic selector below, but it's slower:
   letter-spacing: -1px;
   padding-top: 5px;
 }
-.demo-row {
+.row {
   margin-bottom: 20px;
 }
-.demo-panel-title {
+.panel-title {
   margin-bottom: 20px;
   padding-top: 20px;
 }
-.demo-panel-title small {
+.panel-title small {
   color: #798795;
   font-size: inherit;
   font-weight: 400;
 }
-.demo-navigation {
+.navigation {
   margin-bottom: -4px;
   margin-top: -10px;
 }
-.demo-pager {
+.pager {
   margin-top: -10px;
 }
-.demo-tooltips {
+.tooltips {
   height: 126px;
 }
-.demo-tooltips .tooltip {
+.tooltips .tooltip {
   left: -8px !important;
   position: relative !important;
   top: -8px !important;
 }
-.demo-headings {
+.headings {
   margin-bottom: 12px;
 }
-.demo-tiles {
+.tiles {
   margin-bottom: 46px;
 }
-.demo-icons {
+.icons {
   font-size: 32px;
   margin-left: -20px;
   padding-left: 20px;
 }
-.demo-icons .demo-content {
+.icons .content {
   margin: 0 0 0 -35px;
 }
-.demo-icons .demo-content > span {
+.icons .content > span {
   display: inline-block;
   margin: 0 0 32px 35px;
   width: 24px;
   font-size: 24px;
 }
-.demo-icons-tooltip {
+.icons-tooltip {
   bottom: 0;
   color: #c2c8cf;
   font-size: 12px;
@@ -263,51 +263,51 @@ you can use the generic selector below, but it's slower:
   position: absolute;
   width: 80px;
 }
-.demo-illustrations .demo-content {
+.illustrations .content {
   margin: 0 0 0 -40px;
   padding-top: 20px;
   *zoom: 1;
 }
-.demo-illustrations .demo-content:before,
-.demo-illustrations .demo-content:after {
+.illustrations .content:before,
+.illustrations .content:after {
   display: table;
   content: "";
 }
-.demo-illustrations .demo-content:after {
+.illustrations .content:after {
   clear: both;
 }
-.demo-illustrations .demo-content > div {
+.illustrations .content > div {
   float: left;
   width: 100px;
   height: 100px;
   margin: 0 0 40px 40px;
   text-align: center;
 }
-.demo-illustrations img {
+.illustrations img {
   display: inline-block;
   max-height: 100px;
   max-width: 100px;
   vertical-align: baseline;
 }
-.demo-samples {
+.samples {
   margin-bottom: 46px;
 }
-.demo-video {
+.video {
   padding-top: 95px;
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
 }
-.demo-download-section {
+.download-section {
   float: none;
   margin: 0 auto;
   padding: 60px 0 90px 20px;
   text-align: center;
 }
-.demo-download-section [class*='fui-'] {
+.download-section [class*='fui-'] {
   margin: 3px 0 -3px;
 }
-.demo-download {
+.download {
   background-color: #ebedef;
   height: 120px;
   margin: 0 auto 32px;
@@ -318,96 +318,22 @@ you can use the generic selector below, but it's slower:
   -moz-border-radius: 50%;
   border-radius: 50%;
 }
-.demo-download img {
+.download img {
   height: 104px;
   width: 82px;
 }
-.demo-download-text {
+.download-text {
   font-size: 15px;
   padding: 20px 0;
   text-align: center;
 }
-.demo-text-box a:hover {
+.text-box a:hover {
   color: #1abc9c;
 }
-.demo-browser {
-  background: #2c3e50 url(../images/demo/browser.png) 0 0 no-repeat;
-  background-size: 659px 42px;
-  color: #ffffff;
-  margin: 0 41px 140px 0;
-  padding-top: 42px;
-  -webkit-border-radius: 0 0 6px 6px;
-  -moz-border-radius: 0 0 6px 6px;
-  border-radius: 0 0 6px 6px;
-}
-.demo-browser-side {
-  float: left;
-  padding: 22px 20px;
-  width: 111px;
-}
-.demo-browser-side > h5 {
-  margin-bottom: 3px;
-  text-transform: none;
-}
-.demo-browser-side > h6 {
-  font-size: 11px;
-  font-weight: 300;
-  line-height: 18px;
-  margin-top: 3px;
-  text-transform: none;
-}
-.demo-browser-author {
-  background: url(../images/demo/browser-author.jpg) center center no-repeat;
-  border: 3px solid #ffffff;
-  display: block;
-  height: 84px;
-  margin: 0 auto;
-  width: 84px;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
-}
-.demo-browser-action {
-  padding: 30px 0 12px;
-}
-.demo-browser-action > .btn {
-  padding: 9px 0 10px 11px !important;
-  text-align: left;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-}
-.demo-browser-action > .btn:before {
-  color: #ffffff;
-  content: '\e009';
-  font-size: 16px;
-  font-family: 'Flat-UI-Icons';
-  font-weight: 300;
-  margin-right: 12px;
-  position: relative;
-  top: 1px;
-  -webkit-font-smoothing: antialiased;
-}
-.demo-browser-content {
-  background-color: #34495e;
-  overflow: hidden;
-  padding: 21px 0 0 20px;
-  -webkit-border-radius: 0 0 6px;
-  -moz-border-radius: 0 0 6px;
-  border-radius: 0 0 6px;
-}
-.demo-browser-content > img {
-  border: 6px solid #ffffff;
-  float: left;
-  margin: 0 15px 20px 0;
-  width: 134px;
-}
+
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 2) {
   .logo {
-    background-image: url(../images/demo/logo-mask-2x.png);
-  }
-  .demo-browser {
-    background-image: url(../images/demo/browser-2x.png);
+    background-image: url(../images/logo-full.png);
   }
 }
 body {
@@ -3566,103 +3492,7 @@ body.vjs-full-window {
   -moz-border-radius: 10px;
   border-radius: 10px;
 }
-.login {
-  background: url(../images/login/imac.png) 0 0 no-repeat;
-  background-size: 940px 778px;
-  color: #ffffff;
-  margin-bottom: 77px;
-  padding: 38px 38px 267px;
-  position: relative;
-}
-.login-screen {
-  background-color: #1abc9c;
-  min-height: 317px;
-  padding: 123px 199px 33px 306px;
-}
-.login-icon {
-  left: 200px;
-  position: absolute;
-  top: 160px;
-  width: 96px;
-}
-.login-icon > img {
-  display: block;
-  margin-bottom: 6px;
-  width: 100%;
-}
-.login-icon > h4 {
-  font-size: 17px;
-  font-weight: 200;
-  line-height: 34px;
-  opacity: 0.95;
-  filter: alpha(opacity=95);
-}
-.login-icon > h4 small {
-  color: inherit;
-  display: block;
-  font-size: inherit;
-  font-weight: 700;
-}
-.login-form {
-  background-color: #edeff1;
-  padding: 24px 23px 20px;
-  position: relative;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
-}
-.login-form:before {
-  content: '';
-  border-style: solid;
-  border-width: 12px 12px 12px 0;
-  border-color: transparent #edeff1 transparent transparent;
-  height: 0;
-  position: absolute;
-  left: -12px;
-  top: 35px;
-  width: 0;
-  -webkit-transform: rotate(360deg);
-}
-.login-form .control-group {
-  margin-bottom: 6px;
-  position: relative;
-}
-.login-form .login-field {
-  border-color: transparent;
-  font-size: 17px;
-  padding-bottom: 11px;
-  padding-top: 11px;
-  text-indent: 3px;
-  width: 299px;
-  margin-bottom: 10px !important;
-}
-.login-form .login-field:focus + .login-field-icon {
-  color: #1abc9c;
-}
-.login-form .login-field-icon {
-  color: #bfc9ca;
-  font-size: 16px;
-  position: absolute;
-  right: 13px;
-  top: 14px;
-  -webkit-transition: 0.25s;
-  -moz-transition: 0.25s;
-  -o-transition: 0.25s;
-  transition: 0.25s;
-  -webkit-backface-visibility: hidden;
-}
-.login-link {
-  color: #bfc9ca;
-  display: block;
-  font-size: 13px;
-  margin-top: 15px;
-  text-align: center;
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (-moz-min-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (-moz-min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 2) {
-  .login {
-    background-image: url(../images/login/imac-2x.png);
-  }
-}
+
 .last-col {
   overflow: hidden;
 }

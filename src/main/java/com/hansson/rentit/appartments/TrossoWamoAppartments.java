@@ -36,7 +36,7 @@ public class TrossoWamoAppartments implements AppartmentsInterface {
 				matcher.find();
 				appartment.setRooms(Integer.valueOf(matcher.group()));
 				String[] imageStringArray = data.child(0).child(0).child(0).attr("src").split("&");
-				appartment.setImageUrl(imageStringArray[0] + "&" + imageStringArray[1] + "&" + "wm=256" + "&" + "hm=256"); // TODO change width and height when
+				appartment.setImageUrl(imageStringArray[0] + "&" + imageStringArray[1] + "&" + "wm=128" + "&" + "hm=128"); // TODO change width and height when
 																															// they are decided
 				appartment.setRent(Integer.valueOf(data.select(".avgift").get(0).child(0).childNode(0).toString().replaceAll("\\D", "")));
 				String size = data.select(".boarea").get(0).child(0).childNode(0).toString().replaceAll("\\D", "");
@@ -44,7 +44,6 @@ public class TrossoWamoAppartments implements AppartmentsInterface {
 				appartment.setUrl(data.select(".adress").get(0).child(0).attr("href"));
 				appartment.setIdentifier(appartment.getUrl().split("/")[appartment.getUrl().split("/").length - 1]);
 				appartment.setSummary(HtmlUtil.htmlToText(summary.child(0).childNode(0).toString().trim()));
-				System.out.println(appartment.getSummary());
 				appartmentLIst.add(appartment);
 			}
 		} catch (MalformedURLException e) {
