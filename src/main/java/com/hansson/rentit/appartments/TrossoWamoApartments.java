@@ -12,14 +12,14 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.hansson.rentit.entitys.Appartment;
+import com.hansson.rentit.entitys.Apartment;
 import com.hansson.rentit.utils.HtmlUtil;
 
-public class TrossoWamoAppartments implements AppartmentsInterface {
+public class TrossoWamoApartments implements ApartmentsInterface {
 
 	@Override
-	public List<Appartment> getAvailableAppartments() {
-		List<Appartment> appartmentLIst = new LinkedList<Appartment>();
+	public List<Apartment> getAvailableAppartments() {
+		List<Apartment> appartmentLIst = new LinkedList<Apartment>();
 		try {
 			Document doc = Jsoup.connect("http://bovision.se/more/MaklarLista.aspx?ai=9530").get();
 			Elements dataList = doc.select(".data");
@@ -27,7 +27,7 @@ public class TrossoWamoAppartments implements AppartmentsInterface {
 			for (int i = 0; i < dataList.size(); i++) {
 				Element data = dataList.get(i);
 				Element summary = summaryList.get(i);
-				Appartment appartment = new Appartment("Trossö, Wämö & Pribo fastigheter");
+				Apartment appartment = new Apartment("Trossö, Wämö & Pribo fastigheter");
 				appartment.setArea(data.select(".areaname").get(0).child(0).childNode(0).toString());
 				appartment.setAddress(data.select(".adress").get(0).child(0).childNode(0).toString());
 				String roomString = data.select(".rum").get(0).child(0).childNode(0).toString();
@@ -36,8 +36,13 @@ public class TrossoWamoAppartments implements AppartmentsInterface {
 				matcher.find();
 				appartment.setRooms(Integer.valueOf(matcher.group()));
 				String[] imageStringArray = data.child(0).child(0).child(0).attr("src").split("&");
-				appartment.setImageUrl(imageStringArray[0] + "&" + imageStringArray[1] + "&" + "wm=128" + "&" + "hm=128"); // TODO change width and height when
-																															// they are decided
+				if (imageStringArray.length > 1) {
+					appartment.setImageUrl(imageStringArray[0] + "&" + imageStringArray[1] + "&" + "wm=128" + "&" + "hm=128"); // TODO change width and height
+																																// when
+				} else {
+					appartment.setImageUrl(imageStringArray[0]);
+				}
+				// they are decided
 				appartment.setRent(Integer.valueOf(data.select(".avgift").get(0).child(0).childNode(0).toString().replaceAll("\\D", "")));
 				String size = data.select(".boarea").get(0).child(0).childNode(0).toString().replaceAll("\\D", "");
 				appartment.setSize(Integer.valueOf(size.substring(0, size.length() - 1)));

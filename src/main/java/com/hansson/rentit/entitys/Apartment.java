@@ -1,6 +1,6 @@
 package com.hansson.rentit.entitys;
 
-public class Appartment {
+public class Apartment {
 
 	private String mArea;
 	private String mAddress;
@@ -13,10 +13,10 @@ public class Appartment {
 	private String mIdentifier;
 	private String mLandlord;
 
-	public Appartment() {
+	public Apartment() {
 	}
 
-	public Appartment(String landlord) {
+	public Apartment(String landlord) {
 		mLandlord = landlord;
 	}
 
