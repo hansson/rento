@@ -1,10 +1,12 @@
+<%@page import="com.hansson.rentit.utils.HtmlUtil"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html lang="sv">
 <head>
+
 <meta charset="utf-8">
-<title>Rent It - Lättare hyreslägenheter</title>
+<title><%= HtmlUtil.textToHtml("Rent It - Lättare hyreslägenheter") %></title>
 
 <!-- Loading Bootstrap -->
 <link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -23,39 +25,40 @@
 </head>
 
 <body>
+	
 	<div class="container">
 		<div class="headline">
 			<h1 class="main-logo">
 				<div class="logo"></div>
-				Rent It <small>Lättare hyreslägenheter</small>
+				Rent It <small><%= HtmlUtil.textToHtml("Lättare hyreslägenheter") %></small>
 			</h1>
 		</div>
 		<!-- /headline -->
 
-		<h1>Lediga lägenheter</h1>
+		<h1><%= HtmlUtil.textToHtml("Lediga lägenheter") %></h1>
 
 		<div class="span12">
 			<table class="table table-striped sortable">
 				<thead>
 					<tr>
 						<th class="hidden-phone">Bild</th>
-						<th>Område</th>
+						<th><%= HtmlUtil.textToHtml("Område") %></th>
 						<th>Adress</th>
 						<th>Hyra</th>
 						<th>Storlek</th>
 						<th>Rum</th>
-						<th>Hyresvärd</th>
+						<th><%= HtmlUtil.textToHtml("Hyresvärd") %></th>
 					</tr>
 				</thead>
 
 				<tbody>
 					<c:forEach var="i" items="${appartments}">
-						<tr class="appartment" data="${i.url}">
+						<tr class="appartment" style="cursor:pointer" data="${i.url}">
 							<td class="hidden-phone"><img alt="Lägenhetsbild" src="${i.imageUrl}"></td>
 							<td>${i.area}</td>
 							<td>${i.address}</td>
-							<td>${i.rent}</td>
-							<td>${i.size}</td>
+							<td>${i.rent} kr</td>
+							<td>${i.size} kvm</td>
 							<td>${i.rooms}</td>
 							<td>${i.landlord}</td>
 						</tr>
@@ -73,7 +76,7 @@
 			<div class="row">
 				<div class="span7">
 					<h3 class="footer-title">Kontakt</h3>
-					<p>Frågor och förbättringsförslag kan skickas till tobias@tobiashansson.nu</p>
+					<p><%= HtmlUtil.textToHtml("Frågor och förbättringsförslag kan skickas till tobias@tobiashansson.nu") %></p>
 
 					<p class="pvl"></p>
 

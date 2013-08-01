@@ -6,12 +6,16 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.hansson.rentit.entitys.Apartment;
+import com.hansson.rentit.utils.HtmlUtil;
 
 public class KarlskronahemApartments implements ApartmentsInterface {
 
@@ -27,8 +31,10 @@ public class KarlskronahemApartments implements ApartmentsInterface {
 			Elements viewState = doc.select("#__VIEWSTATE");
 			Elements eventValidation = doc.select("#__EVENTVALIDATION");
 			String moveToPage = String.format(SELECT_PAGE, 1);
-			String eventTarget = String.format(EVENT_TARGET, 1);
+//			String eventTarget = String.format(EVENT_TARGET, 1);
+			String eventTarget = "ctl00$ctl01$DefaultSiteContentPlaceHolder1$Col1$ucNavBar$rptButtons$ctl01$btnPage";
 			Map<String, String> postData = new HashMap<String, String>();
+			
 			postData.put("ctl00$ctl01$DefaultSiteContentPlaceHolder1$ScriptManager", moveToPage);
 			postData.put("__EVENTTARGET", eventTarget);
 			postData.put("__EVENTARGUMENT", "");
@@ -43,31 +49,38 @@ public class KarlskronahemApartments implements ApartmentsInterface {
 			postData.put("ctl00$ctl01$DefaultSiteContentPlaceHolder1$Col1$hdnSearchedRoomMin", "1");
 			postData.put("ctl00$ctl01$DefaultSiteContentPlaceHolder1$Col1$hdnSearchedRoomMax", "6");
 			postData.put("__ASYNCPOST", "true");
-			doc = Jsoup.connect("http://marknad.karlskronahem.se/HSS/Object/object_list.aspx?objectgroup=1").data(postData).userAgent(USER_AGENT).post();
+			
+			
+			
+			
+			
+			doc = Jsoup.connect("http://marknad.karlskronahem.se/HSS/Object/object_list.aspx?objectgroup=1").data(postData).userAgent(USER_AGENT).header("Content-Type", "application/x-www-form-urlencoded; charset=utf-8").post();
 			System.out.println(doc);
-			// Elements summaryList = doc.select(".summary");
-			// for (int i = 0; i < dataList.size(); i++) {
-			// Element data = dataList.get(i);
-			// Element summary = summaryList.get(i);
-			// Appartment appartment = new Appartment("Karlskronahem");
-			// appartment.setArea(data.select(".areaname").get(0).child(0).childNode(0).toString());
-			// appartment.setAddress(data.select(".adress").get(0).child(0).childNode(0).toString());
-			// String roomString = data.select(".rum").get(0).child(0).childNode(0).toString();
-			// Pattern roomPattern = Pattern.compile("\\d*");
-			// Matcher matcher = roomPattern.matcher(roomString);
-			// matcher.find();
-			// appartment.setRooms(Integer.valueOf(matcher.group()));
-			// String[] imageStringArray = data.child(0).child(0).child(0).attr("src").split("&");
-			// appartment.setImageUrl(imageStringArray[0] + "&" + imageStringArray[1] + "&" + "wm=128" + "&" + "hm=128"); // TODO change width and height when
-			// // they are decided
-			// appartment.setRent(Integer.valueOf(data.select(".avgift").get(0).child(0).childNode(0).toString().replaceAll("\\D", "")));
-			// String size = data.select(".boarea").get(0).child(0).childNode(0).toString().replaceAll("\\D", "");
-			// appartment.setSize(Integer.valueOf(size.substring(0, size.length() - 1)));
-			// appartment.setUrl(data.select(".adress").get(0).child(0).attr("href"));
-			// appartment.setIdentifier(appartment.getUrl().split("/")[appartment.getUrl().split("/").length - 1]);
-			// appartment.setSummary(HtmlUtil.htmlToText(summary.child(0).childNode(0).toString().trim()));
-			// appartmentLIst.add(appartment);
-			// }
+			Elements dataList = doc.select(".listitem-even");
+//			Elements summaryList = doc.select(".summary");
+			System.out.println("datalist: " + dataList);
+			 for (int i = 0; i < dataList.size(); i++) {
+			 Element data = dataList.get(i);
+//			 Element summary = summaryList.get(i);
+			 Apartment appartment = new Apartment("Karlskronahem");
+			 appartment.setArea(data.select(".areaname").get(0).child(0).childNode(0).toString());
+			 appartment.setAddress(data.select(".adress").get(0).child(0).childNode(0).toString());
+			 String roomString = data.select(".rum").get(0).child(0).childNode(0).toString();
+			 Pattern roomPattern = Pattern.compile("\\d*");
+			 Matcher matcher = roomPattern.matcher(roomString);
+			 matcher.find();
+			 appartment.setRooms(Integer.valueOf(matcher.group()));
+			 String[] imageStringArray = data.child(0).child(0).child(0).attr("src").split("&");
+			 appartment.setImageUrl(imageStringArray[0] + "&" + imageStringArray[1] + "&" + "wm=128" + "&" + "hm=128"); // TODO change width and height when
+			 // they are decided
+			 appartment.setRent(Integer.valueOf(data.select(".avgift").get(0).child(0).childNode(0).toString().replaceAll("\\D", "")));
+			 String size = data.select(".boarea").get(0).child(0).childNode(0).toString().replaceAll("\\D", "");
+			 appartment.setSize(Integer.valueOf(size.substring(0, size.length() - 1)));
+			 appartment.setUrl(data.select(".adress").get(0).child(0).attr("href"));
+			 appartment.setIdentifier(appartment.getUrl().split("/")[appartment.getUrl().split("/").length - 1]);
+//			 appartment.setSummary(HtmlUtil.htmlToText(summary.child(0).childNode(0).toString().trim()));
+			 appartmentLIst.add(appartment);
+			 }
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

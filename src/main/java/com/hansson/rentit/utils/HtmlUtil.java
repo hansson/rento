@@ -11,4 +11,16 @@ public class HtmlUtil {
 		html = html.replace("&Ouml;", "Ö");
 		return html;
 	}
+	
+	public static String textToHtml(String html) {
+		html = html.replace("å", "&aring;");
+		html = html.replace("ä","&auml;");
+		html = html.replace("ö","&ouml;");
+		html = html.replace("Å", "&Aring;");
+		html = html.replace("Ä","&Auml;");
+		html = html.replace("Ö","&Ouml;");
+		return html;
+	}
+	
+	
 }

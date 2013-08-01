@@ -17,6 +17,8 @@ import com.hansson.rentit.utils.HtmlUtil;
 
 public class TrossoWamoApartments implements ApartmentsInterface {
 
+	private static final String landlord = "Trossö, Wämö & Pribo fastigheter";
+	
 	@Override
 	public List<Apartment> getAvailableAppartments() {
 		List<Apartment> appartmentLIst = new LinkedList<Apartment>();
@@ -27,7 +29,7 @@ public class TrossoWamoApartments implements ApartmentsInterface {
 			for (int i = 0; i < dataList.size(); i++) {
 				Element data = dataList.get(i);
 				Element summary = summaryList.get(i);
-				Apartment appartment = new Apartment("Trossö, Wämö & Pribo fastigheter");
+				Apartment appartment = new Apartment(HtmlUtil.textToHtml(landlord));
 				appartment.setArea(data.select(".areaname").get(0).child(0).childNode(0).toString());
 				appartment.setAddress(data.select(".adress").get(0).child(0).childNode(0).toString());
 				String roomString = data.select(".rum").get(0).child(0).childNode(0).toString();
@@ -48,7 +50,7 @@ public class TrossoWamoApartments implements ApartmentsInterface {
 				appartment.setSize(Integer.valueOf(size.substring(0, size.length() - 1)));
 				appartment.setUrl(data.select(".adress").get(0).child(0).attr("href"));
 				appartment.setIdentifier(appartment.getUrl().split("/")[appartment.getUrl().split("/").length - 1]);
-				appartment.setSummary(HtmlUtil.htmlToText(summary.child(0).childNode(0).toString().trim()));
+				appartment.setSummary(HtmlUtil.textToHtml(summary.child(0).childNode(0).toString().trim()));
 				appartmentLIst.add(appartment);
 			}
 		} catch (MalformedURLException e) {
