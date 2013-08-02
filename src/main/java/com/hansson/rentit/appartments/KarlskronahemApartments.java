@@ -56,31 +56,31 @@ public class KarlskronahemApartments implements ApartmentsInterface {
 			
 			doc = Jsoup.connect("http://marknad.karlskronahem.se/HSS/Object/object_list.aspx?objectgroup=1").data(postData).userAgent(USER_AGENT).header("Content-Type", "application/x-www-form-urlencoded; charset=utf-8").post();
 			System.out.println(doc);
-			Elements dataList = doc.select(".listitem-even");
-//			Elements summaryList = doc.select(".summary");
-			System.out.println("datalist: " + dataList);
-			 for (int i = 0; i < dataList.size(); i++) {
-			 Element data = dataList.get(i);
-//			 Element summary = summaryList.get(i);
-			 Apartment appartment = new Apartment("Karlskronahem");
-			 appartment.setArea(data.select(".areaname").get(0).child(0).childNode(0).toString());
-			 appartment.setAddress(data.select(".adress").get(0).child(0).childNode(0).toString());
-			 String roomString = data.select(".rum").get(0).child(0).childNode(0).toString();
-			 Pattern roomPattern = Pattern.compile("\\d*");
-			 Matcher matcher = roomPattern.matcher(roomString);
-			 matcher.find();
-			 appartment.setRooms(Integer.valueOf(matcher.group()));
-			 String[] imageStringArray = data.child(0).child(0).child(0).attr("src").split("&");
-			 appartment.setImageUrl(imageStringArray[0] + "&" + imageStringArray[1] + "&" + "wm=128" + "&" + "hm=128"); // TODO change width and height when
-			 // they are decided
-			 appartment.setRent(Integer.valueOf(data.select(".avgift").get(0).child(0).childNode(0).toString().replaceAll("\\D", "")));
-			 String size = data.select(".boarea").get(0).child(0).childNode(0).toString().replaceAll("\\D", "");
-			 appartment.setSize(Integer.valueOf(size.substring(0, size.length() - 1)));
-			 appartment.setUrl(data.select(".adress").get(0).child(0).attr("href"));
-			 appartment.setIdentifier(appartment.getUrl().split("/")[appartment.getUrl().split("/").length - 1]);
-//			 appartment.setSummary(HtmlUtil.htmlToText(summary.child(0).childNode(0).toString().trim()));
-			 appartmentLIst.add(appartment);
-			 }
+//			Elements dataList = doc.select(".listitem-even");
+////			Elements summaryList = doc.select(".summary");
+//			System.out.println("datalist: " + dataList);
+//			 for (int i = 0; i < dataList.size(); i++) {
+//			 Element data = dataList.get(i);
+////			 Element summary = summaryList.get(i);
+//			 Apartment appartment = new Apartment("Karlskronahem");
+//			 appartment.setArea(data.select(".areaname").get(0).child(0).childNode(0).toString());
+//			 appartment.setAddress(data.select(".adress").get(0).child(0).childNode(0).toString());
+//			 String roomString = data.select(".rum").get(0).child(0).childNode(0).toString();
+//			 Pattern roomPattern = Pattern.compile("\\d*");
+//			 Matcher matcher = roomPattern.matcher(roomString);
+//			 matcher.find();
+//			 appartment.setRooms(Integer.valueOf(matcher.group()));
+//			 String[] imageStringArray = data.child(0).child(0).child(0).attr("src").split("&");
+//			 appartment.setImageUrl(imageStringArray[0] + "&" + imageStringArray[1] + "&" + "wm=128" + "&" + "hm=128"); // TODO change width and height when
+//			 // they are decided
+//			 appartment.setRent(Integer.valueOf(data.select(".avgift").get(0).child(0).childNode(0).toString().replaceAll("\\D", "")));
+//			 String size = data.select(".boarea").get(0).child(0).childNode(0).toString().replaceAll("\\D", "");
+//			 appartment.setSize(Integer.valueOf(size.substring(0, size.length() - 1)));
+//			 appartment.setUrl(data.select(".adress").get(0).child(0).attr("href"));
+//			 appartment.setIdentifier(appartment.getUrl().split("/")[appartment.getUrl().split("/").length - 1]);
+////			 appartment.setSummary(HtmlUtil.htmlToText(summary.child(0).childNode(0).toString().trim()));
+//			 appartmentLIst.add(appartment);
+//			 }
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
