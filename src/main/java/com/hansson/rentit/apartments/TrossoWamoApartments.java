@@ -43,18 +43,17 @@ public class TrossoWamoApartments implements ApartmentsInterface {
 				apartment.setRooms(Integer.valueOf(matcher.group()));
 				String[] imageStringArray = data.child(0).child(0).child(0).attr("src").split("&");
 				if (imageStringArray.length > 1) {
-					apartment.setImageUrl(imageStringArray[0] + "&" + imageStringArray[1] + "&" + "wm=128" + "&" + "hm=128"); // TODO change width and height
-																																// when
+					// // TODO change width and height when they are decided
+					apartment.setImageUrl(imageStringArray[0] + "&" + imageStringArray[1] + "&" + "wm=128" + "&" + "hm=128");
 				} else {
 					apartment.setImageUrl(imageStringArray[0]);
 				}
-				// they are decided
 				apartment.setRent(Integer.valueOf(data.select(".avgift").get(0).child(0).childNode(0).toString().replaceAll("\\D", "")));
 				String size = data.select(".boarea").get(0).child(0).childNode(0).toString().replaceAll("\\D", "");
 				apartment.setSize(Integer.valueOf(size.substring(0, size.length() - 1)));
 				apartment.setUrl(data.select(".adress").get(0).child(0).attr("href"));
 				apartment.setIdentifier(apartment.getUrl().split("/")[apartment.getUrl().split("/").length - 1]);
-				apartment.setSummary(HtmlUtil.textToHtml(summary.child(0).childNode(0).toString().trim()));
+				apartment.setSummary(summary.child(0).childNode(0).toString().trim());
 				apartmentLIst.add(apartment);
 			}
 		} catch (MalformedURLException e) {

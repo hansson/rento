@@ -10,6 +10,7 @@ public class Apartment {
 	private int mRooms;
 	private int mSize;
 	private int mRent;
+	// This identifier should be unique to be able to decide if the apartment is a new one or if it was already stored in the database.
 	private String mIdentifier;
 	private String mLandlord;
 
