@@ -13,9 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.hansson.rentit.appartments.ApartmentsInterface;
-import com.hansson.rentit.appartments.KarlskronahemApartments;
-import com.hansson.rentit.appartments.TrossoWamoApartments;
+import com.hansson.rentit.apartments.ApartmentsInterface;
+import com.hansson.rentit.apartments.KarlskronahemApartments;
+import com.hansson.rentit.apartments.TrossoWamoApartments;
 import com.hansson.rentit.entitys.Apartment;
 
 /**
@@ -47,11 +47,11 @@ public class HomeController {
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
 		model.addAttribute("serverTime", formattedDate);
-		List<Apartment> appartmentList = new LinkedList<Apartment>();
+		List<Apartment> apartmentList = new LinkedList<Apartment>();
 		for (ApartmentsInterface currentLandlord : landlords) {
-			appartmentList.addAll(currentLandlord.getAvailableAppartments());
+			apartmentList.addAll(currentLandlord.getAvailableApartments());
 		}
-		model.addAttribute("appartments", appartmentList);
+		model.addAttribute("apartments", apartmentList);
 		return "home";
 	}
 

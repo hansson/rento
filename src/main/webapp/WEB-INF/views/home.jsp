@@ -52,8 +52,8 @@
 				</thead>
 
 				<tbody>
-					<c:forEach var="i" items="${appartments}">
-						<tr class="appartment" style="cursor:pointer" data="${i.url}">
+					<c:forEach var="i" items="${apartments}">
+						<tr class="apartment" style="cursor:pointer" data="${i.url}">
 							<td class="hidden-phone"><img alt="Lägenhetsbild" src="${i.imageUrl}"></td>
 							<td>${i.area}</td>
 							<td>${i.address}</td>
@@ -105,7 +105,7 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-			$(".appartment").on("click", function() {
+			$(".apartment").on("click", function() {
 				window.open($(this).attr('data'));
 				return false;
 			});

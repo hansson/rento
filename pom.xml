@@ -122,6 +122,14 @@
 			<artifactId>jsoup</artifactId>
 			<version>1.7.2</version>
 		</dependency>
+		
+		<dependency>
+			<!-- Google Gag library, annotations ftw! -->
+			<!-- Javadoc at http://gag.googlecode.com/svn/trunk/javadoc/index.html -->
+			<groupId>com.google.gag</groupId>
+			<artifactId>gag</artifactId>
+			<version>1.0.1</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>
