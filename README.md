@@ -8,13 +8,13 @@ more cities in the future!
 * Make periodic updates and store to database
 
 
-### Implemented landlords
+## Implemented landlords
 * Trossö & Wämö Fastigheter
 
-### In progress
+## In progress
 * Karlskronahem
 
-### Not started
+## Not started
 * Bengt Åkesson Fastigheter
 * CA-Fastigheter
 * Danielssons Fastigheter
