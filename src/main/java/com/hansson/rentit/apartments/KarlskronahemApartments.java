@@ -36,18 +36,15 @@ public class KarlskronahemApartments implements ApartmentsInterface {
 			// Handle and iterate all pages
 			do {
 				// Parse data from html
-				// Get all <tr> tags from html
-				Elements elementsByTag = doc.getElementsByTag("tr");
+				// Get all <tr> tags from html with listitem-even or listitem-odd class
+				Elements elementsByTag = doc.getElementsByTag("tr.listitem-even, tr.listitem-odd");
 				// Iterate all elements
 				for (Element element : elementsByTag) {
-					// Only the <tr> tags with listitem-even or listitem-odd is the ones we want
-					if (element.hasClass("listitem-even") || element.hasClass("listitem-odd")) {
 						Apartment apartment = new Apartment(LANDLORD);
 						Element address = element.child(1).getElementsByTag("a").get(0);
 						apartment.setUrl(BASE_URL + "/" + address.attr("href"));
 						apartment.setAddress(address.childNode(0).toString());
 						apartment.setIdentifier(address.attr("href").split("[&=]")[3]);
-					}
 				}
 				// If there are more pages, prepare the next post
 				if (pages > currentPage) {
