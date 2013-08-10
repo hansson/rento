@@ -18,9 +18,10 @@ import com.hansson.rentit.entitys.Apartment;
 
 public class KarlskronahemApartments implements ApartmentsInterface {
 
-	public final static String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36";
-	public final static String LANDLORD = "Karlskronahem";
-	public final static String BASE_URL = "http://marknad.karlskronahem.se/HSS/Object";
+	private static final String KARLSKRONA = "Karlskrona";
+	private final static String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36";
+	private final static String LANDLORD = "Karlskronahem";
+	private final static String BASE_URL = "http://marknad.karlskronahem.se/HSS/Object";
 
 	@Override
 	@CarbonFootprint(units = CO2Units.FIRKINS_PER_FORTNIGHT, value = 167.5)
@@ -47,6 +48,13 @@ public class KarlskronahemApartments implements ApartmentsInterface {
 						apartment.setUrl(BASE_URL + "/" + address.attr("href"));
 						apartment.setAddress(address.childNode(0).toString());
 						apartment.setIdentifier(address.attr("href").split("[&=]")[3]);
+						apartment.setArea(KARLSKRONA + " " + element.child(2).getElementsByTag("span").get(0).childNode(0).toString());
+						apartment.setImageUrl(""); // TODO find it
+						String rent = element.child(5).getElementsByTag("span").get(0).childNode(0).toString().replace("&nbsp;", "");
+						apartment.setRent(Integer.valueOf(rent));
+						apartment.setRooms(Integer.valueOf(element.child(3).getElementsByTag("span").get(0).childNode(0).toString()));
+						apartment.setSize(Integer.valueOf(element.child(4).getElementsByTag("span").get(0).childNode(0).toString()));
+						apartmentLIst.add(apartment);
 					}
 				}
 				// If there are more pages, prepare the next post
