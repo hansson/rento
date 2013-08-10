@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.google.gag.annotation.remark.Win;
 import com.google.gag.enumeration.Outcome;
+import com.google.gson.Gson;
 import com.hansson.rentit.apartments.ApartmentsInterface;
 import com.hansson.rentit.apartments.KarlskronahemApartments;
 import com.hansson.rentit.apartments.TrossoWamoApartments;
@@ -55,7 +56,7 @@ public class HomeController {
 		for (ApartmentsInterface currentLandlord : landlords) {
 			apartmentList.addAll(currentLandlord.getAvailableApartments());
 		}
-		model.addAttribute("apartments", apartmentList);
+		model.addAttribute("apartments", new Gson().toJson(apartmentList));
 		return "home";
 	}
 

@@ -43,7 +43,7 @@ public class TrossoWamoApartments implements ApartmentsInterface {
 				apartment.setRooms(Integer.valueOf(matcher.group()));
 				String[] imageStringArray = data.child(0).child(0).child(0).attr("src").split("&");
 				if (imageStringArray.length > 1) {
-					// // TODO change width and height when they are decided
+					// TODO change width and height when they are decided
 					apartment.setImageUrl(imageStringArray[0] + "&" + imageStringArray[1] + "&" + "wm=128" + "&" + "hm=128");
 				} else {
 					apartment.setImageUrl(imageStringArray[0]);

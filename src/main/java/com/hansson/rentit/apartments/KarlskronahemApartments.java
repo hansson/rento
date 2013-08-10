@@ -21,7 +21,7 @@ public class KarlskronahemApartments implements ApartmentsInterface {
 	private static final String KARLSKRONA = "Karlskrona";
 	private final static String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36";
 	private final static String LANDLORD = "Karlskronahem";
-	private final static String BASE_URL = "http://marknad.karlskronahem.se/HSS/Object";
+	private final static String BASE_URL = "http://marknad.karlskronahem.se";
 
 	@Override
 	@CarbonFootprint(units = CO2Units.FIRKINS_PER_FORTNIGHT, value = 167.5)
@@ -29,7 +29,7 @@ public class KarlskronahemApartments implements ApartmentsInterface {
 		List<Apartment> apartmentLIst = new LinkedList<Apartment>();
 		try {
 			// Get html for first page
-			Document doc = Jsoup.connect(BASE_URL + "/object_list.aspx?objectgroup=1").get();
+			Document doc = Jsoup.connect(BASE_URL + "/HSS/Object/object_list.aspx?objectgroup=1").get();
 			int currentPage = 1;
 			// Find number of pages
 			Elements pageSwitcher = doc.select(".right").get(0).getElementsByTag("a");
@@ -38,21 +38,32 @@ public class KarlskronahemApartments implements ApartmentsInterface {
 			do {
 				// Parse data from html
 				// Get all <tr> tags from html with listitem-even or listitem-odd class
-				Elements elementsByTag = doc.getElementsByTag("tr.listitem-even, tr.listitem-odd");
+				Elements elementsByTag = doc.getElementsByTag("tr");
 				// Iterate all elements
 				for (Element element : elementsByTag) {
-					Apartment apartment = new Apartment(LANDLORD);
-					Element address = element.child(1).getElementsByTag("a").get(0);
-					apartment.setUrl(BASE_URL + "/" + address.attr("href"));
-					apartment.setAddress(address.childNode(0).toString());
-					apartment.setIdentifier(address.attr("href").split("[&=]")[3]);
-					apartment.setArea(KARLSKRONA + " " + element.child(2).getElementsByTag("span").get(0).childNode(0).toString());
-					apartment.setImageUrl(""); // TODO find it
-					String rent = element.child(5).getElementsByTag("span").get(0).childNode(0).toString().replace("&nbsp;", "");
-					apartment.setRent(Integer.valueOf(rent));
-					apartment.setRooms(Integer.valueOf(element.child(3).getElementsByTag("span").get(0).childNode(0).toString()));
-					apartment.setSize(Integer.valueOf(element.child(4).getElementsByTag("span").get(0).childNode(0).toString()));
-					apartmentLIst.add(apartment);
+					if (element.hasClass("listitem-even") || element.hasClass("listitem-odd")) {
+						Apartment apartment = new Apartment(LANDLORD);
+						Element address = element.child(1).getElementsByTag("a").get(0);
+						apartment.setUrl(BASE_URL + "/HSS/Object/" + address.attr("href"));
+						apartment.setAddress(address.childNode(0).toString());
+						apartment.setIdentifier(address.attr("href").split("[&=]")[3]);
+						apartment.setArea(KARLSKRONA + " " + element.child(2).getElementsByTag("span").get(0).childNode(0).toString());
+						String rent = element.child(5).getElementsByTag("span").get(0).childNode(0).toString().replace("&nbsp;", "");
+						apartment.setRent(Integer.valueOf(rent));
+						apartment.setRooms(Integer.valueOf(element.child(3).getElementsByTag("span").get(0).childNode(0).toString()));
+						apartment.setSize(Integer.valueOf(element.child(4).getElementsByTag("span").get(0).childNode(0).toString()));
+						apartmentLIst.add(apartment);
+						// Get image url
+						Document imageDoc = Jsoup.connect(apartment.getUrl()).get();
+						Elements elementsByAttributeValue = imageDoc.getElementsByAttributeValue("alt", "Visa full storlek");
+						if (elementsByAttributeValue != null) {
+							String imageUrl = BASE_URL + elementsByAttributeValue.attr("src");
+							int indexOf = imageUrl.indexOf("&width=");
+							// TODO change width and height when they are decided
+							imageUrl = imageUrl.substring(0, indexOf) + "&width=" + "128" + "&" + "height=" + "128";
+							apartment.setImageUrl(imageUrl);
+						}
+					}
 				}
 				// If there are more pages, prepare the next post
 				if (pages > currentPage) {

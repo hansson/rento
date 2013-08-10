@@ -6,7 +6,7 @@
 <head>
 
 <meta charset="utf-8">
-<title><%= HtmlUtil.textToHtml("Rent It - Lättare hyreslägenheter") %></title>
+<title><%=HtmlUtil.textToHtml("Rent It - Lättare hyreslägenheter")%></title>
 
 <!-- Loading Bootstrap -->
 <link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -25,44 +25,48 @@
 </head>
 
 <body>
-	
+
 	<div class="container">
 		<div class="headline">
 			<h1 class="main-logo">
 				<div class="logo"></div>
-				Rent It <small><%= HtmlUtil.textToHtml("Lättare hyreslägenheter") %></small>
+				Rent It <small>L&auml;ttare hyresl&auml;genheter</small>
 			</h1>
 		</div>
 		<!-- /headline -->
 
-		<h1><%= HtmlUtil.textToHtml("Lediga lägenheter") %></h1>
+		<h1>Lediga l&auml;genheter</h1>
 
 		<div class="span12">
-			<table class="table table-striped sortable">
+			<table class="table table-striped" style="cursor: pointer">
 				<thead>
 					<tr>
 						<th class="hidden-phone">Bild</th>
-						<th><%= HtmlUtil.textToHtml("Område") %></th>
+						<th>Omr&aring;de</th>
 						<th>Adress</th>
 						<th>Hyra</th>
 						<th>Storlek</th>
 						<th>Rum</th>
-						<th><%= HtmlUtil.textToHtml("Hyresvärd") %></th>
+						<th>Hyresv&auml;rd</th>
 					</tr>
 				</thead>
 
-				<tbody>
-					<c:forEach var="i" items="${apartments}">
-						<tr class="apartment" style="cursor:pointer" data="${i.url}">
-							<td class="hidden-phone"><img alt="Lägenhetsbild" src="${i.imageUrl}"></td>
-							<td>${i.area}</td>
-							<td>${i.address}</td>
-							<td>${i.rent} kr</td>
-							<td>${i.size} kvm</td>
-							<td>${i.rooms}</td>
-							<td>${i.landlord}</td>
-						</tr>
-					</c:forEach>
+
+
+				<tbody id="apartment-table">
+					<%--  					<c:forEach var="i" items="${apartments}"> --%>
+					<%-- 					 						<tr class="apartment" style="cursor: pointer" data="${i.url}"> --%>
+					<%-- 					 							<td class="hidden-phone"><img alt="L&auml;genhetsbild" src="${i.imageUrl}" style="width: 128px; height: 128px;"></td> --%>
+					<%-- 					 							<td>${i.area}</td> --%>
+					<%-- 					 							<td>${i.address}</td> --%>
+					<%-- 					 							<td>${i.rent}kr</td> --%>
+					<%-- 					 							<td>${i.size}kvm</td> --%>
+					<%-- 					 							<td>${i.rooms}</td> --%>
+					<%-- 					 							<td>${i.landlord}</td> --%>
+					<!-- 					 						</tr> -->
+					<%--  					</c:forEach> --%>
+
+
 
 				</tbody>
 			</table>
@@ -76,7 +80,7 @@
 			<div class="row">
 				<div class="span7">
 					<h3 class="footer-title">Kontakt</h3>
-					<p><%= HtmlUtil.textToHtml("Frågor och förbättringsförslag kan skickas till tobias@tobiashansson.nu") %></p>
+					<p>Fr&aring;gor och f&ouml;rb&auml;ttringsf&ouml;rslag kan skickas till tobias@tobiashansson.nu></p>
 
 					<p class="pvl"></p>
 
@@ -111,6 +115,32 @@
 			});
 		});
 	</script>
+
+	<script type="text/javascript">
+		var a = ${apartments};
+		var r = new Array(), j = -1;
+		for ( var key = 0, size = a.length; key < size; key++) {
+			r[++j] = '<tr class="apartment" style="cursor: pointer" data="';
+		    r[++j] = a[key].mImageUrl;
+		    r[++j] = '"><td class="hidden-phone"><img alt="L&auml;genhetsbild" src="';
+		    r[++j] = a[key].mImageUrl;
+		    r[++j] = '" style="width: 128px; height: 128px;"/></td><td>';
+			r[++j] = a[key].mArea;
+			r[++j] = '</td><td>';
+			r[++j] = a[key].mAddress;
+			r[++j] = '</td><td>';
+			r[++j] = a[key].mRent;
+			r[++j] = 'kr</td><td>';
+			r[++j] = a[key].mSize;
+			r[++j] = 'kvm</td><td>';
+			r[++j] = a[key].mRooms;
+			r[++j] = '</td><td>';
+			r[++j] = a[key].mLandlord;
+			r[++j] = '</td></tr>';
+		}
+		$('#apartment-table').html(r.join(''));
+	</script>
+
 </body>
 </html>
 
