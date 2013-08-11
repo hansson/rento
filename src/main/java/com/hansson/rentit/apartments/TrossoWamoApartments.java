@@ -46,7 +46,11 @@ public class TrossoWamoApartments implements ApartmentsInterface {
 					// TODO change width and height when they are decided
 					apartment.setImageUrl(imageStringArray[0] + "&" + imageStringArray[1] + "&" + "wm=128" + "&" + "hm=128");
 				} else {
-					apartment.setImageUrl(imageStringArray[0]);
+					if (imageStringArray[0].contains("no_img.png")) {
+						apartment.setImageUrl(LOGO);
+					} else {
+						apartment.setImageUrl(imageStringArray[0]);
+					}
 				}
 				apartment.setRent(Integer.valueOf(data.select(".avgift").get(0).child(0).childNode(0).toString().replaceAll("\\D", "")));
 				String size = data.select(".boarea").get(0).child(0).childNode(0).toString().replaceAll("\\D", "");

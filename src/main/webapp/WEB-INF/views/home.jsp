@@ -10,13 +10,13 @@
 
 <!-- Loading Bootstrap -->
 <link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">
+<link href="resources/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
 
 <!-- Loading Flat UI -->
 <link href="resources/css/flat-ui.css" rel="stylesheet">
 
 <link rel="shortcut icon" href="resources/resources/images/favicon.ico">
 
-<link rel="stylesheet" type="text/css" href="resources/css/bootstrap-sortable.css">
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
 <!--[if lt IE 9]>
@@ -51,23 +51,7 @@
 					</tr>
 				</thead>
 
-
-
 				<tbody id="apartment-table">
-					<%--  					<c:forEach var="i" items="${apartments}"> --%>
-					<%-- 					 						<tr class="apartment" style="cursor: pointer" data="${i.url}"> --%>
-					<%-- 					 							<td class="hidden-phone"><img alt="L&auml;genhetsbild" src="${i.imageUrl}" style="width: 128px; height: 128px;"></td> --%>
-					<%-- 					 							<td>${i.area}</td> --%>
-					<%-- 					 							<td>${i.address}</td> --%>
-					<%-- 					 							<td>${i.rent}kr</td> --%>
-					<%-- 					 							<td>${i.size}kvm</td> --%>
-					<%-- 					 							<td>${i.rooms}</td> --%>
-					<%-- 					 							<td>${i.landlord}</td> --%>
-					<!-- 					 						</tr> -->
-					<%--  					</c:forEach> --%>
-
-
-
 				</tbody>
 			</table>
 
@@ -79,10 +63,8 @@
 		<div class="container">
 			<div class="row">
 				<div class="span7">
-					<h3 class="footer-title">Kontakt</h3>
-					<p>Fr&aring;gor och f&ouml;rb&auml;ttringsf&ouml;rslag kan skickas till tobias@tobiashansson.nu></p>
-
-					<p class="pvl"></p>
+					<h3 class="footer-title" style="padding-left: 5px">Kontakt</h3>
+					<p style="padding-left: 5px">Fr&aring;gor och f&ouml;rb&auml;ttringsf&ouml;rslag kan skickas till tobias@tobiashansson.nu</p>
 
 				</div>
 				<!-- /span8 -->
@@ -118,10 +100,11 @@
 
 	<script type="text/javascript">
 		var a = ${apartments};
+
 		var r = new Array(), j = -1;
 		for ( var key = 0, size = a.length; key < size; key++) {
 			r[++j] = '<tr class="apartment" style="cursor: pointer" data="';
-		    r[++j] = a[key].mImageUrl;
+		    r[++j] = a[key].mUrl;
 		    r[++j] = '"><td class="hidden-phone"><img alt="L&auml;genhetsbild" src="';
 		    r[++j] = a[key].mImageUrl;
 		    r[++j] = '" style="width: 128px; height: 128px;"/></td><td>';

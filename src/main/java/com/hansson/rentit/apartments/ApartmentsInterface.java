@@ -20,5 +20,7 @@ import com.hansson.rentit.entitys.Apartment;
 @CarbonFootprint(units = CO2Units.FIRKINS_PER_FORTNIGHT, value = 0)
 public interface ApartmentsInterface {
 
+	public static final String LOGO = "resources/images/logo.png";
+
 	List<Apartment> getAvailableApartments();
 }
