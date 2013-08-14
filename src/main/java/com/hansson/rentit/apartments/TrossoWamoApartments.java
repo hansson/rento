@@ -19,7 +19,7 @@ import com.hansson.rentit.utils.HtmlUtil;
 
 public class TrossoWamoApartments implements ApartmentsInterface {
 
-	private static final String LANDLORD = "Trossö, Wämö & Pribo fastigheter";
+	private static final String LANDLORD = "Tross&ouml;, W&auml;m&ouml; & Pribo fastigheter";
 	private static final String BASE_URL = "http://bovision.se/more/MaklarLista.aspx?ai=9530";
 
 	@Override
