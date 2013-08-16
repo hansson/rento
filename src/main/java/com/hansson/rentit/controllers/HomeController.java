@@ -28,6 +28,9 @@ import com.hansson.rentit.entitys.Apartment;
 @Controller
 public class HomeController {
 
+	// * ********CAUTION********
+	// * Entering html scraping area.. prepare yourself for some nasty stuff!
+	// * ********CAUTION********
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	@Win(Outcome.EPIC)
 	private List<ApartmentsInterface> landlords = new LinkedList<ApartmentsInterface>() {
