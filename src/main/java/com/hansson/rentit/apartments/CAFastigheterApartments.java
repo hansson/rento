@@ -1,5 +1,7 @@
 package com.hansson.rentit.apartments;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -44,6 +46,7 @@ public class CAFastigheterApartments implements ApartmentsInterface {
 			Element element = doc.getElementsByClass("listHolder").first().getElementsByTag("ul").first().getElementsByTag("li").first();
 			while (element != null) {
 				Apartment apartment = new Apartment(LANDLORD);
+				apartment.setArea(KARLSKRONA);
 				Element linkElement = element.getElementsByTag("a").first();
 				String imageUrl = linkElement.getElementsByTag("img").attr("src");
 				imageUrl = imageUrl.substring(0, imageUrl.indexOf("width"));
@@ -52,6 +55,19 @@ public class CAFastigheterApartments implements ApartmentsInterface {
 				apartment.setImageUrl(imageUrl);
 				apartment.setUrl(BASE_URL + linkElement.attr("href"));
 				doc = Jsoup.connect(apartment.getUrl()).get();
+				Elements infoBox = doc.getElementsByClass("internalPuff").first().getElementsByTag("p");
+				apartment.setAddress(infoBox.get(0).childNode(0).toString().trim());
+				for (Element info : infoBox) {
+					if (info.childNode(0).toString().endsWith("kvm")) {
+						apartment.setSize(Integer.valueOf(info.childNode(0).toString().trim().split(" ")[0]));
+					} else if (info.childNode(0).toString().endsWith("kr")) {
+						apartment.setRent(Integer.valueOf(info.childNode(0).toString().replaceAll("\\D", "")));
+					} else if (info.childNode(0).toString().endsWith("rum")) {
+						apartment.setRooms(Integer.valueOf(info.childNode(0).toString().trim().split(" ")[0]));
+					} else if (info.childNode(0).toString().contains("-") && !isDate(info.childNode(0).toString())) {
+						apartment.setIdentifier(info.childNode(0).toString().trim());
+					}
+				}
 				element = element.nextElementSibling();
 				apartmentLIst.add(apartment);
 			}
@@ -59,5 +75,15 @@ public class CAFastigheterApartments implements ApartmentsInterface {
 			e.printStackTrace();
 		}
 		return apartmentLIst;
+	}
+
+	private boolean isDate(String inputString) {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		try {
+			sdf.parse(inputString);
+			return true;
+		} catch (ParseException e) {
+			return false;
+		}
 	}
 }
