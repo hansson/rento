@@ -3,6 +3,8 @@ package com.hansson.rentit.apartments;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -38,19 +40,7 @@ public class BengtAkessonsApartments implements ApartmentsInterface {
 				apartment.setImageUrl(imageUrl);
 				String summaryString = "";
 				for (Node node : element.getElementsByClass("entry").get(0).childNodes()) {
-					if (node.childNodeSize() > 0) {
-						if (node.nodeName().equalsIgnoreCase("p") && !node.childNode(0).nodeName().equalsIgnoreCase("a")) {
-							// Add to summary.
-							summaryString += node.childNode(0).childNode(0).toString();
-						} else if (node.nodeName().equalsIgnoreCase("table")) {
-							apartment.setRooms(Integer.valueOf(node.childNode(1).childNode(1).childNode(1).childNode(1).childNode(0).toString()));
-							apartment.setRent(Integer.valueOf(node.childNode(1).childNode(1).childNode(3).childNode(1).childNode(0).toString().replaceAll("\\D", "")));
-							apartment.setSize(Integer.valueOf(node.childNode(1).childNode(3).childNode(1).childNode(1).childNode(0).toString().replace("m&sup2;", "").replaceAll(
-									"\\D", "")));
-							apartment.setAddress(node.childNode(1).childNode(3).childNode(3).childNode(1).childNode(0).toString());
-							System.out.println(node);
-						}
-					}
+					summaryString += handleNode(node, apartment);
 				}
 				apartment.setSummary(summaryString);
 				apartmentLIst.add(apartment);
@@ -59,5 +49,31 @@ public class BengtAkessonsApartments implements ApartmentsInterface {
 			e.printStackTrace();
 		}
 		return apartmentLIst;
+	}
+
+	private String handleNode(Node node, Apartment apartment) {
+		String summaryString = "";
+		if (node.childNodeSize() > 0) {
+			if (node.nodeName().equalsIgnoreCase("p")) {
+				Node childNode = node.childNode(0);
+				while (childNode != null) {
+					if (!childNode.nodeName().equalsIgnoreCase("a") && childNode.toString().trim().length() != 0) {
+						summaryString += node.childNode(0).childNode(0).toString();
+						Pattern p = Pattern.compile("Objekt: [-0-9]+");
+						Matcher matcher = p.matcher(summaryString += node.childNode(0).childNode(0).toString());
+						if (matcher.find()) {
+							apartment.setIdentifier(matcher.group().split(" ")[1]);
+						}
+					}
+					childNode = childNode.nextSibling();
+				}
+			} else if (node.nodeName().equalsIgnoreCase("table")) {
+				apartment.setRooms(Integer.valueOf(node.childNode(1).childNode(1).childNode(1).childNode(1).childNode(0).toString()));
+				apartment.setRent(Integer.valueOf(node.childNode(1).childNode(1).childNode(3).childNode(1).childNode(0).toString().replaceAll("\\D", "")));
+				apartment.setSize(Integer.valueOf(node.childNode(1).childNode(3).childNode(1).childNode(1).childNode(0).toString().replace("m&sup2;", "").replaceAll("\\D", "")));
+				apartment.setAddress(node.childNode(1).childNode(3).childNode(3).childNode(1).childNode(0).toString());
+			}
+		}
+		return summaryString;
 	}
 }
