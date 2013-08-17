@@ -12,12 +12,12 @@ more cities in the future!
 * Trossö & Wämö Fastigheter
 * Karlskronahem
 * Bengt Åkesson Fastigheter
-
-## In progress
 * CA-Fastigheter
 
-## Not started
+## In progress
 * Danielssons Fastigheter
+
+## Not started
 * Klövern AB
 * Faxe Fastigheter
 * Forell Fastigheter
