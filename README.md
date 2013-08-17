@@ -38,5 +38,3 @@ more cities in the future!
 * Svenska Bostadsfonden
 * Utklippan Fastigheter
 * Vibohus Fastigheter AB
-
-
