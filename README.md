@@ -15,14 +15,12 @@ more cities in the future!
 * CA-Fastigheter
 
 ## In progress
-* Danielssons Fastigheter
+* Heimstaden/Gallionen
 
 ## Not started
-* Klövern AB
-* Faxe Fastigheter
-* Forell Fastigheter
-* Hans Åkessons Fastigheter
-* Heimstaden/Gallionen
+* Danielssons Fastigheter - No apartment list
+* Faxe Fastigheter - No apartment listing available
+* Hans Åkessons Fastigheter - No apartment listing available
 * Hyreshuset AB
 * Konradssons Fastigheter
 * KS Fastigheter
