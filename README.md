@@ -10,12 +10,13 @@ more cities in the future!
 
 ## Implemented landlords
 * Trossö & Wämö Fastigheter
-
-## In progress
 * Karlskronahem
 
-## Not started
+## In progress
 * Bengt Åkesson Fastigheter
+
+## Not started
+
 * CA-Fastigheter
 * Danielssons Fastigheter
 * Klövern AB
