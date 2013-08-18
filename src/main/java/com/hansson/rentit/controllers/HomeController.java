@@ -17,7 +17,7 @@ import com.google.gag.annotation.remark.Win;
 import com.google.gag.enumeration.Outcome;
 import com.google.gson.Gson;
 import com.hansson.rentit.apartments.ApartmentsInterface;
-import com.hansson.rentit.apartments.CAFastigheterApartments;
+import com.hansson.rentit.apartments.TrossoWamoApartments;
 import com.hansson.rentit.entitys.Apartment;
 
 /**
@@ -39,8 +39,9 @@ public class HomeController {
 		private static final long serialVersionUID = -2411798345463453006L;
 		// Add new implementations of the ApartmentsInterface here to include them in the scan loop
 		{
-			add(new CAFastigheterApartments());
-			// add(new TrossoWamoApartments());
+			// add(new HeimstadenApartments());
+			// add(new CAFastigheterApartments());
+			add(new TrossoWamoApartments());
 			// add(new KarlskronahemApartments());
 			// add(new BengtAkessonsApartments());
 		}

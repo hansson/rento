@@ -31,7 +31,7 @@ public class BengtAkessonsApartments implements ApartmentsInterface {
 			Elements elementsByClass = doc.getElementsByClass("post");
 			for (Element element : elementsByClass) {
 				Apartment apartment = new Apartment(LANDLORD);
-				apartment.setArea(KARLSKRONA);
+				apartment.setCity(KARLSKRONA);
 				apartment.setUrl(element.getElementsByTag("a").get(0).attr("href"));
 				String imageUrl = element.getElementsByTag("img").get(0).attr("src");
 				imageUrl = imageUrl.substring(0, imageUrl.indexOf("?w"));

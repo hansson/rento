@@ -3,6 +3,7 @@ package com.hansson.rentit.entitys;
 public class Apartment {
 
 	private String mArea;
+	private String mCity;
 	private String mAddress;
 	private String mUrl;
 	private String mImageUrl;
@@ -27,6 +28,14 @@ public class Apartment {
 
 	public void setArea(String area) {
 		mArea = area;
+	}
+
+	public String getCity() {
+		return mCity;
+	}
+
+	public void setCity(String city) {
+		mCity = city;
 	}
 
 	public String getAddress() {

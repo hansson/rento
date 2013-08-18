@@ -34,7 +34,13 @@ public class TrossoWamoApartments implements ApartmentsInterface {
 				Element data = dataList.get(i);
 				Element summary = summaryList.get(i);
 				Apartment apartment = new Apartment(HtmlUtil.textToHtml(LANDLORD));
-				apartment.setArea(data.select(".areaname").get(0).child(0).childNode(0).toString());
+				String[] split = data.select(".areaname").get(0).child(0).childNode(0).toString().split(" ");
+				apartment.setCity(split[0]);
+				String area = "";
+				for (int j = 1; j < split.length; j++) {
+					area += split[j];
+				}
+				apartment.setArea(area);
 				apartment.setAddress(data.select(".adress").get(0).child(0).childNode(0).toString());
 				String roomString = data.select(".rum").get(0).child(0).childNode(0).toString();
 				Pattern roomPattern = Pattern.compile("\\d*");

@@ -46,7 +46,7 @@ public class CAFastigheterApartments implements ApartmentsInterface {
 			Element element = doc.getElementsByClass("listHolder").first().getElementsByTag("ul").first().getElementsByTag("li").first();
 			while (element != null) {
 				Apartment apartment = new Apartment(LANDLORD);
-				apartment.setArea(KARLSKRONA);
+				apartment.setCity(KARLSKRONA);
 				Element linkElement = element.getElementsByTag("a").first();
 				String imageUrl = linkElement.getElementsByTag("img").attr("src");
 				imageUrl = imageUrl.substring(0, imageUrl.indexOf("width"));

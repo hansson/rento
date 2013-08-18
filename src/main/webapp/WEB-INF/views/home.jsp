@@ -42,6 +42,7 @@
 				<thead>
 					<tr>
 						<th class="hidden-phone">Bild</th>
+						<th>Ort</th>
 						<th>Omr&aring;de</th>
 						<th>Adress</th>
 						<th>Hyra</th>
@@ -108,6 +109,8 @@
 		    r[++j] = '"><td class="hidden-phone"><img alt="L&auml;genhetsbild" src="';
 		    r[++j] = a[key].mImageUrl;
 		    r[++j] = '" style="width: 128px; height: 128px;"/></td><td>';
+			r[++j] = a[key].mCity;
+			r[++j] = '</td><td>';
 			r[++j] = a[key].mArea;
 			r[++j] = '</td><td>';
 			r[++j] = a[key].mAddress;

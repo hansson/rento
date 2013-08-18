@@ -47,7 +47,8 @@ public class KarlskronahemApartments implements ApartmentsInterface {
 						apartment.setUrl(BASE_URL + "/HSS/Object/" + address.attr("href"));
 						apartment.setAddress(address.childNode(0).toString());
 						apartment.setIdentifier(address.attr("href").split("[&=]")[3]);
-						apartment.setArea(KARLSKRONA + " " + element.child(2).getElementsByTag("span").get(0).childNode(0).toString());
+						apartment.setCity(KARLSKRONA);
+						apartment.setArea(element.child(2).getElementsByTag("span").get(0).childNode(0).toString());
 						String rent = element.child(5).getElementsByTag("span").get(0).childNode(0).toString().replace("&nbsp;", "");
 						apartment.setRent(Integer.valueOf(rent));
 						apartment.setRooms(Integer.valueOf(element.child(3).getElementsByTag("span").get(0).childNode(0).toString()));
