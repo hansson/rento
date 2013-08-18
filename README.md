@@ -11,19 +11,16 @@ more cities in the future!
 ## Implemented landlords
 * Trossö & Wämö Fastigheter
 * Karlskronahem
+* Bengt åkessons fastigheter
+* CA-Fastigheter
 
 ## In progress
-* Bengt Åkesson Fastigheter
+* Heimstaden/Gallionen
 
 ## Not started
-
-* CA-Fastigheter
-* Danielssons Fastigheter
-* Klövern AB
-* Faxe Fastigheter
-* Forell Fastigheter
-* Hans Åkessons Fastigheter
-* Heimstaden/Gallionen
+* Danielssons Fastigheter - No apartment list
+* Faxe Fastigheter - No apartment listing available
+* Hans Åkessons Fastigheter - No apartment listing available
 * Hyreshuset AB
 * Konradssons Fastigheter
 * KS Fastigheter
@@ -38,3 +35,4 @@ more cities in the future!
 * Svenska Bostadsfonden
 * Utklippan Fastigheter
 * Vibohus Fastigheter AB
+* 
