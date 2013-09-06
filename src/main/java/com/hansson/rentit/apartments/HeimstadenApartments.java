@@ -31,16 +31,6 @@ public class HeimstadenApartments implements ApartmentsInterface {
 				try {
 					Apartment apartment = new Apartment(LANDLORD);
 					apartment.setIdentifier(element.attr("id"));
-					String imageUrl = element.getElementsByTag("img").attr("src");
-					int indexOf = imageUrl.indexOf("&w=");
-					if (imageUrl != null && indexOf > -1) {
-						imageUrl = imageUrl.substring(0, indexOf);
-						// TODO change width and height when they are decided
-						imageUrl += "&w=128&h=128&q=100q&ScaleAndClipMode=FitAndClip";
-					} else {
-						apartment.setImageUrl(LOGO);
-					}
-					apartment.setImageUrl(imageUrl);
 					apartment.setUrl(BASE_URL + element.getElementsByTag("a").attr("href"));
 					apartment.setAddress(HtmlUtil.textToHtml(element.getElementsByTag("h5").text()));
 					apartment.setRooms(Integer.valueOf(element.getElementsByClass("listItemLeftBottom").text().replaceAll("\\D", "")));

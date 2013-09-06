@@ -6,7 +6,6 @@ public class Apartment {
 	private String mCity;
 	private String mAddress;
 	private String mUrl;
-	private String mImageUrl;
 	private String mSummary;
 	private int mRooms;
 	private int mSize;
@@ -52,14 +51,6 @@ public class Apartment {
 
 	public void setUrl(String url) {
 		mUrl = url;
-	}
-
-	public String getImageUrl() {
-		return mImageUrl;
-	}
-
-	public void setImageUrl(String imageUrl) {
-		mImageUrl = imageUrl;
 	}
 
 	public int getRooms() {

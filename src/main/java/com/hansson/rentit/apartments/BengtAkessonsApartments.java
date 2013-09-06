@@ -33,11 +33,6 @@ public class BengtAkessonsApartments implements ApartmentsInterface {
 				Apartment apartment = new Apartment(LANDLORD);
 				apartment.setCity(KARLSKRONA);
 				apartment.setUrl(element.getElementsByTag("a").get(0).attr("href"));
-				String imageUrl = element.getElementsByTag("img").get(0).attr("src");
-				imageUrl = imageUrl.substring(0, imageUrl.indexOf("?w"));
-				// TODO change width and height when they are decided
-				imageUrl = imageUrl + "&w=128&h=128&crop=1";
-				apartment.setImageUrl(imageUrl);
 				String summaryString = "";
 				for (Node node : element.getElementsByClass("entry").get(0).childNodes()) {
 					summaryString += handleNode(node, apartment);

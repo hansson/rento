@@ -48,11 +48,6 @@ public class CAFastigheterApartments implements ApartmentsInterface {
 				Apartment apartment = new Apartment(LANDLORD);
 				apartment.setCity(KARLSKRONA);
 				Element linkElement = element.getElementsByTag("a").first();
-				String imageUrl = linkElement.getElementsByTag("img").attr("src");
-				imageUrl = imageUrl.substring(0, imageUrl.indexOf("width"));
-				// TODO change width and height when they are decided
-				imageUrl += "width=128&amp;height=128&amp;ScaleAndClipMode=ScaleHeightClipWidth";
-				apartment.setImageUrl(imageUrl);
 				apartment.setUrl(BASE_URL + linkElement.attr("href"));
 				doc = Jsoup.connect(apartment.getUrl()).get();
 				Elements infoBox = doc.getElementsByClass("internalPuff").first().getElementsByTag("p");

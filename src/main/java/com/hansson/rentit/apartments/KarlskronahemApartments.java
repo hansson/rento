@@ -26,7 +26,7 @@ public class KarlskronahemApartments implements ApartmentsInterface {
 	@Override
 	@CarbonFootprint(units = CO2Units.FIRKINS_PER_FORTNIGHT, value = 167.5)
 	public List<Apartment> getAvailableApartments() {
-		List<Apartment> apartmentLIst = new LinkedList<Apartment>();
+		List<Apartment> apartmentList = new LinkedList<Apartment>();
 		try {
 			// Get html for first page
 			Document doc = Jsoup.connect(BASE_URL + "/HSS/Object/object_list.aspx?objectgroup=1").get();
@@ -53,17 +53,7 @@ public class KarlskronahemApartments implements ApartmentsInterface {
 						apartment.setRent(Integer.valueOf(rent));
 						apartment.setRooms(Integer.valueOf(element.child(3).getElementsByTag("span").get(0).childNode(0).toString()));
 						apartment.setSize(Integer.valueOf(element.child(4).getElementsByTag("span").get(0).childNode(0).toString()));
-						apartmentLIst.add(apartment);
-						// Get image url
-						Document imageDoc = Jsoup.connect(apartment.getUrl()).get();
-						Elements elementsByAttributeValue = imageDoc.getElementsByAttributeValue("alt", "Visa full storlek");
-						if (elementsByAttributeValue != null) {
-							String imageUrl = BASE_URL + elementsByAttributeValue.attr("src");
-							int indexOf = imageUrl.indexOf("&width=");
-							// TODO change width and height when they are decided
-							imageUrl = imageUrl.substring(0, indexOf) + "&width=" + "128" + "&" + "height=" + "128";
-							apartment.setImageUrl(imageUrl);
-						}
+						apartmentList.add(apartment);
 					}
 				}
 				// If there are more pages, prepare the next post
@@ -96,6 +86,6 @@ public class KarlskronahemApartments implements ApartmentsInterface {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return apartmentLIst;
+		return apartmentList;
 	}
 }
