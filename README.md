@@ -12,10 +12,10 @@ more cities in the future!
 * Trossö & Wämö Fastigheter
 * Karlskronahem
 * Bengt åkessons fastigheter
-* CA-Fastigheter
+* Heimstaden/Gallionen
 
 ## In progress
-* Heimstaden/Gallionen
+* CA-Fastigheter
 
 ## Not started
 * Danielssons Fastigheter - No apartment list
