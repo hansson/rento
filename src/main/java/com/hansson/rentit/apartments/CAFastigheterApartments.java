@@ -43,10 +43,11 @@ public class CAFastigheterApartments implements ApartmentsInterface {
 					}
 				}
 			}
+
+			Elements viewState = doc.select("#__VIEWSTATE");
 			// First select item is not a city
 			for (String city : availableCities) {
 				System.out.println("Requesting " + city);
-				Elements viewState = doc.select("#__VIEWSTATE");
 				String eventTarget = "hfOrtTyp";
 				eventTarget = eventTarget.replace("_", "$");
 				Map<String, String> postData = new HashMap<String, String>();
@@ -59,6 +60,7 @@ public class CAFastigheterApartments implements ApartmentsInterface {
 				postData.put("ctl00$ContentPlaceHolder1$sectionMain$ctl00$ctl00$ctl00$ctl00$hfOrtTyp", city);
 				doc = Jsoup.connect(BASE_URL + "/Sok_ledigt/Lediga_bostader").data(postData).userAgent(USER_AGENT).header("Content-Type",
 						"application/x-www-form-urlencoded; charset=utf-8").post();
+				viewState = doc.select("#__VIEWSTATE");
 				Element element = doc.getElementsByClass("listHolder").first().getElementsByTag("ul").first().getElementsByTag("li").first();
 				while (element != null) {
 					Apartment apartment = new Apartment(LANDLORD);
