@@ -13,19 +13,21 @@ more cities in the future!
 * Karlskronahem
 * Bengt åkessons fastigheter
 * Heimstaden/Gallionen
+* CA-Fastigheter
+* KS Fastigheter
 
 ## In progress
-* CA-Fastigheter
+
+
 
 ## Not started
 * Danielssons Fastigheter - No apartment list
 * Faxe Fastigheter - No apartment listing available
 * Hans Åkessons Fastigheter - No apartment listing available
-* Hyreshuset AB
-* Konradssons Fastigheter
-* KS Fastigheter
-* Lindeberg Fastigheter
-* Lena Åkesson Fastigheter
+* Hyreshuset AB - No apartment listing available
+* Konradssons Fastigheter - No apartment listing available
+* Lindeberg Fastigheter - No apartment listing available
+* Lena Åkesson Fastigheter - No apartment listing available
 * Magistratus Fastigheter
 * Nordbell Fastigheter
 * P&E Förvaltning

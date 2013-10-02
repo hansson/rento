@@ -18,6 +18,7 @@ import com.google.gag.enumeration.Outcome;
 import com.google.gson.Gson;
 import com.hansson.rentit.apartments.ApartmentsInterface;
 import com.hansson.rentit.apartments.CAFastigheterApartments;
+import com.hansson.rentit.apartments.KSFastigheterApartments;
 import com.hansson.rentit.entitys.Apartment;
 
 /**
@@ -40,10 +41,11 @@ public class HomeController {
 		// Add new implementations of the ApartmentsInterface here to include them in the scan loop
 		{
 			// add(new HeimstadenApartments());
-			add(new CAFastigheterApartments());
+			// add(new CAFastigheterApartments());
 			// add(new TrossoWamoApartments());
 			// add(new KarlskronahemApartments());
 			// add(new BengtAkessonsApartments());
+			add(new KSFastigheterApartments());
 		}
 	};
 
