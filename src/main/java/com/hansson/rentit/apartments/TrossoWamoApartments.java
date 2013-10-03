@@ -29,11 +29,9 @@ public class TrossoWamoApartments implements ApartmentsInterface {
 		try {
 			Document doc = Jsoup.connect(BASE_URL).get();
 			Elements dataList = doc.select(".data");
-			Elements summaryList = doc.select(".summary");
 			for (int i = 0; i < dataList.size(); i++) {
 				Element data = dataList.get(i);
-				Element summary = summaryList.get(i);
-				Apartment apartment = new Apartment(HtmlUtil.textToHtml(LANDLORD));
+				Apartment apartment = new Apartment(LANDLORD);
 				String[] split = data.select(".areaname").get(0).child(0).childNode(0).toString().split(" ");
 				apartment.setCity(split[0]);
 				String area = "";
@@ -41,7 +39,7 @@ public class TrossoWamoApartments implements ApartmentsInterface {
 					area += split[j];
 				}
 				apartment.setArea(area);
-				apartment.setAddress(data.select(".adress").get(0).child(0).childNode(0).toString());
+				apartment.setAddress(HtmlUtil.textToHtml(data.select(".adress").get(0).child(0).childNode(0).toString()));
 				String roomString = data.select(".rum").get(0).child(0).childNode(0).toString();
 				Pattern roomPattern = Pattern.compile("\\d*");
 				Matcher matcher = roomPattern.matcher(roomString);
@@ -52,7 +50,6 @@ public class TrossoWamoApartments implements ApartmentsInterface {
 				apartment.setSize(Integer.valueOf(size.substring(0, size.length() - 1)));
 				apartment.setUrl(data.select(".adress").get(0).child(0).attr("href"));
 				apartment.setIdentifier(apartment.getUrl().split("/")[apartment.getUrl().split("/").length - 1]);
-				apartment.setSummary(summary.child(0).childNode(0).toString().trim());
 				apartmentLIst.add(apartment);
 			}
 		} catch (MalformedURLException e) {

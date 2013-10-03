@@ -45,13 +45,12 @@ public class HeimstadenApartments implements ApartmentsInterface {
 					}
 					Elements elementsByTag = doc.getElementsByTag("h3");
 					for (Element infoElement : elementsByTag) {
-						if (infoElement.text().equalsIgnoreCase("Område")) {
+						if (infoElement.text().equalsIgnoreCase("Omrï¿½de")) {
 							apartment.setArea(HtmlUtil.textToHtml(infoElement.nextElementSibling().text()));
 						} else if (infoElement.text().equalsIgnoreCase("Ort")) {
 							apartment.setCity(HtmlUtil.textToHtml(WordUtils.capitalize(infoElement.nextElementSibling().text().toLowerCase())));
 						}
 					}
-					apartment.setSummary(HtmlUtil.textToHtml(doc.getElementsByClass("saljbesk").text()));
 					apartmentLIst.add(apartment);
 				} catch (Exception e) {
 					// To make sure that even if one apartment listing fails it will continue.

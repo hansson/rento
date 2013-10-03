@@ -15,6 +15,7 @@ import org.jsoup.select.Elements;
 import com.google.gag.annotation.disclaimer.CarbonFootprint;
 import com.google.gag.enumeration.CO2Units;
 import com.hansson.rentit.entitys.Apartment;
+import com.hansson.rentit.utils.HtmlUtil;
 
 public class KarlskronahemApartments implements ApartmentsInterface {
 
@@ -45,10 +46,10 @@ public class KarlskronahemApartments implements ApartmentsInterface {
 						Apartment apartment = new Apartment(LANDLORD);
 						Element address = element.child(1).getElementsByTag("a").get(0);
 						apartment.setUrl(BASE_URL + "/HSS/Object/" + address.attr("href"));
-						apartment.setAddress(address.childNode(0).toString());
+						apartment.setAddress(HtmlUtil.textToHtml(address.childNode(0).toString()));
 						apartment.setIdentifier(address.attr("href").split("[&=]")[3]);
 						apartment.setCity(KARLSKRONA);
-						apartment.setArea(element.child(2).getElementsByTag("span").get(0).childNode(0).toString());
+						apartment.setArea(HtmlUtil.textToHtml(element.child(2).getElementsByTag("span").get(0).childNode(0).toString()));
 						String rent = element.child(5).getElementsByTag("span").get(0).childNode(0).toString().replace("&nbsp;", "");
 						apartment.setRent(Integer.valueOf(rent));
 						apartment.setRooms(Integer.valueOf(element.child(3).getElementsByTag("span").get(0).childNode(0).toString()));

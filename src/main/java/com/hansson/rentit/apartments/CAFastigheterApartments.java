@@ -15,6 +15,7 @@ import org.jsoup.select.Elements;
 import com.google.gag.annotation.disclaimer.CarbonFootprint;
 import com.google.gag.enumeration.CO2Units;
 import com.hansson.rentit.entitys.Apartment;
+import com.hansson.rentit.utils.HtmlUtil;
 
 public class CAFastigheterApartments implements ApartmentsInterface {
 
@@ -47,7 +48,6 @@ public class CAFastigheterApartments implements ApartmentsInterface {
 			Elements viewState = doc.select("#__VIEWSTATE");
 			// First select item is not a city
 			for (String city : availableCities) {
-				System.out.println("Requesting " + city);
 				String eventTarget = "hfOrtTyp";
 				eventTarget = eventTarget.replace("_", "$");
 				Map<String, String> postData = new HashMap<String, String>();
@@ -69,7 +69,7 @@ public class CAFastigheterApartments implements ApartmentsInterface {
 					apartment.setUrl(BASE_URL + linkElement.attr("href"));
 					doc = Jsoup.connect(apartment.getUrl()).get();
 					Elements infoBox = doc.getElementsByClass("internalPuff").first().getElementsByTag("p");
-					apartment.setAddress(infoBox.get(0).childNode(0).toString().trim());
+					apartment.setAddress(HtmlUtil.textToHtml(infoBox.get(0).childNode(0).toString().trim()));
 					for (Element info : infoBox) {
 						if (info.childNode(0).toString().endsWith("kvm")) {
 							apartment.setSize(Integer.valueOf(info.childNode(0).toString().trim().split(" ")[0]));
