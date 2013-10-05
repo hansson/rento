@@ -16,9 +16,10 @@ more cities in the future!
 * CA-Fastigheter
 * KS Fastigheter
 * Magistratus Fastigheter
+* PBA Karlskrona AB
 
 ## In progress
-* PBA Karlskrona AB
+* Svenska Bostadsfonden
 
 ## Not started
 * Danielssons Fastigheter - No apartment list
@@ -29,8 +30,7 @@ more cities in the future!
 * Lindeberg Fastigheter - No apartment listing available
 * Lena Åkesson Fastigheter - No apartment listing available
 * P&E Förvaltning - No apartment listing available
-* Samfast AB, Privatbostad
-* Stenhusen AB
-* Svenska Bostadsfonden
+* Samfast AB, Privatbostad - No apartment list
+* Stenhusen AB - No apartment listing available
 * Utklippan Fastigheter
 * Vibohus Fastigheter AB

@@ -23,6 +23,7 @@ import com.hansson.rentit.apartments.HeimstadenApartments;
 import com.hansson.rentit.apartments.KSFastigheterApartments;
 import com.hansson.rentit.apartments.KarlskronahemApartments;
 import com.hansson.rentit.apartments.MagistratusFastigheterApartments;
+import com.hansson.rentit.apartments.PBAApartments;
 import com.hansson.rentit.apartments.TrossoWamoApartments;
 import com.hansson.rentit.entitys.Apartment;
 
@@ -35,8 +36,7 @@ public class HomeController {
 	// * ********CAUTION********
 	// * Entering html scraping area.. prepare yourself for some nasty stuff!
 	// * ********CAUTION********
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	@Win(Outcome.EPIC)
+	private static final Logger mLog = LoggerFactory.getLogger("RENTIT");
 	private List<ApartmentsInterface> landlords = new LinkedList<ApartmentsInterface>() {
 
 		/**
@@ -45,13 +45,14 @@ public class HomeController {
 		private static final long serialVersionUID = -2411798345463453006L;
 		// Add new implementations of the ApartmentsInterface here to include them in the scan loop
 		{
-			add(new HeimstadenApartments());
-			add(new CAFastigheterApartments());
-			add(new TrossoWamoApartments());
-			add(new KarlskronahemApartments());
-			add(new BengtAkessonsApartments());
-			add(new KSFastigheterApartments());
-			add(new MagistratusFastigheterApartments());
+//			add(new HeimstadenApartments());
+//			add(new CAFastigheterApartments());
+//			add(new TrossoWamoApartments());
+//			add(new KarlskronahemApartments());
+//			add(new BengtAkessonsApartments());
+//			add(new KSFastigheterApartments());
+//			add(new MagistratusFastigheterApartments());
+			add(new PBAApartments());
 
 		}
 	};
@@ -61,7 +62,7 @@ public class HomeController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+		mLog.info("Welcome home! The client locale is {}.", locale);
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);
