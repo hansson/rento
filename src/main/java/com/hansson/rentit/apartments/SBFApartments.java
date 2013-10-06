@@ -19,10 +19,10 @@ import com.google.gag.enumeration.CO2Units;
 import com.hansson.rentit.entitys.Apartment;
 import com.hansson.rentit.utils.HtmlUtil;
 
-public class PBAApartments implements ApartmentsInterface {
+public class SBFApartments implements ApartmentsInterface {
 
 	private static final String LANDLORD = "PBA Karlskrona Malmö AB";
-	private static final String BASE_URL = "http://www.pba.se/page/18/lediga-lagenheterlokaler.aspx";
+	private static final String BASE_URL = "http://www.sbfbostad.se/pages/Lediga_lagenheter.aspx";
 	private static final Logger mLog = LoggerFactory.getLogger("RENTIT");
 
 	@Override
@@ -34,28 +34,8 @@ public class PBAApartments implements ApartmentsInterface {
 			Elements apartments = doc.getElementById("content").getElementsByClass("entry");
 			for (Element element : apartments) {
 				try {
-					Apartment apartment = new Apartment(HtmlUtil.textToHtml(LANDLORD));
-					apartment.setUrl(element.getElementsByTag("h2").get(0).getElementsByTag("a").attr("href"));
-					apartment.setIdentifier(apartment.getUrl().split("/")[apartment.getUrl().split("/").length - 1]);
-					String[] areaAndCity = element.getElementsByTag("h2").text().replaceAll("Hy.* i ", "").trim().split("[ ,]");
-					apartment.setArea(HtmlUtil.textToHtml(areaAndCity[0]));
-					apartment.setCity(HtmlUtil.textToHtml(areaAndCity[2]));
-					String informationText = element.getElementsByTag("span").get(1).text();
-
-					Pattern p = Pattern.compile("Adress: .+,");
-					Matcher matcher = p.matcher(informationText);
-					matcher.find();
-					apartment.setAddress(HtmlUtil.textToHtml(matcher.group().replace("Adress: ", "").replace(",", "")));
-
-					p = Pattern.compile("Hyra/avgift: .+ SEK");
-					matcher = p.matcher(informationText);
-					matcher.find();
-					apartment.setRent(Integer.valueOf(matcher.group().replaceAll("Hyra/avgift: |\u00A0| |SEK", "")));
-
-					p = Pattern.compile("Antal Rum: \\d+");
-					matcher = p.matcher(informationText);
-					matcher.find();
-					apartment.setRooms(Integer.valueOf(matcher.group().replaceAll("Antal Rum: ", "")));
+					Apartment apartment = new Apartment(LANDLORD);
+					
 					apartmentList.add(apartment);
 				} catch (Exception e) {
 					mLog.error(LANDLORD + " error on element #" + apartments.indexOf(element));
