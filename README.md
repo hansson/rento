@@ -19,7 +19,7 @@ more cities in the future!
 * PBA Karlskrona AB
 
 ## In progress
-* Svenska Bostadsfonden
+* Svenska Bostadsfonden 
 
 ## Not started
 * Danielssons Fastigheter - No apartment list
