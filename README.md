@@ -32,5 +32,5 @@ more cities in the future!
 * P&E Förvaltning - No apartment listing available
 * Samfast AB, Privatbostad - No apartment list
 * Stenhusen AB - No apartment listing available
-* Utklippan Fastigheter
+* Utklippan Fastigheter 
 * Vibohus Fastigheter AB
