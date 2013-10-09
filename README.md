@@ -17,9 +17,9 @@ more cities in the future!
 * KS Fastigheter
 * Magistratus Fastigheter
 * PBA Karlskrona AB
+* Svenska Bostadsfonden
 
 ## In progress
-* Svenska Bostadsfonden
 
 ## Not started
 * Danielssons Fastigheter - No apartment list
