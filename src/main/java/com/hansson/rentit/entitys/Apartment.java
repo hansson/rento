@@ -7,7 +7,7 @@ public class Apartment {
 	private String mAddress;
 	private String mUrl;
 	private String mSummary;
-	private int mRooms;
+	private double mRooms;
 	private int mSize;
 	private int mRent;
 	// This identifier should be unique to be able to decide if the apartment is a new one or if it was already stored in the database.
@@ -53,11 +53,11 @@ public class Apartment {
 		mUrl = url;
 	}
 
-	public int getRooms() {
+	public double getRooms() {
 		return mRooms;
 	}
 
-	public void setRooms(int rooms) {
+	public void setRooms(double rooms) {
 		mRooms = rooms;
 	}
 

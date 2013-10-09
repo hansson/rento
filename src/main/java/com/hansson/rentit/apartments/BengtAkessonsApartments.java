@@ -64,7 +64,7 @@ public class BengtAkessonsApartments implements ApartmentsInterface {
 					childNode = childNode.nextSibling();
 				}
 			} else if (node.nodeName().equalsIgnoreCase("table")) {
-				apartment.setRooms(Integer.valueOf(node.childNode(1).childNode(1).childNode(1).childNode(1).childNode(0).toString()));
+				apartment.setRooms(Double.valueOf(node.childNode(1).childNode(1).childNode(1).childNode(1).childNode(0).toString().replaceAll(",", ".")));
 				apartment.setRent(Integer.valueOf(node.childNode(1).childNode(1).childNode(3).childNode(1).childNode(0).toString().replaceAll("\\D", "")));
 				apartment.setSize(Integer.valueOf(node.childNode(1).childNode(3).childNode(1).childNode(1).childNode(0).toString().replace("m&sup2;", "").replaceAll("\\D", "")));
 				Node addressNode = node.childNode(1).childNode(3).childNode(3).childNode(1).childNode(0);

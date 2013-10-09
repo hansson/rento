@@ -43,7 +43,7 @@ public class MagistratusFastigheterApartments implements ApartmentsInterface {
 				for(int i = 0 ; i < addressInformation.length - 1 ; i++) {
 					address += addressInformation[i];
 				}
-				apartment.setAddress(address);
+				apartment.setAddress(HtmlUtil.textToHtml(address));
 				apartment.setIdentifier(apartment.getAddress() + apartment.getCity() + apartment.getRent() + apartment.getSize() + apartment.getRooms());
 				apartment.setUrl(BASE_URL);
 				apartmentList.add(apartment);

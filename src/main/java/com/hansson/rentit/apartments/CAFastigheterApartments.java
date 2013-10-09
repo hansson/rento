@@ -76,7 +76,7 @@ public class CAFastigheterApartments implements ApartmentsInterface {
 						} else if (info.childNode(0).toString().endsWith("kr")) {
 							apartment.setRent(Integer.valueOf(info.childNode(0).toString().replaceAll("\\D", "")));
 						} else if (info.childNode(0).toString().endsWith("rum")) {
-							apartment.setRooms(Integer.valueOf(info.childNode(0).toString().trim().split(" ")[0]));
+							apartment.setRooms(Double.valueOf(info.childNode(0).toString().trim().split(" ")[0].replaceAll(",", ".")));
 						} else if (info.childNode(0).toString().contains("-") && !isDate(info.childNode(0).toString())) {
 							apartment.setIdentifier(info.childNode(0).toString().trim());
 						}

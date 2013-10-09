@@ -21,8 +21,8 @@ import com.hansson.rentit.utils.HtmlUtil;
 
 public class SBFApartments implements ApartmentsInterface {
 
-	private static final String LANDLORD = "PBA Karlskrona Malmö AB";
-	private static final String BASE_URL = "http://www.sbfbostad.se/pages/Lediga_lagenheter.aspx";
+	private static final String LANDLORD = "Svenska Bostadsfonden";
+	private static final String BASE_URL = "http://www.sbfbostad.se";
 	private static final Logger mLog = LoggerFactory.getLogger("RENTIT");
 
 	@Override
@@ -30,12 +30,19 @@ public class SBFApartments implements ApartmentsInterface {
 	public List<Apartment> getAvailableApartments() {
 		List<Apartment> apartmentList = new LinkedList<Apartment>();
 		try {
-			Document doc = Jsoup.connect(BASE_URL).get();
-			Elements apartments = doc.getElementById("content").getElementsByClass("entry");
+			Document doc = Jsoup.connect(BASE_URL + "/pages/Lediga_lagenheter.aspx").get();
+			Elements apartments = doc.getElementsByClass("listRow");
+			apartments.addAll(doc.getElementsByClass("listRowGray"));
 			for (Element element : apartments) {
 				try {
 					Apartment apartment = new Apartment(LANDLORD);
-					
+					apartment.setCity(HtmlUtil.textToHtml(element.getElementsByClass("colOrt").text()));
+					apartment.setAddress(HtmlUtil.textToHtml(element.getElementsByClass("colAdress").text()));
+					apartment.setRooms(Double.valueOf(element.getElementsByClass("colRum").text().replaceAll(",", ".")));
+					apartment.setRent(Integer.valueOf(element.getElementsByClass("colHyra").text().replaceAll("kr| ", "")));
+					apartment.setSize(Integer.valueOf(element.getElementsByClass("colArea").text()));
+					apartment.setUrl(BASE_URL + element.getElementsByTag("a").attr("href"));
+					apartment.setIdentifier(element.getElementsByTag("a").attr("href").split("\\?")[1].split("=")[1]);
 					apartmentList.add(apartment);
 				} catch (Exception e) {
 					mLog.error(LANDLORD + " error on element #" + apartments.indexOf(element));
