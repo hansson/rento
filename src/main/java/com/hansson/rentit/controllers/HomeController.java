@@ -26,6 +26,7 @@ import com.hansson.rentit.apartments.MagistratusFastigheterApartments;
 import com.hansson.rentit.apartments.PBAApartments;
 import com.hansson.rentit.apartments.SBFApartments;
 import com.hansson.rentit.apartments.TrossoWamoApartments;
+import com.hansson.rentit.apartments.UtklippanApartments;
 import com.hansson.rentit.entitys.Apartment;
 
 /**
@@ -54,7 +55,8 @@ public class HomeController {
 //			add(new KSFastigheterApartments());
 //			add(new MagistratusFastigheterApartments());
 //			add(new PBAApartments());
-			add(new SBFApartments());
+//			add(new SBFApartments());
+			add(new UtklippanApartments());
 
 		}
 	};

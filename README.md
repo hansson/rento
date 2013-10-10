@@ -18,6 +18,7 @@ more cities in the future!
 * Magistratus Fastigheter
 * PBA Karlskrona AB
 * Svenska Bostadsfonden
+* Utklippan Fastigheter 
 
 ## In progress
 
@@ -32,5 +33,4 @@ more cities in the future!
 * P&E Förvaltning - No apartment listing available
 * Samfast AB, Privatbostad - No apartment list
 * Stenhusen AB - No apartment listing available
-* Utklippan Fastigheter 
 * Vibohus Fastigheter AB
