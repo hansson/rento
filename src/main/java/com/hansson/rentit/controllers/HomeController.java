@@ -29,53 +29,18 @@ import com.hansson.rentit.apartments.TrossoWamoApartments;
 import com.hansson.rentit.apartments.UtklippanApartments;
 import com.hansson.rentit.entitys.Apartment;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class HomeController {
 
-	// * ********CAUTION********
-	// * Entering html scraping area.. prepare yourself for some nasty stuff!
-	// * ********CAUTION********
 	private static final Logger mLog = LoggerFactory.getLogger("RENTIT");
-	private List<ApartmentsInterface> landlords = new LinkedList<ApartmentsInterface>() {
 
-		/**
-		 * 
-		 */
-		private static final long serialVersionUID = -2411798345463453006L;
-		// Add new implementations of the ApartmentsInterface here to include them in the scan loop
-		{
-//			add(new HeimstadenApartments());
-//			add(new CAFastigheterApartments());
-//			add(new TrossoWamoApartments());
-//			add(new KarlskronahemApartments());
-//			add(new BengtAkessonsApartments());
-//			add(new KSFastigheterApartments());
-//			add(new MagistratusFastigheterApartments());
-//			add(new PBAApartments());
-//			add(new SBFApartments());
-			add(new UtklippanApartments());
-
-		}
-	};
-
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		mLog.info("Welcome home! The client locale is {}.", locale);
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		String formattedDate = dateFormat.format(date);
-		model.addAttribute("serverTime", formattedDate);
-		List<Apartment> apartmentList = new LinkedList<Apartment>();
-		for (ApartmentsInterface currentLandlord : landlords) {
-			apartmentList.addAll(currentLandlord.getAvailableApartments());
-		}
-		model.addAttribute("apartments", new Gson().toJson(apartmentList));
+//		List<Apartment> apartmentList = new LinkedList<Apartment>();
+//		for (ApartmentsInterface currentLandlord : landlords) {
+//			apartmentList.addAll(currentLandlord.getAvailableApartments());
+//		}
+//		model.addAttribute("apartments", new Gson().toJson(apartmentList));
 		return "home";
 	}
 
