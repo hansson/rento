@@ -1,4 +1,4 @@
-package com.hansson.rentit.entitys;
+package com.hansson.rento.entitys;
 
 public class Apartment {
 

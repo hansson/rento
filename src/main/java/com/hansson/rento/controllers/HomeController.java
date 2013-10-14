@@ -1,4 +1,4 @@
-package com.hansson.rentit.controllers;
+package com.hansson.rento.controllers;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -16,23 +16,23 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.google.gag.annotation.remark.Win;
 import com.google.gag.enumeration.Outcome;
 import com.google.gson.Gson;
-import com.hansson.rentit.apartments.ApartmentsInterface;
-import com.hansson.rentit.apartments.BengtAkessonsApartments;
-import com.hansson.rentit.apartments.CAFastigheterApartments;
-import com.hansson.rentit.apartments.HeimstadenApartments;
-import com.hansson.rentit.apartments.KSFastigheterApartments;
-import com.hansson.rentit.apartments.KarlskronahemApartments;
-import com.hansson.rentit.apartments.MagistratusFastigheterApartments;
-import com.hansson.rentit.apartments.PBAApartments;
-import com.hansson.rentit.apartments.SBFApartments;
-import com.hansson.rentit.apartments.TrossoWamoApartments;
-import com.hansson.rentit.apartments.UtklippanApartments;
-import com.hansson.rentit.entitys.Apartment;
+import com.hansson.rento.apartments.ApartmentsInterface;
+import com.hansson.rento.apartments.BengtAkessonsApartments;
+import com.hansson.rento.apartments.CAFastigheterApartments;
+import com.hansson.rento.apartments.HeimstadenApartments;
+import com.hansson.rento.apartments.KSFastigheterApartments;
+import com.hansson.rento.apartments.KarlskronahemApartments;
+import com.hansson.rento.apartments.MagistratusFastigheterApartments;
+import com.hansson.rento.apartments.PBAApartments;
+import com.hansson.rento.apartments.SBFApartments;
+import com.hansson.rento.apartments.TrossoWamoApartments;
+import com.hansson.rento.apartments.UtklippanApartments;
+import com.hansson.rento.entitys.Apartment;
 
 @Controller
 public class HomeController {
 
-	private static final Logger mLog = LoggerFactory.getLogger("RENTIT");
+	private static final Logger mLog = LoggerFactory.getLogger("rento");
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {

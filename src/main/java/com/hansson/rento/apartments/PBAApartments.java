@@ -1,4 +1,4 @@
-package com.hansson.rentit.apartments;
+package com.hansson.rento.apartments;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -16,14 +16,14 @@ import org.slf4j.LoggerFactory;
 
 import com.google.gag.annotation.disclaimer.CarbonFootprint;
 import com.google.gag.enumeration.CO2Units;
-import com.hansson.rentit.entitys.Apartment;
-import com.hansson.rentit.utils.HtmlUtil;
+import com.hansson.rento.entitys.Apartment;
+import com.hansson.rento.utils.HtmlUtil;
 
 public class PBAApartments implements ApartmentsInterface {
 
 	private static final String LANDLORD = "PBA Karlskrona Malmö AB";
 	private static final String BASE_URL = "http://www.pba.se/page/18/lediga-lagenheterlokaler.aspx";
-	private static final Logger mLog = LoggerFactory.getLogger("RENTIT");
+	private static final Logger mLog = LoggerFactory.getLogger("rento");
 
 	@Override
 	@CarbonFootprint(units = CO2Units.KILDERKINS_PER_KILOWATT_HOUR, value = 20)

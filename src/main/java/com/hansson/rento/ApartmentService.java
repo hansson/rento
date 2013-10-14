@@ -1,4 +1,4 @@
-package com.hansson.rentit;
+package com.hansson.rento;
 
 import java.text.DateFormat;
 import java.util.Date;
@@ -7,22 +7,24 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
-import com.hansson.rentit.apartments.ApartmentsInterface;
-import com.hansson.rentit.apartments.BengtAkessonsApartments;
-import com.hansson.rentit.apartments.CAFastigheterApartments;
-import com.hansson.rentit.apartments.HeimstadenApartments;
-import com.hansson.rentit.apartments.KSFastigheterApartments;
-import com.hansson.rentit.apartments.KarlskronahemApartments;
-import com.hansson.rentit.apartments.MagistratusFastigheterApartments;
-import com.hansson.rentit.apartments.PBAApartments;
-import com.hansson.rentit.apartments.SBFApartments;
-import com.hansson.rentit.apartments.TrossoWamoApartments;
-import com.hansson.rentit.apartments.UtklippanApartments;
-import com.hansson.rentit.entitys.Apartment;
+import com.hansson.rento.apartments.ApartmentsInterface;
+import com.hansson.rento.apartments.BengtAkessonsApartments;
+import com.hansson.rento.apartments.CAFastigheterApartments;
+import com.hansson.rento.apartments.HeimstadenApartments;
+import com.hansson.rento.apartments.KSFastigheterApartments;
+import com.hansson.rento.apartments.KarlskronahemApartments;
+import com.hansson.rento.apartments.MagistratusFastigheterApartments;
+import com.hansson.rento.apartments.PBAApartments;
+import com.hansson.rento.apartments.SBFApartments;
+import com.hansson.rento.apartments.TrossoWamoApartments;
+import com.hansson.rento.apartments.UtklippanApartments;
+import com.hansson.rento.dao.ApartmentDAO;
+import com.hansson.rento.entitys.Apartment;
 
 @Service
 public class ApartmentService {
@@ -30,8 +32,8 @@ public class ApartmentService {
 	// * ********CAUTION********
 	// * Entering html scraping area.. prepare yourself for some nasty stuff!
 	// * ********CAUTION********
-	private static final Logger mLog = LoggerFactory.getLogger("RENTIT");
-	private List<ApartmentsInterface> landlords = new LinkedList<ApartmentsInterface>() {
+	private static final Logger mLog = LoggerFactory.getLogger("rento");
+	private List<ApartmentsInterface> mLandlords = new LinkedList<ApartmentsInterface>() {
 
 		/**
 		 * 
@@ -52,12 +54,16 @@ public class ApartmentService {
 
 		}
 	};
+	
+	@Autowired
+	private ApartmentDAO apartmentDAO;
 
 	@Scheduled(fixedDelayString = "3600")
 	public void updateApartmentList() {
 		List<Apartment> apartmentList = new LinkedList<Apartment>();
-		for (ApartmentsInterface currentLandlord : landlords) {
+		for (ApartmentsInterface currentLandlord : mLandlords) {
 			apartmentList.addAll(currentLandlord.getAvailableApartments());
 		}
+		apartmentDAO.create(null);
 	}
 }

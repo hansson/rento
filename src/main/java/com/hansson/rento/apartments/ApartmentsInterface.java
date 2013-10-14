@@ -1,4 +1,4 @@
-package com.hansson.rentit.apartments;
+package com.hansson.rento.apartments;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import com.google.gag.annotation.disclaimer.CarbonFootprint;
 import com.google.gag.annotation.disclaimer.HandsOff;
 import com.google.gag.enumeration.CO2Units;
 import com.google.gag.enumeration.Consequence;
-import com.hansson.rentit.entitys.Apartment;
+import com.hansson.rento.entitys.Apartment;
 
 /**
  * This is a very basic interface that is supposed to enable iteration of the different landlords. All landlord parsing should implement this interface.

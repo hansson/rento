@@ -1,4 +1,4 @@
-package com.hansson.rentit.apartments;
+package com.hansson.rento.apartments;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -14,8 +14,8 @@ import org.jsoup.select.Elements;
 
 import com.google.gag.annotation.disclaimer.CarbonFootprint;
 import com.google.gag.enumeration.CO2Units;
-import com.hansson.rentit.entitys.Apartment;
-import com.hansson.rentit.utils.HtmlUtil;
+import com.hansson.rento.entitys.Apartment;
+import com.hansson.rento.utils.HtmlUtil;
 
 public class BengtAkessonsApartments implements ApartmentsInterface {
 

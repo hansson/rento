@@ -9,29 +9,40 @@
 		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
 
 
-	<!-- DispatcherServlet Context: defines this servlet's request-processing 
-		infrastructure -->
+	<beans:bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<beans:property name="locations">
+			<beans:value>classpath:jdbc.properties</beans:value>
+		</beans:property>
+	</beans:bean>
 
-	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
-	
+
 	<!-- For schedule -->
 	<task:annotation-driven />
 
-	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
-		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
 
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
-		in the /WEB-INF/views directory -->
 	<beans:bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<context:component-scan base-package="com.hansson.rentit" />
+	<!-- the DataSource (parameterized for configuration via a PropertyPlaceHolderConfigurer) -->
+	<beans:bean id="datasource" destroy-method="close"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<beans:property name="driverClassName" value="${jdbc.driverClassName}" />
+		<beans:property name="url" value="${jdbc.url}" />
+		<beans:property name="username" value="${jdbc.username}" />
+		<beans:property name="password" value="${jdbc.password}" />
+	</beans:bean>
 
+	<context:component-scan base-package="com.hansson.rento" />
 
+	<!-- DAO Bean definitions -->
+	<beans:bean id="apartmentDAOBean" class="com.hansson.rento.dao.ApartmentDAOBean">
+		<beans:property name="datasource" ref="datasource" />
+	</beans:bean>
 
 </beans:beans>

@@ -1,4 +1,4 @@
-package com.hansson.rentit.utils;
+package com.hansson.rento.utils;
 
 public class HtmlUtil {
 

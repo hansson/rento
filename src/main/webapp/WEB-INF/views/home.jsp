@@ -1,4 +1,3 @@
-<%@page import="com.hansson.rentit.utils.HtmlUtil"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
 <!DOCTYPE html>
@@ -6,7 +5,7 @@
 <head>
 
 <meta charset="utf-8">
-<title><%=HtmlUtil.textToHtml("Rent It - Lättare hyreslägenheter")%></title>
+<title>Rento - L&auml;ttare hyresl&auml;genheter</title>
 
 <!-- Loading Bootstrap -->
 <link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -30,7 +29,7 @@
 		<div class="headline">
 			<h1 class="main-logo">
 				<div class="logo"></div>
-				Rent It <small>L&auml;ttare hyresl&auml;genheter</small>
+				Rento <small>L&auml;ttare hyresl&auml;genheter</small>
 			</h1>
 		</div>
 		<!-- /headline -->

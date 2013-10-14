@@ -11,7 +11,7 @@
 	</appender>
 	
 	<!-- Application Loggers -->
-	<logger name="com.hansson.rentit">
+	<logger name="com.hansson.rento">
 		<level value="info" />
 	</logger>
 	
