@@ -44,7 +44,7 @@ public class KarlskronahemApartments implements ApartmentsInterface {
 				mLog.info("IO Exception, doing " + mBackoff + " backoff");
 				if (mBackoff <= 64) {
 					try {
-						Thread.sleep(mBackoff * 1000);
+						Thread.sleep(mBackoff * 1000); 
 						mBackoff *= 2;
 					} catch (InterruptedException e) {
 						// Should never occur
