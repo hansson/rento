@@ -24,7 +24,7 @@ public class UtklippanApartments implements ApartmentsInterface {
 	private static final String LANDLORD = "Svenska Bostadsfonden";
 	private static final String CITY = "Karlskrona";
 	private static final String BASE_URL = "http://www.utklippanfastigheter.se";
-	private static final Logger mLog = LoggerFactory.getLogger("rento");
+	private Logger mLog = LoggerFactory.getLogger("rento");
 
 	@Override
 	@CarbonFootprint(units = CO2Units.KILDERKINS_PER_KILOWATT_HOUR, value = 20)

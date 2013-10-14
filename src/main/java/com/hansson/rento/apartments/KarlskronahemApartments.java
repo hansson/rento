@@ -11,6 +11,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.gag.annotation.disclaimer.CarbonFootprint;
 import com.google.gag.enumeration.CO2Units;
@@ -19,14 +21,46 @@ import com.hansson.rento.utils.HtmlUtil;
 
 public class KarlskronahemApartments implements ApartmentsInterface {
 
-	private static final String KARLSKRONA = "Karlskrona";
+	private final static String KARLSKRONA = "Karlskrona";
 	private final static String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36";
 	private final static String LANDLORD = "Karlskronahem";
 	private final static String BASE_URL = "http://marknad.karlskronahem.se";
 
+	private Logger mLog = LoggerFactory.getLogger("rento");
+	private long mBackoff = 2;
+
 	@Override
 	@CarbonFootprint(units = CO2Units.FIRKINS_PER_FORTNIGHT, value = 167.5)
 	public List<Apartment> getAvailableApartments() {
+		boolean isDone = false;
+		List<Apartment> apartments = null;
+		while (!isDone) {
+			try {
+				apartments = getApartments();
+				if (apartments != null) {
+					isDone = true;
+				}
+			} catch (IOException io) {
+				mLog.info("IO Exception, doing " + mBackoff + " backoff");
+				if (mBackoff <= 64) {
+					try {
+						Thread.sleep(mBackoff * 1000);
+						mBackoff *= 2;
+					} catch (InterruptedException e) {
+						// Should never occur
+					}
+				} else {
+					//Better luck next time
+					isDone = true;
+				}
+
+			}
+		}
+		return apartments;
+
+	}
+
+	private List<Apartment> getApartments() throws IOException {
 		List<Apartment> apartmentList = new LinkedList<Apartment>();
 		try {
 			// Get html for first page
@@ -77,14 +111,11 @@ public class KarlskronahemApartments implements ApartmentsInterface {
 					postData.put("ctl00$ctl01$DefaultSiteContentPlaceHolder1$Col1$hdnSearchedRoomMin", "1");
 					postData.put("ctl00$ctl01$DefaultSiteContentPlaceHolder1$Col1$hdnSearchedRoomMax", "6");
 					postData.put("__ASYNCPOST", "true");
-					doc = Jsoup.connect("http://marknad.karlskronahem.se/HSS/Object/object_list.aspx?objectgroup=1").data(postData).userAgent(USER_AGENT).header("Content-Type",
-							"application/x-www-form-urlencoded; charset=utf-8").post();
+					doc = Jsoup.connect("http://marknad.karlskronahem.se/HSS/Object/object_list.aspx?objectgroup=1").data(postData).userAgent(USER_AGENT).header("Content-Type", "application/x-www-form-urlencoded; charset=utf-8").post();
 				}
 				currentPage++;
 			} while (currentPage <= pages);
 		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return apartmentList;

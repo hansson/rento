@@ -58,10 +58,11 @@ public class ApartmentService {
 	@Autowired
 	private ApartmentDAO apartmentDAO;
 
-	@Scheduled(fixedDelayString = "3600")
+	@Scheduled(fixedDelayString = "3600000")
 	public void updateApartmentList() {
 		List<Apartment> apartmentList = new LinkedList<Apartment>();
 		for (ApartmentsInterface currentLandlord : mLandlords) {
+			mLog.info("Processing " + currentLandlord.getClass().getSimpleName());
 			apartmentList.addAll(currentLandlord.getAvailableApartments());
 		}
 		apartmentDAO.create(null);
