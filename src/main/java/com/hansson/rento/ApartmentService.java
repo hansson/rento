@@ -24,7 +24,7 @@ import com.hansson.rento.apartments.SBFApartments;
 import com.hansson.rento.apartments.TrossoWamoApartments;
 import com.hansson.rento.apartments.UtklippanApartments;
 import com.hansson.rento.dao.ApartmentDAO;
-import com.hansson.rento.entitys.Apartment;
+import com.hansson.rento.entities.Apartment;
 
 @Service
 public class ApartmentService {
@@ -60,11 +60,22 @@ public class ApartmentService {
 
 	@Scheduled(fixedDelayString = "3600000")
 	public void updateApartmentList() {
-		List<Apartment> apartmentList = new LinkedList<Apartment>();
-		for (ApartmentsInterface currentLandlord : mLandlords) {
-			mLog.info("Processing " + currentLandlord.getClass().getSimpleName());
-			apartmentList.addAll(currentLandlord.getAvailableApartments());
-		}
-		apartmentDAO.create(null);
+		Apartment apartment = new Apartment();
+		apartment.setAddress("asdsad");
+		apartment.setArea("asdasd");
+		apartment.setCity("asdasd");
+		apartment.setIdentifier("asdasd");
+		apartment.setLandlord("asdasd");
+		apartment.setRent(324);
+		apartment.setRooms(234.23);
+		apartment.setSize(3);
+		apartment.setUrl("asdasd");
+		apartmentDAO.create(apartment);
+//		List<Apartment> apartmentList = new LinkedList<Apartment>();
+//		for (ApartmentsInterface currentLandlord : mLandlords) {
+//			mLog.info("Processing " + currentLandlord.getClass().getSimpleName());
+//			apartmentList.addAll(currentLandlord.getAvailableApartments());
+//		}
+//		apartmentDAO.create(null);
 	}
 }

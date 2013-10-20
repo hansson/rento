@@ -3,17 +3,21 @@ package com.hansson.rento.dao;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
+import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 
-import com.hansson.rento.entitys.Apartment;
+import com.hansson.rento.entities.Apartment;
 
 public class ApartmentDAOBean implements ApartmentDAO {
 
-	private JdbcTemplate mDatasource;
+	private NamedParameterJdbcTemplate mDatasource;
 
 	@Override
 	public Apartment create(Apartment apartment) {
-		// TODO Auto-generated method stub
-		return null;
+		SqlParameterSource namedParameters = new BeanPropertySqlParameterSource(apartment);
+		mDatasource.update(Apartment.INSERT_STATEMENT, namedParameters);
+		return apartment;
 	}
 
 	@Override
@@ -36,7 +40,7 @@ public class ApartmentDAOBean implements ApartmentDAO {
 
 	@Override
 	public void setDatasource(DataSource datasource) {
-		mDatasource = new JdbcTemplate(datasource);
+		mDatasource = new NamedParameterJdbcTemplate(datasource);
 
 	}
 

@@ -11,7 +11,7 @@ import org.jsoup.select.Elements;
 
 import com.google.gag.annotation.disclaimer.CarbonFootprint;
 import com.google.gag.enumeration.CO2Units;
-import com.hansson.rento.entitys.Apartment;
+import com.hansson.rento.entities.Apartment;
 import com.hansson.rento.utils.HtmlUtil;
 
 public class HeimstadenApartments implements ApartmentsInterface {

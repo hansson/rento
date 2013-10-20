@@ -1,12 +1,15 @@
-package com.hansson.rento.entitys;
+package com.hansson.rento.entities;
 
 public class Apartment {
+	
+	public static final String CREATE_STATEMENT = "crate table t_apartment ()"
+	public static final String INSERT_STATEMENT = "insert into t_apartment (mArea, mCity, mAddress, mUrl, mRooms, mSize, mRent, mIdentifier, mLandlord) values (':mArea', ':mCity', ':mAddress', ':mUrl', ':mRooms', ':mSize', ':mRent', ':mIdentifier', ':mLandlord')";
 
+	private int mId;
 	private String mArea;
 	private String mCity;
 	private String mAddress;
 	private String mUrl;
-	private String mSummary;
 	private double mRooms;
 	private int mSize;
 	private int mRent;
@@ -15,6 +18,14 @@ public class Apartment {
 	private String mLandlord;
 
 	public Apartment() {
+	}
+	
+	public int getId() {
+		return mId;
+	}
+
+	public void setId(int id) {
+		mId = id;
 	}
 
 	public Apartment(String landlord) {
@@ -76,15 +87,6 @@ public class Apartment {
 	public void setRent(int rent) {
 		mRent = rent;
 	}
-
-	public String getSummary() {
-		return mSummary;
-	}
-
-	public void setSummary(String summary) {
-		mSummary = summary;
-	}
-
 	public String getIdentifier() {
 		return mIdentifier;
 	}
@@ -100,4 +102,6 @@ public class Apartment {
 	public void setLandlord(String landlord) {
 		mLandlord = landlord;
 	}
+
+
 }

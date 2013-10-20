@@ -2,7 +2,7 @@ package com.hansson.rento.dao;
 
 import javax.sql.DataSource;
 
-import com.hansson.rento.entitys.Apartment;
+import com.hansson.rento.entities.Apartment;
 
 public interface ApartmentDAO {
 

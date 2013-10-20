@@ -27,7 +27,7 @@ import com.hansson.rento.apartments.PBAApartments;
 import com.hansson.rento.apartments.SBFApartments;
 import com.hansson.rento.apartments.TrossoWamoApartments;
 import com.hansson.rento.apartments.UtklippanApartments;
-import com.hansson.rento.entitys.Apartment;
+import com.hansson.rento.entities.Apartment;
 
 @Controller
 public class HomeController {
