@@ -41,7 +41,11 @@ public class ApartmentDAOBean implements ApartmentDAO {
 	@Override
 	public void setDatasource(DataSource datasource) {
 		mDatasource = new NamedParameterJdbcTemplate(datasource);
+	}
 
+	@Override
+	public void createTable() {
+		mDatasource.getJdbcOperations().execute(Apartment.CREATE_STATEMENT);
 	}
 
 }

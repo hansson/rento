@@ -15,5 +15,7 @@ public interface ApartmentDAO {
 	Apartment update(Apartment apartment);
 
 	Apartment find(Apartment apartment);
+	
+	void createTable();
 
 }

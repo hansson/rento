@@ -2,7 +2,7 @@ package com.hansson.rento.entities;
 
 public class Apartment {
 	
-	public static final String CREATE_STATEMENT = "crate table t_apartment ()"
+	public static final String CREATE_STATEMENT = "create table t_apartment (mId bigint identity, mArea varchar(64), mCity varchar(64), mAddress varchar(64), mUrl varchar(512), mRooms double, mSize int, mRent int, mIdentifier varchar(512), mLandlord varchar(64));";
 	public static final String INSERT_STATEMENT = "insert into t_apartment (mArea, mCity, mAddress, mUrl, mRooms, mSize, mRent, mIdentifier, mLandlord) values (':mArea', ':mCity', ':mAddress', ':mUrl', ':mRooms', ':mSize', ':mRent', ':mIdentifier', ':mLandlord')";
 
 	private int mId;

@@ -60,6 +60,7 @@ public class ApartmentService {
 
 	@Scheduled(fixedDelayString = "3600000")
 	public void updateApartmentList() {
+		apartmentDAO.createTable();
 		Apartment apartment = new Apartment();
 		apartment.setAddress("asdsad");
 		apartment.setArea("asdasd");
