@@ -1,4 +1,0 @@
-jdbc.driverClassName=org.hsqldb.jdbcDriver
-jdbc.url=jdbc:hsqldb:hsql://localhost:9002/db
-jdbc.username=usr
-jdbc.password=pw

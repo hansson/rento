@@ -36,7 +36,7 @@ public class KSFastigheterApartments implements ApartmentsInterface {
 				Apartment apartment = new Apartment(LANDLORD);
 				Elements informationCells = element.getElementsByTag("td");
 				apartment.setAddress(HtmlUtil.textToHtml(informationCells.get(0).text()));
-				apartment.setRooms(Integer.valueOf(informationCells.get(1).text()));
+				apartment.setRooms(Double.valueOf(informationCells.get(1).text()));
 				apartment.setSize(Integer.valueOf(informationCells.get(2).text()));
 				apartment.setRent(Integer.valueOf(informationCells.get(3).text()));
 				apartment.setCity(CITY);

@@ -86,7 +86,7 @@ public class KarlskronahemApartments implements ApartmentsInterface {
 						apartment.setArea(HtmlUtil.textToHtml(element.child(2).getElementsByTag("span").get(0).childNode(0).toString()));
 						String rent = element.child(5).getElementsByTag("span").get(0).childNode(0).toString().replace("&nbsp;", "");
 						apartment.setRent(Integer.valueOf(rent));
-						apartment.setRooms(Integer.valueOf(element.child(3).getElementsByTag("span").get(0).childNode(0).toString()));
+						apartment.setRooms(Double.valueOf(element.child(3).getElementsByTag("span").get(0).childNode(0).toString()));
 						apartment.setSize(Integer.valueOf(element.child(4).getElementsByTag("span").get(0).childNode(0).toString()));
 						apartmentList.add(apartment);
 					}

@@ -55,7 +55,7 @@ public class PBAApartments implements ApartmentsInterface {
 					p = Pattern.compile("Antal Rum: \\d+");
 					matcher = p.matcher(informationText);
 					matcher.find();
-					apartment.setRooms(Integer.valueOf(matcher.group().replaceAll("Antal Rum: ", "")));
+					apartment.setRooms(Double.valueOf(matcher.group().replaceAll("Antal Rum: ", "")));
 					apartmentList.add(apartment);
 				} catch (Exception e) {
 					mLog.error(LANDLORD + " error on element #" + apartments.indexOf(element));

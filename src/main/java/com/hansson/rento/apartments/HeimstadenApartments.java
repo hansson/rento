@@ -33,7 +33,7 @@ public class HeimstadenApartments implements ApartmentsInterface {
 					apartment.setIdentifier(element.attr("id"));
 					apartment.setUrl(BASE_URL + element.getElementsByTag("a").attr("href"));
 					apartment.setAddress(HtmlUtil.textToHtml(element.getElementsByTag("h5").text()));
-					apartment.setRooms(Integer.valueOf(element.getElementsByClass("listItemLeftBottom").text().replaceAll("\\D", "")));
+					apartment.setRooms(Double.valueOf(element.getElementsByClass("listItemLeftBottom").text().replaceAll("\\D", "")));
 					apartment.setRent(Integer.valueOf(element.getElementsByClass("listItemRightBottom").text().replaceAll("\\D", "")));
 					doc = Jsoup.connect(apartment.getUrl()).get();
 					String[] headerSplit = doc.getElementsByTag("h1").text().split(",");

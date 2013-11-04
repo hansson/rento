@@ -33,7 +33,7 @@ public class MagistratusFastigheterApartments implements ApartmentsInterface {
 			for(Element element : apartments) {
 				Apartment apartment = new Apartment(LANDLORD);
 				Elements informationCells = element.getElementsByTag("tr");
-				apartment.setRooms(Integer.valueOf(informationCells.get(2).getAllElements().get(2).text().replaceAll("\\D", "")));
+				apartment.setRooms(Double.valueOf(informationCells.get(2).getAllElements().get(2).text().replaceAll("\\D", "")));
 				apartment.setSize(Integer.valueOf(informationCells.get(2).getAllElements().get(4).text().replaceAll("\\D", "")));
 				apartment.setRent(Integer.valueOf(informationCells.get(2).getAllElements().get(6).text().replaceAll("\\D", "")));
 				String[] addressInformation = informationCells.get(3).getAllElements().get(2).text().replaceAll("[\\d]{3} [\\d]{2} ", "").split(" ");

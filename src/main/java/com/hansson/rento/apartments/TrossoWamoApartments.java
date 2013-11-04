@@ -44,7 +44,7 @@ public class TrossoWamoApartments implements ApartmentsInterface {
 				Pattern roomPattern = Pattern.compile("\\d*");
 				Matcher matcher = roomPattern.matcher(roomString);
 				matcher.find();
-				apartment.setRooms(Integer.valueOf(matcher.group()));
+				apartment.setRooms(Double.valueOf(matcher.group()));
 				apartment.setRent(Integer.valueOf(data.select(".avgift").get(0).child(0).childNode(0).toString().replaceAll("\\D", "")));
 				String size = data.select(".boarea").get(0).child(0).childNode(0).toString().replaceAll("\\D", "");
 				apartment.setSize(Integer.valueOf(size.substring(0, size.length() - 1)));
