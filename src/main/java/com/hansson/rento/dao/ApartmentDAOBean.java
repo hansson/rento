@@ -1,51 +1,47 @@
 package com.hansson.rento.dao;
 
-import javax.sql.DataSource;
-
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import org.springframework.jdbc.core.namedparam.SqlParameterSource;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.hansson.rento.entities.Apartment;
 
+@Repository
 public class ApartmentDAOBean implements ApartmentDAO {
-
-	private NamedParameterJdbcTemplate mDatasource;
+	
+	@Autowired
+    private SessionFactory sessionFactory;
 
 	@Override
+	@Transactional
 	public Apartment create(Apartment apartment) {
-		SqlParameterSource namedParameters = new BeanPropertySqlParameterSource(apartment);
-		mDatasource.update(Apartment.INSERT_STATEMENT, namedParameters);
-		return apartment;
+		Session session = sessionFactory.getCurrentSession();
+		return (Apartment) session.merge(apartment);
 	}
 
 	@Override
+	@Transactional
 	public Apartment delete(Apartment apartment) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@Transactional
 	public Apartment update(Apartment apartment) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Apartment find(Apartment apartment) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void setDatasource(DataSource datasource) {
-		mDatasource = new NamedParameterJdbcTemplate(datasource);
-	}
-
-	@Override
-	public void createTable() {
-		mDatasource.getJdbcOperations().execute(Apartment.CREATE_STATEMENT);
+	@Transactional
+	public Apartment find(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from Apartments a where a.id = " + id);
+		return (Apartment) query.uniqueResult();
 	}
 
 }

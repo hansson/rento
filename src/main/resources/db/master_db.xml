@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
- 
+
 <databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
- 
-http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
- 
-    <changeSet id="rento_schema" author="Tobias Hansson">
- 
-        <comment>Rento DB</comment>
- 
-        <createTable tableName="apartments">
-            <column name="id" autoIncrement="true" type="int">
-                <constraints primaryKey="true" nullable="false"
-                    primaryKeyName="pk_apartments" />
-            </column>
-            <column name="mArea" type="varchar(64)"></column>
-            <column name="mCity" type="varchar(64)"></column>
-            <column name="mAddress" type="varchar(64)"></column>
-            <column name="mUrl" type="varchar(512)"></column>
-            <column name="mRooms" type="varchar(512)"></column>
-            <column name="mSize" type="varchar(512)"></column>
-            <column name="mRent" type="double"></column>
-            <column name="mIdentifier" type="int"></column>
-            <column name="mLandlord" type="varchar(64)"></column>
-        </createTable>
- 
-    </changeSet>
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+	http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+
+	<changeSet id="rento_schema" author="Tobias Hansson">
+
+		<comment>Rento DB</comment>
+
+		<createTable tableName="apartments">
+			<column name="id" autoIncrement="true" type="int">
+				<constraints primaryKey="true" nullable="false"
+					primaryKeyName="pk_apartments" />
+			</column>
+			<column name="mArea" type="varchar(64)"></column>
+			<column name="mCity" type="varchar(64)"></column>
+			<column name="mAddress" type="varchar(64)"></column>
+			<column name="mUrl" type="varchar(512)"></column>
+			<column name="mRooms" type="double"></column>
+			<column name="mSize" type="int"></column>
+			<column name="mRent" type="int"></column>
+			<column name="mIdentifier" type="varchar(512)"></column>
+			<column name="mLandlord" type="varchar(64)"></column>
+		</createTable>
+
+	</changeSet>
 </databaseChangeLog>

@@ -1,9 +1,15 @@
 package com.hansson.rento.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "APARTMENTS", schema = "PUBLIC", catalog = "PUBLIC")
 public class Apartment {
-	
-	public static final String CREATE_STATEMENT = "create table apartment (mId identity, mArea varchar(64), mCity varchar(64), mAddress varchar(64), mUrl varchar(512), mRooms Double, mSize int, mRent int, mIdentifier varchar(512), mLandlord varchar(64));";
-	public static final String INSERT_STATEMENT = "insert into apartment (mArea, mCity, mAddress, mUrl, mRooms, mSize, mRent, mIdentifier, mLandlord) values (':mArea', ':mCity', ':mAddress', ':mUrl', ':mRooms', ':mSize', ':mRent', ':mIdentifier', ':mLandlord')";
 
 	private Integer mId;
 	private String mArea;
@@ -19,89 +25,101 @@ public class Apartment {
 
 	public Apartment() {
 	}
-	
+
+	public Apartment(String landlord) {
+		mLandlord = landlord;
+	}
+
+	@Id
+	@Column(name = "ID", unique = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getId() {
 		return mId;
+	}
+
+	@Column(name = "MAREA", length = 64)
+	public String getArea() {
+		return mArea;
+	}
+
+	@Column(name = "MCITY", length = 64)
+	public String getCity() {
+		return mCity;
+	}
+
+	@Column(name = "MADDRESS", length = 64)
+	public String getAddress() {
+		return mAddress;
+	}
+
+	@Column(name = "MURL", length = 512)
+	public String getUrl() {
+		return mUrl;
+	}
+
+	@Column(name = "MROOMS")
+	public Double getRooms() {
+		return mRooms;
+	}
+
+	@Column(name = "MSIZE")
+	public Integer getSize() {
+		return mSize;
+	}
+
+	@Column(name = "MRENT")
+	public Integer getRent() {
+		return mRent;
+	}
+
+	@Column(name = "MIDENTIFIER", length = 512)
+	public String getIdentifier() {
+		return mIdentifier;
+	}
+
+	@Column(name = "MLANDLORD", length = 64)
+	public String getLandlord() {
+		return mLandlord;
 	}
 
 	public void setId(Integer id) {
 		mId = id;
 	}
 
-	public Apartment(String landlord) {
-		mLandlord = landlord;
-	}
-
-	public String getArea() {
-		return mArea;
-	}
-
 	public void setArea(String area) {
 		mArea = area;
-	}
-
-	public String getCity() {
-		return mCity;
 	}
 
 	public void setCity(String city) {
 		mCity = city;
 	}
 
-	public String getAddress() {
-		return mAddress;
-	}
-
 	public void setAddress(String address) {
 		mAddress = address;
-	}
-
-	public String getUrl() {
-		return mUrl;
 	}
 
 	public void setUrl(String url) {
 		mUrl = url;
 	}
 
-	public Double getRooms() {
-		return mRooms;
-	}
-
 	public void setRooms(Double rooms) {
 		mRooms = rooms;
-	}
-
-	public Integer getSize() {
-		return mSize;
 	}
 
 	public void setSize(Integer size) {
 		mSize = size;
 	}
 
-	public Integer getRent() {
-		return mRent;
-	}
-
 	public void setRent(Integer rent) {
 		mRent = rent;
-	}
-	public String getIdentifier() {
-		return mIdentifier;
 	}
 
 	public void setIdentifier(String identifier) {
 		mIdentifier = identifier;
 	}
 
-	public String getLandlord() {
-		return mLandlord;
-	}
-
 	public void setLandlord(String landlord) {
 		mLandlord = landlord;
 	}
-
 
 }

@@ -17,13 +17,6 @@
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<aop:config proxy-target-class="true" />
 
-	<beans:bean
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<beans:property name="locations">
-			<beans:value>classpath:jdbc.properties</beans:value>
-		</beans:property>
-	</beans:bean>
-
 	<annotation-driven />
 
 	<!-- For schedule -->
@@ -37,20 +30,34 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<!-- the DataSource (parameterized for configuration via a PropertyPlaceHolderConfigurer) -->
-	<beans:bean id="datasource" destroy-method="close"
-		class="org.apache.commons.dbcp.BasicDataSource">
-		<beans:property name="driverClassName" value="${jdbc.driverClassName}" />
-		<beans:property name="url" value="${jdbc.url}" />
-		<beans:property name="username" value="${jdbc.username}" />
+
+	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<beans:property name="driverClassName" value="org.hsqldb.jdbc.JDBCDriver" />
+		<beans:property name="url"
+			value="jdbc:hsqldb:hsql://localhost/rento" />
+		<beans:property name="username" value="SA" />
 		<beans:property name="password" value="" />
 	</beans:bean>
 
-	<context:component-scan base-package="com.hansson.rento" />
+	<beans:bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+		<beans:property name="dataSource" ref="dataSource" />
+		<beans:property name="packagesToScan" value="com.hansson.rento" />
+		<beans:property name="hibernateProperties">
+			<beans:props>
+				<beans:prop key="hibernate.connection.pool_size">10</beans:prop>
+				<beans:prop key="hibernate.connection.show_sql">true</beans:prop>
+				<beans:prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect
+				</beans:prop>
+				<beans:prop key="hibernate.show_sql">true</beans:prop>
+			</beans:props>
+		</beans:property>
+	</beans:bean>
 
-	<!-- DAO Bean definitions -->
-	<beans:bean id="apartmentDAOBean" class="com.hansson.rento.dao.ApartmentDAOBean">
-		<beans:property name="datasource" ref="datasource" />
+	<beans:bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<beans:property name="sessionFactory" ref="sessionFactory" />
 	</beans:bean>
 
 </beans:beans>

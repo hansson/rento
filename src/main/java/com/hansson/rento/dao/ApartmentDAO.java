@@ -1,12 +1,8 @@
 package com.hansson.rento.dao;
 
-import javax.sql.DataSource;
-
 import com.hansson.rento.entities.Apartment;
 
 public interface ApartmentDAO {
-
-	void setDatasource(DataSource datasource);
 
 	Apartment create(Apartment apartment);
 
@@ -14,8 +10,6 @@ public interface ApartmentDAO {
 
 	Apartment update(Apartment apartment);
 
-	Apartment find(Apartment apartment);
+	Apartment find(int id);
 	
-	void createTable();
-
 }
