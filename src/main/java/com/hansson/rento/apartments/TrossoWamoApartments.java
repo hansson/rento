@@ -59,4 +59,9 @@ public class TrossoWamoApartments implements ApartmentsInterface {
 		}
 		return apartmentLIst;
 	}
+	
+	@Override
+	public String getLandlord() {
+		return LANDLORD;
+	}
 }

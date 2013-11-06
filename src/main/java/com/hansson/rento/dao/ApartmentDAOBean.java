@@ -1,5 +1,7 @@
 package com.hansson.rento.dao;
 
+import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -24,24 +26,51 @@ public class ApartmentDAOBean implements ApartmentDAO {
 
 	@Override
 	@Transactional
-	public Apartment delete(Apartment apartment) {
-		// TODO Auto-generated method stub
-		return null;
+	public void delete(Apartment apartment) {
+		Session session = sessionFactory.getCurrentSession();
+		session.delete(apartment);
 	}
 
 	@Override
 	@Transactional
 	public Apartment update(Apartment apartment) {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = sessionFactory.getCurrentSession();
+		return (Apartment) session.merge(apartment);
 	}
 
 	@Override
 	@Transactional
 	public Apartment find(int id) {
 		Session session = sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from Apartments a where a.id = " + id);
+		Query query = session.createQuery("from Apartment a where a.id = " + id);
 		return (Apartment) query.uniqueResult();
 	}
+
+	@Override
+	@Transactional
+	public Apartment find(String landlord, String identifier) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from Apartment a where a.mIdentifier = '" + identifier + "' and a.mLandlord = '" + landlord +"'");
+		return (Apartment) query.uniqueResult();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<Apartment> findAll() {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from Apartment a");
+		return (List<Apartment>)query.list();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional
+	public List<Apartment> findAll(String landlord) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from Apartment a where a.mLandlord = '" + landlord +"'");
+		return (List<Apartment>)query.list();
+	}
+
 
 }

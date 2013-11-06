@@ -23,4 +23,6 @@ public interface ApartmentsInterface {
 	public static final String LOGO = "resources/images/logo.png";
 
 	List<Apartment> getAvailableApartments();
+	
+	String getLandlord();
 }

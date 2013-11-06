@@ -77,4 +77,9 @@ public class BengtAkessonsApartments implements ApartmentsInterface {
 			}
 		}
 	}
+	
+	@Override
+	public String getLandlord() {
+		return LANDLORD;
+	}
 }

@@ -1,7 +1,5 @@
 package com.hansson.rento;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -11,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
-import com.google.gson.Gson;
 import com.hansson.rento.apartments.ApartmentsInterface;
 import com.hansson.rento.apartments.BengtAkessonsApartments;
 import com.hansson.rento.apartments.CAFastigheterApartments;
@@ -56,26 +53,24 @@ public class ApartmentService {
 	};
 	
 	@Autowired
-	private ApartmentDAO apartmentDAO;
+	private ApartmentDAO mApartmentDAO;
 
 	@Scheduled(fixedDelayString = "3600000")
 	public void updateApartmentList() {
-		Apartment apartment = new Apartment();
-		apartment.setAddress("asdsad");
-		apartment.setArea("asdasd");
-		apartment.setCity("asdasd");
-		apartment.setIdentifier("asdasd");
-		apartment.setLandlord("asdasd");
-		apartment.setRent(324);
-		apartment.setRooms(234.23);
-		apartment.setSize(3);
-		apartment.setUrl("asdasd");
-		apartmentDAO.create(apartment);
-//		List<Apartment> apartmentList = new LinkedList<Apartment>();
-//		for (ApartmentsInterface currentLandlord : mLandlords) {
-//			mLog.info("Processing " + currentLandlord.getClass().getSimpleName());
-//			apartmentList.addAll(currentLandlord.getAvailableApartments());
-//		}
-//		apartmentDAO.create(null);
+		for(ApartmentsInterface landlord : mLandlords) {
+			List<Apartment> currentApartments = landlord.getAvailableApartments();
+			List<Apartment> storedApartments = mApartmentDAO.findAll(landlord.getLandlord());
+			for(Apartment apartment : currentApartments) {
+				if(!storedApartments.contains(apartment)) {
+					mApartmentDAO.create(apartment);
+				}
+			}
+			
+			for(Apartment apartment : storedApartments) {
+				if(!currentApartments.contains(apartment)) {
+					mApartmentDAO.delete(apartment);
+				}
+			}
+		}
 	}
 }

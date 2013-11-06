@@ -69,4 +69,9 @@ public class PBAApartments implements ApartmentsInterface {
 		}
 		return apartmentList;
 	}
+	
+	@Override
+	public String getLandlord() {
+		return LANDLORD;
+	}
 }

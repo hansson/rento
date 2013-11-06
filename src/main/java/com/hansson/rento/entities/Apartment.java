@@ -121,5 +121,20 @@ public class Apartment {
 	public void setLandlord(String landlord) {
 		mLandlord = landlord;
 	}
+	
+	@Override
+	public String toString() {
+		return mLandlord + " - " + mIdentifier;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Apartment) {
+			Apartment that = (Apartment) obj;
+			return this.mLandlord.equals(that.mLandlord) && this.mIdentifier.equals(that.mIdentifier);
+		} else {
+			return false;
+		}
+	}
 
 }

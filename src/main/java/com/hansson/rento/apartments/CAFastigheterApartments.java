@@ -100,4 +100,9 @@ public class CAFastigheterApartments implements ApartmentsInterface {
 			return false;
 		}
 	}
+	
+	@Override
+	public String getLandlord() {
+		return LANDLORD;
+	}
 }

@@ -63,4 +63,9 @@ public class HeimstadenApartments implements ApartmentsInterface {
 		}
 		return apartmentLIst;
 	}
+	
+	@Override
+	public String getLandlord() {
+		return LANDLORD;
+	}
 }
