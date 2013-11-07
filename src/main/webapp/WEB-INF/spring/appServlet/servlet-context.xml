@@ -29,15 +29,18 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
+	
+	<bean class="java.net.URI" id="dbUrl">
+    		<constructor-arg value="${DATABASE_URL}"/>
+	</bean>
 
 
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
-		<beans:property name="driverClassName" value="org.hsqldb.jdbc.JDBCDriver" />
-		<beans:property name="url"
-			value="jdbc:hsqldb:hsql://localhost/rento" />
-		<beans:property name="username" value="SA" />
-		<beans:property name="password" value="" />
+		<property name="driverClassName" value="${database.driverClassName}"/>
+		<property name="url" value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() }"/>
+    		<property name="username" value="#{ @dbUrl.getUserInfo().split(':')[0] }"/>
+	    	<property name="password" value="#{ @dbUrl.getUserInfo().split(':')[1] }"/>
 	</beans:bean>
 
 	<beans:bean id="sessionFactory"
