@@ -3,6 +3,10 @@
 This project is made to try to make it easier to find apartments to rent in Karlskrona, and hopefully
 more cities in the future!
 
+## Installation
+* Set env variables: DATABASE_URL=postgres://user:pw@localhost:5432/db and database.driverClassName=org.postgresql.Driver
+
+
 ## In the pipe
 * Implement all landlord interfaces
 * Make periodic updates and store to database
