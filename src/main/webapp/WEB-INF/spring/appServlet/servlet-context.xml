@@ -13,6 +13,7 @@
 
 	<context:component-scan base-package="com.hansson.rento" />
 	<context:annotation-config />
+	<context:property-placeholder />
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<aop:config proxy-target-class="true" />
@@ -29,18 +30,21 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
-	<bean class="java.net.URI" id="dbUrl">
-    		<constructor-arg value="${DATABASE_URL}"/>
-	</bean>
+
+	<beans:bean class="java.net.URI" id="dbUrl">
+		<beans:constructor-arg value="${DATABASE_URL}" />
+	</beans:bean>
 
 
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
-		<property name="driverClassName" value="${database.driverClassName}"/>
-		<property name="url" value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() }"/>
-    		<property name="username" value="#{ @dbUrl.getUserInfo().split(':')[0] }"/>
-	    	<property name="password" value="#{ @dbUrl.getUserInfo().split(':')[1] }"/>
+		<beans:property name="driverClassName" value="${database.driverClassName}"/>
+		<beans:property name="url"
+			value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() }" />
+		<beans:property name="username"
+			value="#{ @dbUrl.getUserInfo().split(':')[0] }" />
+		<beans:property name="password"
+			value="#{ @dbUrl.getUserInfo().split(':')[1] }" />
 	</beans:bean>
 
 	<beans:bean id="sessionFactory"
