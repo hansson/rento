@@ -4,7 +4,8 @@ This project is made to try to make it easier to find apartments to rent in Karl
 more cities in the future!
 
 ## Installation
-* Set env variables: DATABASE_URL=postgres://user:pw@localhost:5432/db and database.driverClassName=org.postgresql.Driver
+* Fix template file set_envs.sh.template
+* Fix template file liquibase.properties.template
 
 
 ## In the pipe
