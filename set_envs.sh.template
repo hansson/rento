@@ -1,0 +1,2 @@
+env 'database.driverClassName=org.postgresql.Driver' bash
+export DATABASE_URL=postgres://user:pw@localhost:5432/db
