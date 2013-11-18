@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "APARTMENTS", schema = "PUBLIC", catalog = "PUBLIC")
+@Table(name = "APARTMENTS")
 public class Apartment {
 
 	private Integer mId;

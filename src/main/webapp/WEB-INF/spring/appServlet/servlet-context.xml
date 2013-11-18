@@ -35,16 +35,20 @@
 		<beans:constructor-arg value="${DATABASE_URL}" />
 	</beans:bean>
 
-
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
-		<beans:property name="driverClassName" value="${database.driverClassName}"/>
+		<beans:property name="driverClassName" value="org.postgresql.Driver" />
 		<beans:property name="url"
 			value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() }" />
 		<beans:property name="username"
 			value="#{ @dbUrl.getUserInfo().split(':')[0] }" />
 		<beans:property name="password"
 			value="#{ @dbUrl.getUserInfo().split(':')[1] }" />
+	</beans:bean>
+
+	<beans:bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<beans:property name="sessionFactory" ref="sessionFactory" />
 	</beans:bean>
 
 	<beans:bean id="sessionFactory"
@@ -55,15 +59,22 @@
 			<beans:props>
 				<beans:prop key="hibernate.connection.pool_size">10</beans:prop>
 				<beans:prop key="hibernate.connection.show_sql">true</beans:prop>
-				<beans:prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect
+				<beans:prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect
 				</beans:prop>
 				<beans:prop key="hibernate.show_sql">true</beans:prop>
+				<beans:prop key="hibernate.hbm2ddl.auto">update</beans:prop>
 			</beans:props>
+		</beans:property>
+
+		<!-- All Entities should be here -->
+		<beans:property name="annotatedClasses">
+			<beans:list>
+				<beans:value>com.hansson.rento.entities.Apartment</beans:value>
+			</beans:list>
 		</beans:property>
 	</beans:bean>
 
-	<beans:bean id="transactionManager"
-		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+	<beans:bean id="apartmentDao" class="com.hansson.rento.dao.ApartmentDAOBean">
 		<beans:property name="sessionFactory" ref="sessionFactory" />
 	</beans:bean>
 

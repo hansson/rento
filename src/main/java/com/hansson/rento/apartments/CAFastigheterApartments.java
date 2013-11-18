@@ -11,6 +11,8 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.google.gag.annotation.disclaimer.CarbonFootprint;
 import com.google.gag.enumeration.CO2Units;
@@ -21,8 +23,10 @@ public class CAFastigheterApartments implements ApartmentsInterface {
 
 	private final static String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36";
 	private final static String LANDLORD = "CA Fastigheter";
-	private final static String BASE_URL = "http://www.cafastigheter.se/";
-
+	private final static String BASE_URL = "http://www.cafastigheter.se";
+	
+	private static final Logger mLog = LoggerFactory.getLogger("rento");
+	
 	@Override
 	@CarbonFootprint(units = CO2Units.FIRKINS_PER_FORTNIGHT, value = 167.5)
 	public List<Apartment> getAvailableApartments() {
@@ -58,31 +62,35 @@ public class CAFastigheterApartments implements ApartmentsInterface {
 				postData.put("ctl00$Header1$ToolsMenu1$txtSearch", "");
 				postData.put("ctl00$ContentPlaceHolder1$sectionMain$ctl00$ctl00$ctl00$ctl00$ddlOrt", city);
 				postData.put("ctl00$ContentPlaceHolder1$sectionMain$ctl00$ctl00$ctl00$ctl00$hfOrtTyp", city);
-				doc = Jsoup.connect(BASE_URL + "/Sok_ledigt/Lediga_bostader").data(postData).userAgent(USER_AGENT).header("Content-Type",
-						"application/x-www-form-urlencoded; charset=utf-8").post();
+				doc = Jsoup.connect(BASE_URL + "/Sok_ledigt/Lediga_bostader").data(postData).userAgent(USER_AGENT).header("Content-Type", "application/x-www-form-urlencoded; charset=utf-8").post();
 				viewState = doc.select("#__VIEWSTATE");
 				Element element = doc.getElementsByClass("listHolder").first().getElementsByTag("ul").first().getElementsByTag("li").first();
 				while (element != null) {
-					Apartment apartment = new Apartment(LANDLORD);
-					apartment.setCity(city);
-					Element linkElement = element.getElementsByTag("a").first();
-					apartment.setUrl(BASE_URL + linkElement.attr("href"));
-					doc = Jsoup.connect(apartment.getUrl()).get();
-					Elements infoBox = doc.getElementsByClass("internalPuff").first().getElementsByTag("p");
-					apartment.setAddress(HtmlUtil.textToHtml(infoBox.get(0).childNode(0).toString().trim()));
-					for (Element info : infoBox) {
-						if (info.childNode(0).toString().endsWith("kvm")) {
-							apartment.setSize(Integer.valueOf(info.childNode(0).toString().trim().split(" ")[0]));
-						} else if (info.childNode(0).toString().endsWith("kr")) {
-							apartment.setRent(Integer.valueOf(info.childNode(0).toString().replaceAll("\\D", "")));
-						} else if (info.childNode(0).toString().endsWith("rum")) {
-							apartment.setRooms(Double.valueOf(info.childNode(0).toString().trim().split(" ")[0].replaceAll(",", ".")));
-						} else if (info.childNode(0).toString().contains("-") && !isDate(info.childNode(0).toString())) {
-							apartment.setIdentifier(info.childNode(0).toString().trim());
+					try {
+						Apartment apartment = new Apartment(LANDLORD);
+						apartment.setCity(city);
+						Element linkElement = element.getElementsByTag("a").first();
+						apartment.setUrl(BASE_URL + linkElement.attr("href"));
+						doc = Jsoup.connect(apartment.getUrl()).get();
+						Elements infoBox = doc.getElementsByClass("internalPuff").first().getElementsByTag("p");
+						apartment.setAddress(HtmlUtil.textToHtml(infoBox.get(0).childNode(0).toString().trim()));
+						for (Element info : infoBox) {
+							if (info.childNode(0).toString().endsWith("kvm")) {
+								apartment.setSize(Integer.valueOf(info.childNode(0).toString().trim().split(" ")[0]));
+							} else if (info.childNode(0).toString().endsWith("kr")) {
+								apartment.setRent(Integer.valueOf(info.childNode(0).toString().replaceAll("\\D", "")));
+							} else if (info.childNode(0).toString().endsWith("rum")) {
+								apartment.setRooms(Double.valueOf(info.childNode(0).toString().trim().split(" ")[0].replaceAll(",", ".")));
+							} else if (info.childNode(0).toString().contains("-") && !isDate(info.childNode(0).toString())) {
+								apartment.setIdentifier(info.childNode(0).toString().trim());
+							}
 						}
+						apartmentLIst.add(apartment);
+					} catch (Exception e) {
+						Element linkElement = element.getElementsByTag("a").first();
+						mLog.error("Failed to retrieve apartment at url: " + BASE_URL + linkElement.attr("href"));
 					}
 					element = element.nextElementSibling();
-					apartmentLIst.add(apartment);
 				}
 			}
 		} catch (Exception e) {
@@ -100,7 +108,7 @@ public class CAFastigheterApartments implements ApartmentsInterface {
 			return false;
 		}
 	}
-	
+
 	@Override
 	public String getLandlord() {
 		return LANDLORD;
