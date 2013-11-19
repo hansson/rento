@@ -38,16 +38,16 @@ public class ApartmentService {
 		private static final long serialVersionUID = -2411798345463453006L;
 		// Add new implementations of the ApartmentsInterface here to include them in the scan loop
 		{
-//			add(new HeimstadenApartments());
+			add(new HeimstadenApartments());
 			add(new CAFastigheterApartments());
-//			add(new TrossoWamoApartments());
-//			add(new KarlskronahemApartments());
-//			add(new BengtAkessonsApartments());
-//			add(new KSFastigheterApartments());
-//			add(new MagistratusFastigheterApartments());
-//			add(new PBAApartments());
-//			add(new SBFApartments());
-//			add(new UtklippanApartments());
+			add(new TrossoWamoApartments());
+			add(new KarlskronahemApartments());
+			add(new BengtAkessonsApartments());
+			add(new KSFastigheterApartments());
+			add(new MagistratusFastigheterApartments());
+			add(new PBAApartments());
+			add(new SBFApartments());
+			add(new UtklippanApartments());
 
 		}
 	};
@@ -63,14 +63,14 @@ public class ApartmentService {
 			for(Apartment apartment : currentApartments) {
 				if(!storedApartments.contains(apartment)) {
 					mApartmentDAO.create(apartment);
-					mLog.info("Created apartment: " + apartment.getIdentifier());
+					mLog.info("Created:" + apartment);
 				}
 			}
 			
 			for(Apartment apartment : storedApartments) {
 				if(!currentApartments.contains(apartment)) {
 					mApartmentDAO.delete(apartment);
-					mLog.info("Deleted apartment: " + apartment.getIdentifier());
+					mLog.info("Deleted :" + apartment);
 				}
 			}
 		}

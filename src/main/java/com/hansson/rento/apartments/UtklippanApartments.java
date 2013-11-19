@@ -19,7 +19,7 @@ import com.hansson.rento.utils.HtmlUtil;
 
 public class UtklippanApartments implements ApartmentsInterface {
 
-	private static final String LANDLORD = "Svenska Bostadsfonden";
+	private static final String LANDLORD = "Utklippan";
 	private static final String CITY = "Karlskrona";
 	private static final String BASE_URL = "http://www.utklippanfastigheter.se";
 	private Logger mLog = LoggerFactory.getLogger("rento");
