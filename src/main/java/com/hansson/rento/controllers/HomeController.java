@@ -35,12 +35,12 @@ public class HomeController {
 		return "flat";
 	}
 	
-	@RequestMapping(value = "/del", method = RequestMethod.GET)
-	public String del(Locale locale, Model model) {
-		List<Apartment> findAll = mApartmentDAO.findAll();
-		for(Apartment apartment : findAll) {
-			mApartmentDAO.delete(apartment);
-		}
-		return "home";
-	}
+//	@RequestMapping(value = "/del", method = RequestMethod.GET)
+//	public String del(Locale locale, Model model) {
+//		List<Apartment> findAll = mApartmentDAO.findAll();
+//		for(Apartment apartment : findAll) {
+//			mApartmentDAO.delete(apartment);
+//		}
+//		return "home";
+//	}
 }
