@@ -19,7 +19,7 @@ import com.hansson.rento.utils.HtmlUtil;
 
 public class TrossoWamoApartments implements ApartmentsInterface {
 
-	private static final String LANDLORD = "Trossö, Wämö & Pribo fastigheter";
+	private static final String LANDLORD = "Tross&ouml;, W&auml;m&ouml; & Pribo fastigheter";
 	private static final String BASE_URL = "http://bovision.se/more/MaklarLista.aspx?ai=9530";
 
 	@Override
@@ -31,7 +31,7 @@ public class TrossoWamoApartments implements ApartmentsInterface {
 			Elements dataList = doc.select(".data");
 			for (int i = 0; i < dataList.size(); i++) {
 				Element data = dataList.get(i);
-				Apartment apartment = new Apartment(HtmlUtil.textToHtml(LANDLORD));
+				Apartment apartment = new Apartment(LANDLORD);
 				String[] split = data.select(".areaname").get(0).child(0).childNode(0).toString().split(" ");
 				apartment.setCity(split[0]);
 				String area = "";

@@ -21,7 +21,7 @@ import com.hansson.rento.utils.HtmlUtil;
 
 public class PBAApartments implements ApartmentsInterface {
 
-	private static final String LANDLORD = "PBA Karlskrona Malmö AB";
+	private static final String LANDLORD = "PBA Karlskrona Malm&ouml; AB";
 	private static final String BASE_URL = "http://www.pba.se/page/18/lediga-lagenheterlokaler.aspx";
 	private static final Logger mLog = LoggerFactory.getLogger("rento");
 
@@ -34,7 +34,7 @@ public class PBAApartments implements ApartmentsInterface {
 			Elements apartments = doc.getElementById("content").getElementsByClass("entry");
 			for (Element element : apartments) {
 				try {
-					Apartment apartment = new Apartment(HtmlUtil.textToHtml(LANDLORD));
+					Apartment apartment = new Apartment(LANDLORD);
 					apartment.setUrl(element.getElementsByTag("h2").get(0).getElementsByTag("a").attr("href"));
 					apartment.setIdentifier(apartment.getUrl().split("/")[apartment.getUrl().split("/").length - 1]);
 					String[] areaAndCity = element.getElementsByTag("h2").text().replaceAll("Hy.* i ", "").trim().split("[ ,]");

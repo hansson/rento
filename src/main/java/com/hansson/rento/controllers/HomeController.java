@@ -1,6 +1,5 @@
 package com.hansson.rento.controllers;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
 
@@ -34,5 +33,14 @@ public class HomeController {
 	@RequestMapping(value = "/flat", method = RequestMethod.GET)
 	public String flat(Locale locale, Model model) {
 		return "flat";
+	}
+	
+	@RequestMapping(value = "/del", method = RequestMethod.GET)
+	public String del(Locale locale, Model model) {
+		List<Apartment> findAll = mApartmentDAO.findAll();
+		for(Apartment apartment : findAll) {
+			mApartmentDAO.delete(apartment);
+		}
+		return "home";
 	}
 }

@@ -32,11 +32,11 @@
 				Rento <small>L&auml;ttare hyresl&auml;genheter</small>
 			</h1>
 		</div>
-		<!-- /headline -->
 
 		<h1>Lediga l&auml;genheter</h1>
+		<input type="text" value="" placeholder="Ort" class="span3">
 
-		<div class="span12">
+		<div class="span12" style="margin: 0px">
 			<table class="table table-striped" style="cursor: pointer">
 				<thead>
 					<tr>
@@ -73,7 +73,7 @@
 	</footer>
 
 	<!-- Load JS here for greater good =============================-->
-	<script src="resources/js/jquery-1.8.3.min.js"></script>
+	<script src="resources/js/jquery-2.0.3.min.js"></script>
 	<script src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
 	<script src="resources/js/jquery.ui.touch-punch.min.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script>
