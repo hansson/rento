@@ -59,7 +59,7 @@ public class ApartmentService {
 	public void updateApartmentList() {
 		for(ApartmentsInterface landlord : mLandlords) {
 			List<Apartment> currentApartments = landlord.getAvailableApartments();
-			List<Apartment> storedApartments = mApartmentDAO.findAll(landlord.getLandlord());
+			List<Apartment> storedApartments = mApartmentDAO.findAllByLandlord(landlord.getLandlord());
 			for(Apartment apartment : currentApartments) {
 				if(!storedApartments.contains(apartment)) {
 					mApartmentDAO.create(apartment);

@@ -11,16 +11,28 @@ import javax.persistence.Table;
 @Table(name = "APARTMENTS")
 public class Apartment {
 
+	@Id
+	@Column(name = "ID", unique = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer mId;
+	@Column(name = "MAREA", length = 64)
 	private String mArea;
+	@Column(name = "MCITY", length = 64)
 	private String mCity;
+	@Column(name = "MADDRESS", length = 64)
 	private String mAddress;
+	@Column(name = "MURL", length = 512)
 	private String mUrl;
+	@Column(name = "MROOMS")
 	private Double mRooms;
+	@Column(name = "MSIZE")
 	private Integer mSize;
+	@Column(name = "MRENT")
 	private Integer mRent;
 	// This identifier should be unique to be able to decide if the apartment is a new one or if it was already stored in the database.
+	@Column(name = "MIDENTIFIER", length = 512)
 	private String mIdentifier;
+	@Column(name = "MLANDLORD", length = 64)
 	private String mLandlord;
 
 	public Apartment() {
@@ -30,54 +42,42 @@ public class Apartment {
 		mLandlord = landlord;
 	}
 
-	@Id
-	@Column(name = "ID", unique = true, nullable = false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getId() {
 		return mId;
 	}
 
-	@Column(name = "MAREA", length = 64)
 	public String getArea() {
 		return mArea;
 	}
 
-	@Column(name = "MCITY", length = 64)
 	public String getCity() {
 		return mCity;
 	}
 
-	@Column(name = "MADDRESS", length = 64)
 	public String getAddress() {
 		return mAddress;
 	}
 
-	@Column(name = "MURL", length = 512)
 	public String getUrl() {
 		return mUrl;
 	}
 
-	@Column(name = "MROOMS")
 	public Double getRooms() {
 		return mRooms;
 	}
 
-	@Column(name = "MSIZE")
 	public Integer getSize() {
 		return mSize;
 	}
 
-	@Column(name = "MRENT")
 	public Integer getRent() {
 		return mRent;
 	}
 
-	@Column(name = "MIDENTIFIER", length = 512)
 	public String getIdentifier() {
 		return mIdentifier;
 	}
 
-	@Column(name = "MLANDLORD", length = 64)
 	public String getLandlord() {
 		return mLandlord;
 	}
@@ -121,15 +121,15 @@ public class Apartment {
 	public void setLandlord(String landlord) {
 		mLandlord = landlord;
 	}
-	
+
 	@Override
 	public String toString() {
 		return mLandlord + " - " + mIdentifier;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
-		if(obj instanceof Apartment) {
+		if (obj instanceof Apartment) {
 			Apartment that = (Apartment) obj;
 			return this.mLandlord.equals(that.mLandlord) && this.mIdentifier.equals(that.mIdentifier);
 		} else {

@@ -9,10 +9,12 @@
 
 <!-- Loading Bootstrap -->
 <link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">
-<link href="resources/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+<link href="resources/bootstrap/css/bootstrap-responsive.css"
+	rel="stylesheet">
 
 <!-- Loading Flat UI -->
 <link href="resources/css/flat-ui.css" rel="stylesheet">
+<link href="resources/css/rento.css" rel="stylesheet">
 
 <link rel="shortcut icon" href="resources/resources/images/favicon.ico">
 
@@ -33,10 +35,14 @@
 			</h1>
 		</div>
 
-		<h1>Lediga l&auml;genheter</h1>
-		<input type="text" value="" placeholder="Ort" class="span3">
-
-		<div class="span12" style="margin: 0px">
+		<div class="span3 span-no-margin">
+			<h1>Lediga l&auml;genheter</h1>
+			<form action="/apartments" method="post" id="city_form">  
+				<input id="cityAutocomplete" name="city" type="text" value="" placeholder="Ort">
+			</form>
+		</div>
+		
+		<div class="span12 span-no-margin">
 			<table class="table table-striped" style="cursor: pointer">
 				<thead>
 					<tr>
@@ -63,18 +69,17 @@
 			<div class="row">
 				<div class="span7">
 					<h3 class="footer-title" style="padding-left: 5px">Kontakt</h3>
-					<p style="padding-left: 5px">Fr&aring;gor och f&ouml;rb&auml;ttringsf&ouml;rslag kan skickas till tobias@tobiashansson.nu</p>
+					<p style="padding-left: 5px">
+						tobias@tobiashansson.nu</p>
 
 				</div>
-				<!-- /span8 -->
-
 			</div>
 		</div>
 	</footer>
 
 	<!-- Load JS here for greater good =============================-->
 	<script src="resources/js/jquery-2.0.3.min.js"></script>
-	<script src="resources/js/jquery-ui-1.10.3.custom.min.js"></script>
+	<script src="resources/js/jquery-ui.min.js"></script>
 	<script src="resources/js/jquery.ui.touch-punch.min.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script>
 	<script src="resources/js/bootstrap-select.js"></script>
@@ -88,39 +93,63 @@
 	<script src="resources/js/application.js"></script>
 	<script src="resources/js/bootstrap-sortable.js"></script>
 
+
 	<script type="text/javascript">
+		
 		$(document).ready(function() {
 			$(".apartment").on("click", function() {
 				window.open($(this).attr('data'));
 				return false;
 			});
+			$('#apartment-table').load('/apartments');
 		});
-	</script>
-
-	<script type="text/javascript">
-		var a = ${apartments};
-
-		var r = new Array(), j = -1;
-		for ( var key = 0, size = a.length; key < size; key++) {
-			r[++j] = '<tr class="apartment" style="cursor: pointer" data="';
-		    r[++j] = a[key].mUrl;
-		    r[++j] = '"><td>';
-			r[++j] = a[key].mCity;
-			r[++j] = '</td><td>';
-			r[++j] = a[key].mArea;
-			r[++j] = '</td><td>';
-			r[++j] = a[key].mAddress;
-			r[++j] = '</td><td>';
-			r[++j] = a[key].mRent;
-			r[++j] = 'kr</td><td>';
-			r[++j] = a[key].mSize;
-			r[++j] = 'kvm</td><td>';
-			r[++j] = a[key].mRooms;
-			r[++j] = '</td><td>';
-			r[++j] = a[key].mLandlord;
-			r[++j] = '</td></tr>';
+		
+		function reloadApartments() {
+			var r = new Array(), j = -1;
+			for (var key = 0, size = a.length; key < size; key++) {
+				r[++j] = '<tr class="apartment" style="cursor: pointer" data="';
+			    r[++j] = a[key].mUrl;
+			    r[++j] = '"><td>';
+				r[++j] = a[key].mCity;
+				r[++j] = '</td><td>';
+				r[++j] = a[key].mArea;
+				r[++j] = '</td><td>';
+				r[++j] = a[key].mAddress;
+				r[++j] = '</td><td>';
+				r[++j] = a[key].mRent;
+				r[++j] = 'kr</td><td>';
+				r[++j] = a[key].mSize;
+				r[++j] = 'kvm</td><td>';
+				r[++j] = a[key].mRooms;
+				r[++j] = '</td><td>';
+				r[++j] = a[key].mLandlord;
+				r[++j] = '</td></tr>';
+			}
+			$('#apartment-table').html(r.join(''));
 		}
-		$('#apartment-table').html(r.join(''));
+
+		$(function() {
+			var availableCities = ${cities};
+			$("#cityAutocomplete").autocomplete({
+				source : availableCities,
+				messages : {
+					noResults : '',
+					results : function() {
+					}
+				}
+			});
+		});
+		
+		$('#city_form').bind('submit', function(event) {
+
+		    var link = $(this).attr('action');
+
+		    $.post(link,$(this).serialize(),function(data, status) {
+		    	$('#apartment-table').html(data);
+		    });
+
+		    return false; // dont post it automatically
+		});
 	</script>
 
 </body>

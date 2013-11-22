@@ -18,7 +18,12 @@ public interface ApartmentDAO {
 	
 	List<Apartment> findAll();
 
-	List<Apartment> findAll(String landlord);
+	List<Apartment> findAllByCity(String city);
+
+	List<Apartment> findAllByLandlord(String landlord);
+	
+	List<String> findAllCities();
+
 	
 	
 }
