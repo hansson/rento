@@ -43,20 +43,20 @@
 		</div>
 		
 		<div class="span12 span-no-margin">
-			<table class="table table-striped" style="cursor: pointer">
+			<table id="apartment-table"class="table table-striped" style="cursor: pointer">
 				<thead>
 					<tr>
-						<th>Ort</th>
-						<th>Omr&aring;de</th>
-						<th>Adress</th>
-						<th>Hyra</th>
-						<th>Storlek</th>
-						<th>Rum</th>
-						<th>Hyresv&auml;rd</th>
+						<th class="sortable-header" id="mCity">Ort</th>
+						<th class="sortable-header" id="mArea">Omr&aring;de</th>
+						<th class="sortable-header" id="mAddress">Adress</th>
+						<th class="sortable-header" id="mRent">Hyra</th>
+						<th class="sortable-header" id="mSize">Storlek</th>
+						<th class="sortable-header" id="mRooms">Rum</th>
+						<th class="sortable-header" id="mLandlord">Hyresv&auml;rd</th>
 					</tr>
 				</thead>
 
-				<tbody id="apartment-table">
+				<tbody id="apartment-table-body">
 				</tbody>
 			</table>
 
@@ -81,15 +81,15 @@
 	<script src="resources/js/jquery-2.0.3.min.js"></script>
 	<script src="resources/js/jquery-ui.min.js"></script>
 	<script src="resources/js/jquery.ui.touch-punch.min.js"></script>
+	<script src="resources/js/jquery.tagsinput.js"></script>
+	<script src="resources/js/jquery.placeholder.js"></script>
+	<script src="resources/js/jquery.stacktable.js"></script>
+	<script src="resources/js/jquery.cookie.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script>
 	<script src="resources/js/bootstrap-select.js"></script>
 	<script src="resources/js/bootstrap-switch.js"></script>
 	<script src="resources/js/flatui-checkbox.js"></script>
 	<script src="resources/js/flatui-radio.js"></script>
-	<script src="resources/js/jquery.tagsinput.js"></script>
-	<script src="resources/js/jquery.placeholder.js"></script>
-	<script src="resources/js/jquery.stacktable.js"></script>
-	<script src="http://vjs.zencdn.net/c/video.js"></script>
 	<script src="resources/js/application.js"></script>
 	<script src="resources/js/bootstrap-sortable.js"></script>
 
@@ -97,11 +97,7 @@
 	<script type="text/javascript">
 		
 		$(document).ready(function() {
-			$(".apartment").on("click", function() {
-				window.open($(this).attr('data'));
-				return false;
-			});
-			$('#apartment-table').load('/apartments');
+
 		});
 		
 		function reloadApartments() {
@@ -125,9 +121,31 @@
 				r[++j] = a[key].mLandlord;
 				r[++j] = '</td></tr>';
 			}
-			$('#apartment-table').html(r.join(''));
+			$('#apartment-table-body').html(r.join(''));
+			
+			$(".apartment").on("click", function() {
+				window.open($(this).attr('data'));
+				return false;
+			});
 		}
-
+		
+		function sortApartments(prop, asc) {
+			$.cookie('sorted', prop);
+			$.cookie('sorted-asc', asc);
+		    a = a.sort(function(a, b) {
+		        if (asc) {
+		        	return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
+		        } else {
+		        	return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
+		        } 
+		    });
+		    reloadApartments();
+		}
+		
+		function specialCharacters(a, b, asc) {
+			
+		}
+		
 		$(function() {
 			var availableCities = ${cities};
 			$("#cityAutocomplete").autocomplete({
@@ -140,15 +158,32 @@
 			});
 		});
 		
-		$('#city_form').bind('submit', function(event) {
+		$('#apartment-table-body').load('/apartments');
+		
+		$('#city_form').on('submit', function(event) {
 
 		    var link = $(this).attr('action');
 
 		    $.post(link,$(this).serialize(),function(data, status) {
-		    	$('#apartment-table').html(data);
+		    	$('#apartment-table-body').html(data);
 		    });
 
 		    return false; // dont post it automatically
+		});
+		
+		$('.sortable-header').on('click', function(event) {
+			var id = $(this).attr('id');
+			var cookie = $.cookie('sorted');
+			if(!cookie || cookie != id) {
+				sortApartments(id, true);
+			} else {
+				var asc = $.cookie('sorted-asc');
+				if(asc == "true") {
+					sortApartments(id, false);
+				} else {
+					sortApartments(id, true);
+				}
+			}
 		});
 	</script>
 
