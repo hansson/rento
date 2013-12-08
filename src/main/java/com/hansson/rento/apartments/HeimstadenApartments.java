@@ -2,6 +2,8 @@ package com.hansson.rento.apartments;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.text.WordUtils;
 import org.jsoup.Jsoup;
@@ -36,16 +38,14 @@ public class HeimstadenApartments implements ApartmentsInterface {
 					apartment.setRooms(Double.valueOf(element.getElementsByClass("listItemLeftBottom").text().replaceAll("\\D", "")));
 					apartment.setRent(Integer.valueOf(element.getElementsByClass("listItemRightBottom").text().replaceAll("\\D", "")));
 					doc = Jsoup.connect(apartment.getUrl()).get();
-					String[] headerSplit = doc.getElementsByTag("h1").text().split(",");
-					for (String s : headerSplit) {
-						if (s.contains("m2")) {
-							apartment.setSize(Integer.valueOf(s.replace("m2", "").replaceAll("\\D", "")));
-							break;
-						}
+					Pattern sizePattern = Pattern.compile("\\d{2,}(,\\d){0,1} m2");
+					Matcher matcher = sizePattern.matcher(doc.getElementsByTag("h1").text());
+					while(matcher.find()) {
+						apartment.setSize(Integer.valueOf(matcher.group().replaceAll("m2| |,\\d", "")));
 					}
 					Elements elementsByTag = doc.getElementsByTag("h3");
 					for (Element infoElement : elementsByTag) {
-						if (infoElement.text().equalsIgnoreCase("Omr�de")) {
+						if (infoElement.text().equalsIgnoreCase("Område")) {
 							apartment.setArea(HtmlUtil.textToHtml(infoElement.nextElementSibling().text()));
 						} else if (infoElement.text().equalsIgnoreCase("Ort")) {
 							apartment.setCity(HtmlUtil.textToHtml(WordUtils.capitalize(infoElement.nextElementSibling().text().toLowerCase())));

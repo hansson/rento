@@ -133,17 +133,33 @@
 			$.cookie('sorted', prop);
 			$.cookie('sorted-asc', asc);
 		    a = a.sort(function(a, b) {
+		    	var first = a[prop];
+		    	var second = b[prop];
+		    	if(first.indexOf('&') !== -1) {
+		    		first = replaceSpecialCharacters(first);
+		    	}
+		    	
+				if(second.indexOf('&') !== -1) {
+					second = replaceSpecialCharacters(second);
+		    	}
+		    	
 		        if (asc) {
-		        	return (a[prop] > b[prop]) ? 1 : ((a[prop] < b[prop]) ? -1 : 0);
+		        	return (first > second) ? 1 : ((first < second) ? -1 : 0);
 		        } else {
-		        	return (b[prop] > a[prop]) ? 1 : ((b[prop] < a[prop]) ? -1 : 0);
+		        	return (second > first) ? 1 : ((second < first) ? -1 : 0);
 		        } 
 		    });
 		    reloadApartments();
 		}
 		
-		function specialCharacters(a, b, asc) {
-			
+		function replaceSpecialCharacters(replaceString) {
+			replaceString = replaceString.replace('&aring;', 'å');
+			replaceString = replaceString.replace('&auml;', 'ä');
+			replaceString = replaceString.replace('&ouml;', 'ö');
+			replaceString = replaceString.replace('&Aring;', 'Å');
+			replaceString = replaceString.replace('&Auml;', 'Ä');
+			replaceString = replaceString.replace('&Ouml;', 'Ö');
+			return replaceString;
 		}
 		
 		$(function() {
