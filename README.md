@@ -10,11 +10,6 @@ more cities in the future!
 * Add alias mvnrun='mvn package ; java -jar target/dependency/jetty-runner.jar target/*.war'
 
 
-## In the pipe
-* Implement all landlord interfaces
-* Make periodic updates and store to database
-
-
 ## Implemented landlords
 * Trossö & Wämö Fastigheter
 * Karlskronahem
