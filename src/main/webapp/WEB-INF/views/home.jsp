@@ -135,12 +135,25 @@
 		    a = a.sort(function(a, b) {
 		    	var first = a[prop];
 		    	var second = b[prop];
-		    	if(first.indexOf('&') !== -1) {
-		    		first = replaceSpecialCharacters(first);
+		    	
+		    	if((!first && asc == true) || (!second && asc == false)) {
+		    		return 1; 
 		    	}
 		    	
-				if(second.indexOf('&') !== -1) {
-					second = replaceSpecialCharacters(second);
+		    	if((!first && asc == false) || (!second && asc == true)) {
+		    		return -1; 
+		    	}
+		    	
+		    	try {
+			    	if(first.indexOf('&') !== -1) {
+			    		first = replaceSpecialCharacters(first);
+			    	}
+			    	
+					if(second.indexOf('&') !== -1) {
+						second = replaceSpecialCharacters(second);
+			    	}
+		    	} catch(e) {
+		    		//Will happen if first/second is a number
 		    	}
 		    	
 		        if (asc) {
