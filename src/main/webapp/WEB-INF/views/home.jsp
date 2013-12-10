@@ -53,6 +53,7 @@
 						<th class="sortable-header" id="mSize">Storlek</th>
 						<th class="sortable-header" id="mRooms">Rum</th>
 						<th class="sortable-header" id="mLandlord">Hyresv&auml;rd</th>
+						<th class="sortable-header" id="mAdded">Tillagd</th>
 					</tr>
 				</thead>
 
@@ -113,13 +114,16 @@
 				r[++j] = a[key].mAddress;
 				r[++j] = '</td><td>';
 				r[++j] = a[key].mRent;
-				r[++j] = 'kr</td><td>';
+				r[++j] = ' kr</td><td>';
 				r[++j] = a[key].mSize;
-				r[++j] = 'kvm</td><td>';
+				r[++j] = ' kvm</td><td>';
 				r[++j] = a[key].mRooms;
 				r[++j] = '</td><td>';
 				r[++j] = a[key].mLandlord;
+				r[++j] = '</td><td>';
+				r[++j] = a[key].mAdded;
 				r[++j] = '</td></tr>';
+				
 			}
 			$('#apartment-table-body').html(r.join(''));
 			

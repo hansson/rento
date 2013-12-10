@@ -1,5 +1,7 @@
 package com.hansson.rento.entities;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,12 +36,15 @@ public class Apartment {
 	private String mIdentifier;
 	@Column(name = "MLANDLORD", length = 64)
 	private String mLandlord;
+	@Column(name = "MADDED")
+	private Date mAdded;
 
 	public Apartment() {
 	}
 
 	public Apartment(String landlord) {
 		mLandlord = landlord;
+		mAdded = new Date();
 	}
 
 	public Integer getId() {
@@ -122,6 +127,14 @@ public class Apartment {
 		mLandlord = landlord;
 	}
 
+	public Date getAdded() {
+		return mAdded;
+	}
+	
+	public void setAdded(Date added) {
+		mAdded = added;
+	}
+	
 	@Override
 	public String toString() {
 		return mLandlord + " - " + mIdentifier;
@@ -136,5 +149,6 @@ public class Apartment {
 			return false;
 		}
 	}
+
 
 }
