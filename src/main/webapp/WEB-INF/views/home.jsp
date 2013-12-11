@@ -121,7 +121,10 @@
 				r[++j] = '</td><td>';
 				r[++j] = a[key].mLandlord;
 				r[++j] = '</td><td>';
-				r[++j] = a[key].mAdded;
+				
+				var d = new Date(a[key].mAdded);
+				
+				r[++j] = d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
 				r[++j] = '</td></tr>';
 				
 			}
@@ -187,7 +190,11 @@
 					noResults : '',
 					results : function() {
 					}
-				}
+				},
+				select: function(event, ui) { 
+					$("#cityAutocomplete").val(ui.item.label);
+		            $("#city_form").submit(); 
+		        }
 			});
 		});
 		

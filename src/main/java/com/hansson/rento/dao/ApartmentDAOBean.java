@@ -8,6 +8,7 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -93,7 +94,7 @@ public class ApartmentDAOBean implements ApartmentDAO {
 	@Transactional
 	public List<String> findAllCities() {
 		Session session = mSessionFactory.getCurrentSession();
-		List<Apartment> list = session.createCriteria(Apartment.class).setProjection(Projections.distinct(Projections.projectionList().add(Projections.property("mCity"), "city"))).setResultTransformer(Transformers.aliasToBean(Apartment.class))
+		List<Apartment> list = session.createCriteria(Apartment.class).setProjection(Projections.distinct(Projections.projectionList().add(Projections.property("mCity"), "city"))).addOrder(Order.asc("mCity")).setResultTransformer(Transformers.aliasToBean(Apartment.class))
 				.list();
 		List<String> returnList = new LinkedList<String>();
 		for (Apartment apartment : list) {
