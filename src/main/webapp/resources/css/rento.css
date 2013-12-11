@@ -5,7 +5,7 @@ input {
 }
 
 /** My css **/
-.span-no-margin {
+.no-margin {
 	margin: 0px;
 }
 
@@ -47,4 +47,8 @@ input {
 .ui-menu .ui-menu-item a.ui-state-focus,.ui-menu .ui-menu-item a.ui-state-active
 	{
 	font-weight: bold;
+}
+
+.ui-accordion-header {
+	outline: none;
 }

@@ -35,14 +35,37 @@
 			</h1>
 		</div>
 
-		<div class="span3 span-no-margin">
-			<h1>Lediga l&auml;genheter</h1>
-			<form action="/apartments" method="post" id="city_form">  
-				<input id="cityAutocomplete" name="city" type="text" value="" placeholder="Ort">
-			</form>
+		<div class="span12 no-margin">
+			<div class="span3 no-margin">
+				<h1>Lediga l&auml;genheter</h1>
+				<form class="no-margin" action="/apartments" method="post" id="cityForm">  
+					<input id="cityAutocomplete" name="city" type="text" value="" placeholder="Ort">
+				</form>
+			</div>
 		</div>
 		
-		<div class="span12 span-no-margin">
+		<div class="span12 no-margin">
+			<div id="advancedSettings" class="span6 no-margin">
+				<p>Fler alternativ</p>
+				<div id="advancedSettingsContainer">
+					<p id="roomRange">Rum, 1 - 6+</p>
+					<div id="roomSlider" class="ui-slider">
+		         	</div>
+		         		
+		         	<p id="priceRange">Rum, 0 kr - 20000 kr</p>
+					<div id="priceSlider" class="ui-slider">
+		         	</div>
+		         		
+		         	<p id="sizeRange">Rum, 0 kvm - 200 kvm</p>
+					<div id="sizeSlider" class="ui-slider">
+		         	</div>
+		         	
+		         	<button id="filterAdvancedSettings" class="btn btn-primary">Filtrera</button>
+		   		</div>
+	        </div>
+        </div>
+		
+		<div class="span12 no-margin">
 			<table id="apartment-table"class="table table-striped" style="cursor: pointer">
 				<thead>
 					<tr>
@@ -81,7 +104,7 @@
 	<!-- Load JS here for greater good =============================-->
 	<script src="resources/js/jquery-2.0.3.min.js"></script>
 	<script src="resources/js/jquery-ui.min.js"></script>
-	<script src="resources/js/jquery.ui.touch-punch.min.js"></script>
+	<!-- <script src="resources/js/jquery.ui.touch-punch.min.js"></script> -->
 	<script src="resources/js/jquery.tagsinput.js"></script>
 	<script src="resources/js/jquery.placeholder.js"></script>
 	<script src="resources/js/jquery.stacktable.js"></script>
@@ -89,9 +112,9 @@
 	<script src="resources/js/bootstrap.min.js"></script>
 	<script src="resources/js/bootstrap-select.js"></script>
 	<script src="resources/js/bootstrap-switch.js"></script>
-	<script src="resources/js/flatui-checkbox.js"></script>
-	<script src="resources/js/flatui-radio.js"></script>
-	<script src="resources/js/application.js"></script>
+	<!--<script src="resources/js/flatui-checkbox.js"></script>-->
+	<!--<script src="resources/js/flatui-radio.js"></script> -->
+	<!--<script src="resources/js/application.js"></script> -->
 	<script src="resources/js/bootstrap-sortable.js"></script>
 
 
@@ -114,7 +137,7 @@
 				r[++j] = a[key].mAddress;
 				r[++j] = '</td><td>';
 				r[++j] = a[key].mRent;
-				r[++j] = ' kr</td><td>';
+				r[++j] = ' kr</td><td>';step: 5,
 				r[++j] = a[key].mSize;
 				r[++j] = ' kvm</td><td>';
 				r[++j] = a[key].mRooms;
@@ -193,14 +216,77 @@
 				},
 				select: function(event, ui) { 
 					$("#cityAutocomplete").val(ui.item.label);
-		            $("#city_form").submit(); 
+		            $("#cityForm").submit(); 
 		        }
 			});
 		});
 		
+		$(function() {
+		    $("#advancedSettings").accordion({
+		      collapsible: true,
+		      active: false
+		    });
+		});
+		
+		$(function() {
+		    $("filterAdvancedSettings").button().click(function( event ) {
+		        event.preventDefault();
+		    });
+		});
+		
+		$(function() {
+		    $( "#roomSlider" ).slider({
+		      range: true,
+		      min: 1,
+		      max: 6,
+		      values: [1, 6],
+		      slide: function( event, ui ) {
+		    	var toValue = ui.values[1];
+		    	if(toValue == 6) {
+		    		toValue = '6+';
+		    	}
+		        $("#roomRange").html("Rum, " + ui.values[0] + " - " + toValue);
+		      }
+		    });
+		});
+		
+		$(function() {
+		    $( "#priceSlider" ).slider({
+		      range: true,
+		      min: 0,
+		      max: 20000,
+		      values: [0, 20000],
+		      step: 100,
+		      slide: function( event, ui ) {
+		    	var toValue = ui.values[1];
+		    	if(toValue == 20000) {
+		    		toValue = '20000+';
+		    	}
+		        $("#priceRange").html("Hyra, " + ui.values[0] + " kr - " + toValue + " kr");
+		      }
+		    });
+		});
+		
+		$(function() {
+		    $( "#sizeSlider" ).slider({
+		      range: true,
+		      min: 0,
+		      max: 200,
+		      values: [0, 200],
+		      step: 5,
+		      slide: function( event, ui ) {
+		    	var toValue = ui.values[1];
+		    	if(toValue == 200) {
+		    		toValue = '200+';
+		    	}
+		        $("#sizeRange").html("Storlek, " + ui.values[0] + " kvm - " + toValue + " kvm");
+		      }
+		    });
+		});
+		
 		$('#apartment-table-body').load('/apartments');
 		
-		$('#city_form').on('submit', function(event) {
+		$('#cityForm').on('submit', function(event) {
 
 		    var link = $(this).attr('action');
 

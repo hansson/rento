@@ -1892,10 +1892,9 @@ textarea[class*="span"] {
   border-radius: 50%;
   cursor: pointer;
   height: 18px;
-  margin-left: -9px;
   position: absolute;
   top: -3px;
-  width: 18px;
+  width: 10px;
   z-index: 2;
   -webkit-transition: background 0.25s;
   -moz-transition: background 0.25s;
@@ -1904,7 +1903,7 @@ textarea[class*="span"] {
   -webkit-backface-visibility: hidden;
 }
 .ui-slider-handle[style*='100'] {
-  margin-left: -15px;
+  margin-left: -9px;
 }
 .ui-slider-handle:hover,
 .ui-slider-handle:focus {
