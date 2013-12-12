@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.google.gson.Gson;
 import com.hansson.rento.dao.ApartmentDAO;
+import com.hansson.rento.utils.HtmlUtil;
 
 @Controller
 public class HomeController {
@@ -36,6 +37,7 @@ public class HomeController {
 
 	@RequestMapping(value = "/apartments", method = RequestMethod.POST)
 	public String postApartments(Locale locale, Model model, @RequestParam("city") String city) {
+		city = HtmlUtil.textToHtml(city);
 		if (city.equals("")) {
 			model.addAttribute("apartments", new Gson().toJson(mApartmentDAO.findAll()));
 		} else {

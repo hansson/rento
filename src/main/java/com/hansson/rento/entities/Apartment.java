@@ -144,7 +144,10 @@ public class Apartment {
 	public boolean equals(Object obj) {
 		if (obj instanceof Apartment) {
 			Apartment that = (Apartment) obj;
-			return this.mLandlord.equals(that.mLandlord) && this.mIdentifier.equals(that.mIdentifier);
+			if(this.mLandlord != null && this.mIdentifier != null) {
+				return this.mLandlord.equals(that.mLandlord) && this.mIdentifier.equals(that.mIdentifier);
+			}
+			return false;
 		} else {
 			return false;
 		}

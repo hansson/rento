@@ -147,7 +147,7 @@
 				
 				var d = new Date(a[key].mAdded);
 				
-				r[++j] = d.getFullYear() + "-" + d.getMonth() + "-" + d.getDate();
+				r[++j] = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + (d.getDate() + 1);
 				r[++j] = '</td></tr>';
 				
 			}
