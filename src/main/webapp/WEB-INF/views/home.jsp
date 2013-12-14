@@ -5,6 +5,10 @@
 <head>
 
 <meta charset="utf-8">
+<meta lang="sv">
+<meta http-equiv="content-language" content="sv" />
+<meta name="language" content="sv" />
+
 <title>Rento - L&auml;ttare hyresl&auml;genheter</title>
 
 <!-- Loading Bootstrap -->
@@ -52,11 +56,11 @@
 					<div id="roomSlider" class="ui-slider">
 		         	</div>
 		         		
-		         	<p id="priceRange">Rum, 0 kr - 20000 kr</p>
-					<div id="priceSlider" class="ui-slider">
+		         	<p id="rentRange">Hyra, 0 kr - 20000 kr</p>
+					<div id="rentSlider" class="ui-slider">
 		         	</div>
 		         		
-		         	<p id="sizeRange">Rum, 0 kvm - 200 kvm</p>
+		         	<p id="sizeRange">Storlek, 0 kvm - 200 kvm</p>
 					<div id="sizeSlider" class="ui-slider">
 		         	</div>
 		         	
@@ -95,7 +99,6 @@
 					<h3 class="footer-title" style="padding-left: 5px">Kontakt</h3>
 					<p style="padding-left: 5px">
 						tobias@tobiashansson.nu</p>
-
 				</div>
 			</div>
 		</div>
@@ -116,94 +119,15 @@
 	<!--<script src="resources/js/flatui-radio.js"></script> -->
 	<!--<script src="resources/js/application.js"></script> -->
 	<script src="resources/js/bootstrap-sortable.js"></script>
+	<script src="resources/js/home/functions.js"></script>
+	<script src="resources/js/home/callbacks.js"></script>
 
 
 	<script type="text/javascript">
-		
+	
 		$(document).ready(function() {
 
 		});
-		
-		function reloadApartments() {
-			var r = new Array(), j = -1;
-			for (var key = 0, size = a.length; key < size; key++) {
-				r[++j] = '<tr class="apartment" style="cursor: pointer" data="';
-			    r[++j] = a[key].mUrl;
-			    r[++j] = '"><td>';
-				r[++j] = a[key].mCity;
-				r[++j] = '</td><td>';
-				r[++j] = a[key].mArea;
-				r[++j] = '</td><td>';
-				r[++j] = a[key].mAddress;
-				r[++j] = '</td><td>';
-				r[++j] = a[key].mRent;
-				r[++j] = ' kr</td><td>';step: 5,
-				r[++j] = a[key].mSize;
-				r[++j] = ' kvm</td><td>';
-				r[++j] = a[key].mRooms;
-				r[++j] = '</td><td>';
-				r[++j] = a[key].mLandlord;
-				r[++j] = '</td><td>';
-				
-				var d = new Date(a[key].mAdded);
-				
-				r[++j] = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + (d.getDate() + 1);
-				r[++j] = '</td></tr>';
-				
-			}
-			$('#apartment-table-body').html(r.join(''));
-			
-			$(".apartment").on("click", function() {
-				window.open($(this).attr('data'));
-				return false;
-			});
-		}
-		
-		function sortApartments(prop, asc) {
-			$.cookie('sorted', prop);
-			$.cookie('sorted-asc', asc);
-		    a = a.sort(function(a, b) {
-		    	var first = a[prop];
-		    	var second = b[prop];
-		    	
-		    	if((!first && asc == true) || (!second && asc == false)) {
-		    		return 1; 
-		    	}
-		    	
-		    	if((!first && asc == false) || (!second && asc == true)) {
-		    		return -1; 
-		    	}
-		    	
-		    	try {
-			    	if(first.indexOf('&') !== -1) {
-			    		first = replaceSpecialCharacters(first);
-			    	}
-			    	
-					if(second.indexOf('&') !== -1) {
-						second = replaceSpecialCharacters(second);
-			    	}
-		    	} catch(e) {
-		    		//Will happen if first/second is a number
-		    	}
-		    	
-		        if (asc) {
-		        	return (first > second) ? 1 : ((first < second) ? -1 : 0);
-		        } else {
-		        	return (second > first) ? 1 : ((second < first) ? -1 : 0);
-		        } 
-		    });
-		    reloadApartments();
-		}
-		
-		function replaceSpecialCharacters(replaceString) {
-			replaceString = replaceString.replace('&aring;', 'å');
-			replaceString = replaceString.replace('&auml;', 'ä');
-			replaceString = replaceString.replace('&ouml;', 'ö');
-			replaceString = replaceString.replace('&Aring;', 'Å');
-			replaceString = replaceString.replace('&Auml;', 'Ä');
-			replaceString = replaceString.replace('&Ouml;', 'Ö');
-			return replaceString;
-		}
 		
 		$(function() {
 			var availableCities = ${cities};
@@ -220,97 +144,79 @@
 		        }
 			});
 		});
-		
+
 		$(function() {
 		    $("#advancedSettings").accordion({
 		      collapsible: true,
 		      active: false
 		    });
 		});
-		
+
 		$(function() {
 		    $("filterAdvancedSettings").button().click(function( event ) {
 		        event.preventDefault();
 		    });
 		});
-		
-		$(function() {
-		    $( "#roomSlider" ).slider({
-		      range: true,
-		      min: 1,
-		      max: 6,
-		      values: [1, 6],
-		      slide: function( event, ui ) {
-		    	var toValue = ui.values[1];
-		    	if(toValue == 6) {
-		    		toValue = '6+';
-		    	}
-		        $("#roomRange").html("Rum, " + ui.values[0] + " - " + toValue);
-		      }
-		    });
-		});
-		
-		$(function() {
-		    $( "#priceSlider" ).slider({
-		      range: true,
-		      min: 0,
-		      max: 20000,
-		      values: [0, 20000],
-		      step: 100,
-		      slide: function( event, ui ) {
-		    	var toValue = ui.values[1];
-		    	if(toValue == 20000) {
-		    		toValue = '20000+';
-		    	}
-		        $("#priceRange").html("Hyra, " + ui.values[0] + " kr - " + toValue + " kr");
-		      }
-		    });
-		});
-		
-		$(function() {
-		    $( "#sizeSlider" ).slider({
-		      range: true,
-		      min: 0,
-		      max: 200,
-		      values: [0, 200],
-		      step: 5,
-		      slide: function( event, ui ) {
-		    	var toValue = ui.values[1];
-		    	if(toValue == 200) {
-		    		toValue = '200+';
-		    	}
-		        $("#sizeRange").html("Storlek, " + ui.values[0] + " kvm - " + toValue + " kvm");
-		      }
-		    });
-		});
-		
-		$('#apartment-table-body').load('/apartments');
-		
-		$('#cityForm').on('submit', function(event) {
 
-		    var link = $(this).attr('action');
-
-		    $.post(link,$(this).serialize(),function(data, status) {
-		    	$('#apartment-table-body').html(data);
-		    });
-
-		    return false; // dont post it automatically
-		});
-		
-		$('.sortable-header').on('click', function(event) {
-			var id = $(this).attr('id');
-			var cookie = $.cookie('sorted');
-			if(!cookie || cookie != id) {
-				sortApartments(id, true);
-			} else {
-				var asc = $.cookie('sorted-asc');
-				if(asc == "true") {
-					sortApartments(id, false);
-				} else {
-					sortApartments(id, true);
+		$(function() {
+		    $("#roomSlider").slider({
+				range: true,
+			    min: 1,
+			    max: 6,
+			    values: [1, 6],
+			    slide: function( event, ui ) {
+				    var toValue = ui.values[1];
+				    if(toValue == 6) {
+				    	toValue = '6+';
+				    }
+				    $("#roomRange").html("Rum, " + ui.values[0] + " - " + toValue);
+			    },
+			    stop: function(event, ui) {
+					updateFilters();
 				}
-			}
+		    });
 		});
+
+		$(function() {
+		    $("#rentSlider").slider({
+			    range: true,
+			    min: 0,
+			    max: 20000,
+			    values: [0, 20000],
+			    step: 100,
+			    slide: function( event, ui ) {
+			    	var toValue = ui.values[1];
+			    	if(toValue == 20000) {
+			    		toValue = '20000+';
+			    	}
+			      	$("#rentRange").html("Hyra, " + ui.values[0] + " kr - " + toValue + " kr");
+			    },
+			    stop: function(event, ui) {
+					updateFilters();
+				}
+		    });
+		});
+
+		$(function() {
+		    $("#sizeSlider").slider({
+		    	range: true,
+		    	min: 0,
+		    	max: 200,
+		    	values: [0, 200],
+		    	step: 5,
+		    	slide: function( event, ui ) {
+		    		var toValue = ui.values[1];
+		    		if(toValue == 200) {
+		    			toValue = '200+';
+		    		}
+		        	$("#sizeRange").html("Storlek, " + ui.values[0] + " kvm - " + toValue + " kvm");
+		      	},
+		      	stop: function(event, ui) {
+					updateFilters();
+				}
+		    });
+		});
+		
 	</script>
 
 </body>
