@@ -17,7 +17,6 @@ import com.hansson.rento.entities.Apartment;
  * 
  */
 @HandsOff(byOrderOf = "Tobias Hansson", onPainOf = Consequence.PAPER_CUT)
-@CarbonFootprint(units = CO2Units.FIRKINS_PER_FORTNIGHT, value = 0)
 public interface ApartmentsInterface {
 
 	public static final String LOGO = "resources/images/logo.png";

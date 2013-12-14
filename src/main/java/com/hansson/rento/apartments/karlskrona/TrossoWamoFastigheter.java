@@ -1,4 +1,4 @@
-package com.hansson.rento.apartments;
+package com.hansson.rento.apartments.karlskrona;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -12,18 +12,16 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.google.gag.annotation.disclaimer.CarbonFootprint;
-import com.google.gag.enumeration.CO2Units;
+import com.hansson.rento.apartments.ApartmentsInterface;
 import com.hansson.rento.entities.Apartment;
 import com.hansson.rento.utils.HtmlUtil;
 
-public class TrossoWamoApartments implements ApartmentsInterface {
+public class TrossoWamoFastigheter implements ApartmentsInterface {
 
 	private static final String LANDLORD = "Tross&ouml;, W&auml;m&ouml; & Pribo fastigheter";
 	private static final String BASE_URL = "http://bovision.se/more/MaklarLista.aspx?ai=9530";
 
 	@Override
-	@CarbonFootprint(units = CO2Units.FIRKINS_PER_FORTNIGHT, value = 42.1)
 	public List<Apartment> getAvailableApartments() {
 		List<Apartment> apartmentLIst = new LinkedList<Apartment>();
 		try {

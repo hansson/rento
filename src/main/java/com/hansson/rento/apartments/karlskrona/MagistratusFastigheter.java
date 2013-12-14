@@ -1,4 +1,4 @@
-package com.hansson.rento.apartments;
+package com.hansson.rento.apartments.karlskrona;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -10,19 +10,17 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import com.google.gag.annotation.disclaimer.CarbonFootprint;
-import com.google.gag.enumeration.CO2Units;
+import com.hansson.rento.apartments.ApartmentsInterface;
 import com.hansson.rento.entities.Apartment;
 import com.hansson.rento.utils.HtmlUtil;
 
-public class MagistratusFastigheterApartments implements ApartmentsInterface {
+public class MagistratusFastigheter implements ApartmentsInterface {
 
 	private static final String LANDLORD = "Magistratus Fastigheter";
 	private static final String BASE_URL = "http://www.magistratus.se/index.php?go=hyresledigt";
 	private static final String CITY = "Karlskrona";
 
 	@Override
-	@CarbonFootprint(units = CO2Units.KILDERKINS_PER_KILOWATT_HOUR, value = 20)
 	public List<Apartment> getAvailableApartments() {
 		List<Apartment> apartmentList = new LinkedList<Apartment>();
 		try {

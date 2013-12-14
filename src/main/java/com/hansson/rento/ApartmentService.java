@@ -10,16 +10,17 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.hansson.rento.apartments.ApartmentsInterface;
-import com.hansson.rento.apartments.BengtAkessonsApartments;
-import com.hansson.rento.apartments.CAFastigheterApartments;
-import com.hansson.rento.apartments.HeimstadenApartments;
-import com.hansson.rento.apartments.KSFastigheterApartments;
-import com.hansson.rento.apartments.KarlskronahemApartments;
-import com.hansson.rento.apartments.MagistratusFastigheterApartments;
-import com.hansson.rento.apartments.PBAApartments;
-import com.hansson.rento.apartments.SBFApartments;
-import com.hansson.rento.apartments.TrossoWamoApartments;
-import com.hansson.rento.apartments.UtklippanApartments;
+import com.hansson.rento.apartments.multiple.CAFastigheter;
+import com.hansson.rento.apartments.multiple.Heimstaden;
+import com.hansson.rento.apartments.multiple.PBAFastigheter;
+import com.hansson.rento.apartments.multiple.SvenskaBostadsfonden;
+import com.hansson.rento.apartments.karlskrona.BengtAkessonFastigheter;
+import com.hansson.rento.apartments.karlskrona.HansAkessonFastigheter;
+import com.hansson.rento.apartments.karlskrona.KSFastigheter;
+import com.hansson.rento.apartments.karlskrona.Karlskronahem;
+import com.hansson.rento.apartments.karlskrona.MagistratusFastigheter;
+import com.hansson.rento.apartments.karlskrona.TrossoWamoFastigheter;
+import com.hansson.rento.apartments.karlskrona.Utklippan;
 import com.hansson.rento.dao.ApartmentDAO;
 import com.hansson.rento.entities.Apartment;
 
@@ -38,16 +39,17 @@ public class ApartmentService {
 		private static final long serialVersionUID = -2411798345463453006L;
 		// Add new implementations of the ApartmentsInterface here to include them in the scan loop
 		{
-			add(new BengtAkessonsApartments());
-			add(new HeimstadenApartments());
-			add(new CAFastigheterApartments());
-			add(new TrossoWamoApartments());
-			add(new KarlskronahemApartments());
-			add(new KSFastigheterApartments());
-			add(new MagistratusFastigheterApartments());
-			add(new PBAApartments());
-			add(new SBFApartments());
-			add(new UtklippanApartments());
+			add(new HansAkessonFastigheter());
+			add(new BengtAkessonFastigheter()); 
+			add(new Heimstaden());
+			add(new CAFastigheter());
+			add(new TrossoWamoFastigheter());
+			add(new Karlskronahem());
+			add(new KSFastigheter());
+			add(new MagistratusFastigheter());
+			add(new PBAFastigheter());
+			add(new SvenskaBostadsfonden());
+			add(new Utklippan());
 
 		}
 	};
@@ -71,14 +73,14 @@ public class ApartmentService {
 			for(Apartment apartment : currentApartments) {
 				if(!storedApartments.contains(apartment)) {
 					mApartmentDAO.create(apartment);
-					mLog.info("Created:" + apartment);
+					mLog.info("Created: " + apartment);
 				}
 			}
 			
 			for(Apartment apartment : storedApartments) {
 				if(!currentApartments.contains(apartment)) {
 					mApartmentDAO.delete(apartment);
-					mLog.info("Deleted :" + apartment);
+					mLog.info("Deleted: " + apartment);
 				}
 			}
 		}

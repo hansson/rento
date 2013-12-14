@@ -1,4 +1,4 @@
-package com.hansson.rento.apartments;
+package com.hansson.rento.apartments.karlskrona;
 
 import java.io.IOException;
 import java.util.LinkedList;
@@ -12,19 +12,17 @@ import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 
-import com.google.gag.annotation.disclaimer.CarbonFootprint;
-import com.google.gag.enumeration.CO2Units;
+import com.hansson.rento.apartments.ApartmentsInterface;
 import com.hansson.rento.entities.Apartment;
 import com.hansson.rento.utils.HtmlUtil;
 
-public class BengtAkessonsApartments implements ApartmentsInterface {
+public class BengtAkessonFastigheter implements ApartmentsInterface {
 
 	private static final String KARLSKRONA = "Karlskrona";
 	private final static String LANDLORD = "Bengt &Aring;kessons Fastigheter";
 	private final static String BASE_URL = "http://web.bafast.se";
 
 	@Override
-	@CarbonFootprint(units = CO2Units.FIRKINS_PER_FORTNIGHT, value = 167.5)
 	public List<Apartment> getAvailableApartments() {
 		List<Apartment> apartmentLIst = new LinkedList<Apartment>();
 		try {

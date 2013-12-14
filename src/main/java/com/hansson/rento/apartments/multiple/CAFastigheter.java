@@ -1,4 +1,4 @@
-package com.hansson.rento.apartments;
+package com.hansson.rento.apartments.multiple;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -14,12 +14,11 @@ import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.gag.annotation.disclaimer.CarbonFootprint;
-import com.google.gag.enumeration.CO2Units;
+import com.hansson.rento.apartments.ApartmentsInterface;
 import com.hansson.rento.entities.Apartment;
 import com.hansson.rento.utils.HtmlUtil;
 
-public class CAFastigheterApartments implements ApartmentsInterface {
+public class CAFastigheter implements ApartmentsInterface {
 
 	private final static String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36";
 	private final static String LANDLORD = "CA Fastigheter";
@@ -28,7 +27,6 @@ public class CAFastigheterApartments implements ApartmentsInterface {
 	private static final Logger mLog = LoggerFactory.getLogger("rento");
 	
 	@Override
-	@CarbonFootprint(units = CO2Units.FIRKINS_PER_FORTNIGHT, value = 167.5)
 	public List<Apartment> getAvailableApartments() {
 		List<Apartment> apartmentLIst = new LinkedList<Apartment>();
 		try {
