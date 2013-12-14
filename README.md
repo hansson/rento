@@ -5,9 +5,6 @@ more cities in the future!
 
 ## Installation
 * Fix template file set_envs.sh.template
-* Fix template file liquibase.properties.template
-* Add alias mvndb='mvn liquibase:update -Dliquibase.dropFirst=true'
-* Add alias mvnrun='mvn package ; java -jar target/dependency/jetty-runner.jar target/*.war'
 
 
 ## Implemented landlords
@@ -20,19 +17,17 @@ more cities in the future!
 * Magistratus Fastigheter
 * PBA Karlskrona AB
 * Svenska Bostadsfonden
-* Utklippan Fastigheter 
+* Utklippan Fastigheter
+* Hans Åkessons Fastigheter
+* Lindeberg Fastigheter 
 
 ## In progress
 
 ## Not started
-* Danielssons Fastigheter - No apartment list
 * Faxe Fastigheter - No apartment listing available
-* Hans Åkessons Fastigheter - No apartment listing available
 * Hyreshuset AB - No apartment listing available
 * Konradssons Fastigheter - No apartment listing available
-* Lindeberg Fastigheter - No apartment listing available
 * Lena Åkesson Fastigheter - No apartment listing available
 * P&E Förvaltning - No apartment listing available
-* Samfast AB, Privatbostad - No apartment list
 * Stenhusen AB - No apartment listing available
 * Vibohus Fastigheter AB
