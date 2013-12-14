@@ -5,9 +5,6 @@ more cities in the future!
 
 ## Installation
 * Fix template file set_envs.sh.template
-* Fix template file liquibase.properties.template
-* Add alias mvndb='mvn liquibase:update -Dliquibase.dropFirst=true'
-* Add alias mvnrun='mvn package ; java -jar target/dependency/jetty-runner.jar target/*.war'
 
 
 ## Implemented landlords
