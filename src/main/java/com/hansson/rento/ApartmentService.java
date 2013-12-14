@@ -38,11 +38,11 @@ public class ApartmentService {
 		private static final long serialVersionUID = -2411798345463453006L;
 		// Add new implementations of the ApartmentsInterface here to include them in the scan loop
 		{
+			add(new BengtAkessonsApartments());
 			add(new HeimstadenApartments());
 			add(new CAFastigheterApartments());
 			add(new TrossoWamoApartments());
 			add(new KarlskronahemApartments());
-			add(new BengtAkessonsApartments());
 			add(new KSFastigheterApartments());
 			add(new MagistratusFastigheterApartments());
 			add(new PBAApartments());

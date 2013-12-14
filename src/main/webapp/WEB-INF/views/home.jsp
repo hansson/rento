@@ -64,7 +64,6 @@
 					<div id="sizeSlider" class="ui-slider">
 		         	</div>
 		         	
-		         	<button id="filterAdvancedSettings" class="btn btn-primary">Filtrera</button>
 		   		</div>
 	        </div>
         </div>

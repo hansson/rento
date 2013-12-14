@@ -130,11 +130,11 @@ public class Apartment {
 	public Date getAdded() {
 		return mAdded;
 	}
-	
+
 	public void setAdded(Date added) {
 		mAdded = added;
 	}
-	
+
 	@Override
 	public String toString() {
 		return mLandlord + " - " + mIdentifier;
@@ -144,14 +144,38 @@ public class Apartment {
 	public boolean equals(Object obj) {
 		if (obj instanceof Apartment) {
 			Apartment that = (Apartment) obj;
-			if(this.mLandlord != null && this.mIdentifier != null) {
-				return this.mLandlord.equals(that.mLandlord) && this.mIdentifier.equals(that.mIdentifier);
+			int counter = 0;
+			if ((this.mAddress == null && that.mAddress == null) || (this.mAddress.equals(that.mAddress))) {
+				counter++;
 			}
-			return false;
+			if ((this.mArea == null && that.mArea== null) || (this.mArea.equals(that.mArea))) {
+				counter++;
+			}
+			if ((this.mCity == null && that.mCity== null) || (this.mCity.equals(that.mCity))) {
+				counter++;
+			}
+			if ((this.mIdentifier== null && that.mIdentifier== null) || (this.mIdentifier.equals(that.mIdentifier))) {
+				counter++;
+			}
+			if ((this.mLandlord== null && that.mLandlord== null) || (this.mLandlord.equals(that.mLandlord))) {
+				counter++;
+			}
+			if ((this.mRent== null && that.mRent== null) || (this.mRent.equals(that.mRent))) {
+				counter++;
+			}
+			if ((this.mRooms== null && that.mRooms== null) || (this.mRooms.equals(that.mRooms))) {
+				counter++;
+			}
+			if ((this.mSize== null && that.mSize== null) || (this.mSize.equals(that.mSize))) {
+				counter++;
+			}
+			if ((this.mUrl== null && that.mUrl== null) || (this.mUrl.equals(that.mUrl))) {
+				counter++;
+			}
+			return counter == 9;
 		} else {
 			return false;
 		}
 	}
-
 
 }
