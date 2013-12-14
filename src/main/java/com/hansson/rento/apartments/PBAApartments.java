@@ -40,7 +40,7 @@ public class PBAApartments implements ApartmentsInterface {
 					String[] areaAndCity = element.getElementsByTag("h2").text().replaceAll("Hy.* i ", "").trim().split("[ ,]");
 					apartment.setArea(HtmlUtil.textToHtml(areaAndCity[0]));
 					apartment.setCity(HtmlUtil.textToHtml(areaAndCity[2]));
-					String informationText = element.getElementsByTag("span").get(1).text();
+					String informationText = element.getElementsByTag("span").get(2).text();
 
 					Pattern p = Pattern.compile("Adress: .+,");
 					Matcher matcher = p.matcher(informationText);

@@ -60,6 +60,14 @@ public class ApartmentService {
 		for(ApartmentsInterface landlord : mLandlords) {
 			List<Apartment> currentApartments = landlord.getAvailableApartments();
 			List<Apartment> storedApartments = mApartmentDAO.findAllByLandlord(landlord.getLandlord());
+			
+			if(currentApartments == null) {
+				currentApartments = new LinkedList<Apartment>();
+			}
+			if(storedApartments == null) {
+				storedApartments = new LinkedList<Apartment>();
+			}
+			
 			for(Apartment apartment : currentApartments) {
 				if(!storedApartments.contains(apartment)) {
 					mApartmentDAO.create(apartment);
