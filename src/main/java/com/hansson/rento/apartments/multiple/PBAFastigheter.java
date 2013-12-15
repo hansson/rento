@@ -36,14 +36,14 @@ public class PBAFastigheter implements ApartmentsInterface {
 					apartment.setUrl(element.getElementsByTag("h2").get(0).getElementsByTag("a").attr("href"));
 					apartment.setIdentifier(apartment.getUrl().split("/")[apartment.getUrl().split("/").length - 1]);
 					String[] areaAndCity = element.getElementsByTag("h2").text().replaceAll("Hy.* i ", "").trim().split("[ ,]");
-					apartment.setArea(HtmlUtil.textToHtml(areaAndCity[0]));
-					apartment.setCity(HtmlUtil.textToHtml(areaAndCity[2]));
+					apartment.setArea(areaAndCity[0]);
+					apartment.setCity(areaAndCity[2]);
 					String informationText = element.getElementsByTag("span").get(2).text();
 
 					Pattern p = Pattern.compile("Adress: .+,");
 					Matcher matcher = p.matcher(informationText);
 					matcher.find();
-					apartment.setAddress(HtmlUtil.textToHtml(matcher.group().replace("Adress: ", "").replace(",", "")));
+					apartment.setAddress(matcher.group().replace("Adress: ", "").replace(",", ""));
 
 					p = Pattern.compile("Hyra/avgift: .+ SEK");
 					matcher = p.matcher(informationText);

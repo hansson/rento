@@ -34,12 +34,12 @@ public class MagistratusFastigheter implements ApartmentsInterface {
 				apartment.setRent(Integer.valueOf(informationCells.get(2).getAllElements().get(6).text().replaceAll("\\D", "")));
 				String[] addressInformation = informationCells.get(3).getAllElements().get(2).text().replaceAll("[\\d]{3} [\\d]{2} ", "").split(" ");
 				apartment.setCity(CITY);
-				apartment.setArea(HtmlUtil.textToHtml(addressInformation[addressInformation.length - 1]));
+				apartment.setArea(addressInformation[addressInformation.length - 1]);
 				String address = "";
 				for(int i = 0 ; i < addressInformation.length - 1 ; i++) {
 					address += addressInformation[i];
 				}
-				apartment.setAddress(HtmlUtil.textToHtml(address));
+				apartment.setAddress(address);
 				apartment.setIdentifier(apartment.getAddress() + apartment.getCity() + apartment.getRent() + apartment.getSize() + apartment.getRooms());
 				apartment.setUrl(BASE_URL);
 				apartmentList.add(apartment);

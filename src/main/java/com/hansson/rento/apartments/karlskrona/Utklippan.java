@@ -14,7 +14,6 @@ import org.slf4j.LoggerFactory;
 
 import com.hansson.rento.apartments.ApartmentsInterface;
 import com.hansson.rento.entities.Apartment;
-import com.hansson.rento.utils.HtmlUtil;
 
 public class Utklippan implements ApartmentsInterface {
 
@@ -37,7 +36,7 @@ public class Utklippan implements ApartmentsInterface {
 					Apartment apartment = new Apartment(LANDLORD);
 					apartment.setUrl(BASE_URL + element.getElementsByTag("td").get(0).getElementsByTag("a").attr("href")); 
 					apartment.setCity(CITY);
-					apartment.setAddress(HtmlUtil.textToHtml(element.getElementsByTag("td").get(1).text()));
+					apartment.setAddress(element.getElementsByTag("td").get(1).text());
 					apartment.setRooms(Double.valueOf(element.getElementsByTag("td").get(2).text().replaceAll(",", ".")));
 					apartment.setSize(Integer.valueOf(element.getElementsByTag("td").get(3).text().split(" ")[0]));
 					apartment.setRent(Integer.valueOf(element.getElementsByTag("td").get(4).text().replaceAll("kr| ", "")));

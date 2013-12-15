@@ -18,6 +18,7 @@ import com.hansson.rento.apartments.karlskrona.BengtAkessonFastigheter;
 import com.hansson.rento.apartments.karlskrona.HansAkessonFastigheter;
 import com.hansson.rento.apartments.karlskrona.KSFastigheter;
 import com.hansson.rento.apartments.karlskrona.Karlskronahem;
+import com.hansson.rento.apartments.karlskrona.LindebergFastigheter;
 import com.hansson.rento.apartments.karlskrona.MagistratusFastigheter;
 import com.hansson.rento.apartments.karlskrona.TrossoWamoFastigheter;
 import com.hansson.rento.apartments.karlskrona.Utklippan;
@@ -39,6 +40,7 @@ public class ApartmentService {
 		private static final long serialVersionUID = -2411798345463453006L;
 		// Add new implementations of the ApartmentsInterface here to include them in the scan loop
 		{
+			add(new LindebergFastigheter());
 			add(new HansAkessonFastigheter());
 			add(new BengtAkessonFastigheter()); 
 			add(new Heimstaden());
@@ -50,7 +52,6 @@ public class ApartmentService {
 			add(new PBAFastigheter());
 			add(new SvenskaBostadsfonden());
 			add(new Utklippan());
-
 		}
 	};
 	

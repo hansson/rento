@@ -32,7 +32,7 @@ public class Heimstaden implements ApartmentsInterface {
 					Apartment apartment = new Apartment(LANDLORD);
 					apartment.setIdentifier(element.attr("id"));
 					apartment.setUrl(BASE_URL + element.getElementsByTag("a").attr("href"));
-					apartment.setAddress(HtmlUtil.textToHtml(element.getElementsByTag("h5").text()));
+					apartment.setAddress(element.getElementsByTag("h5").text());
 					apartment.setRooms(Double.valueOf(element.getElementsByClass("listItemLeftBottom").text().replaceAll("\\D", "")));
 					apartment.setRent(Integer.valueOf(element.getElementsByClass("listItemRightBottom").text().replaceAll("\\D", "")));
 					doc = Jsoup.connect(apartment.getUrl()).get();
@@ -44,9 +44,9 @@ public class Heimstaden implements ApartmentsInterface {
 					Elements elementsByTag = doc.getElementsByTag("h3");
 					for (Element infoElement : elementsByTag) {
 						if (infoElement.text().equalsIgnoreCase("Område")) {
-							apartment.setArea(HtmlUtil.textToHtml(infoElement.nextElementSibling().text()));
+							apartment.setArea(infoElement.nextElementSibling().text());
 						} else if (infoElement.text().equalsIgnoreCase("Ort")) {
-							apartment.setCity(HtmlUtil.textToHtml(WordUtils.capitalize(infoElement.nextElementSibling().text().toLowerCase())));
+							apartment.setCity(WordUtils.capitalize(infoElement.nextElementSibling().text().toLowerCase()));
 						}
 					}
 					apartmentLIst.add(apartment);

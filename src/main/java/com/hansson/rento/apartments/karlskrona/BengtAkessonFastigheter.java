@@ -14,7 +14,6 @@ import org.jsoup.select.Elements;
 
 import com.hansson.rento.apartments.ApartmentsInterface;
 import com.hansson.rento.entities.Apartment;
-import com.hansson.rento.utils.HtmlUtil;
 
 public class BengtAkessonFastigheter implements ApartmentsInterface {
 
@@ -71,7 +70,7 @@ public class BengtAkessonFastigheter implements ApartmentsInterface {
 				} else {
 					addressNode = node.childNode(1).childNode(3).childNode(3).childNode(1).childNode(0);
 				}
-				apartment.setAddress(HtmlUtil.textToHtml(addressNode.toString()));
+				apartment.setAddress(addressNode.toString());
 			}
 		}
 	}

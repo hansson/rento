@@ -32,8 +32,8 @@ public class SvenskaBostadsfonden implements ApartmentsInterface {
 			for (Element element : apartments) {
 				try {
 					Apartment apartment = new Apartment(LANDLORD);
-					apartment.setCity(HtmlUtil.textToHtml(element.getElementsByClass("colOrt").text()));
-					apartment.setAddress(HtmlUtil.textToHtml(element.getElementsByClass("colAdress").text()));
+					apartment.setCity(element.getElementsByClass("colOrt").text());
+					apartment.setAddress(element.getElementsByClass("colAdress").text());
 					apartment.setRooms(Double.valueOf(element.getElementsByClass("colRum").text().replaceAll(",", ".")));
 					apartment.setRent(Integer.valueOf(element.getElementsByClass("colHyra").text().replaceAll("kr| ", "")));
 					apartment.setSize(Integer.valueOf(element.getElementsByClass("colArea").text()));

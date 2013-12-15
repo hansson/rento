@@ -38,7 +38,7 @@ public class HomeController {
 	@RequestMapping(value = "/apartments", method = RequestMethod.POST)
 	public String postApartments(Locale locale, Model model, @RequestParam("city") String city) {
 		city = HtmlUtil.textToHtml(city);
-		if (city.equals("")) {
+		if (city.equals("all")) {
 			model.addAttribute("apartments", new Gson().toJson(mApartmentDAO.findAll()));
 		} else {
 			model.addAttribute("apartments", new Gson().toJson(mApartmentDAO.findAllByCity(city)));

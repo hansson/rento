@@ -14,7 +14,6 @@ import org.jsoup.select.Elements;
 
 import com.hansson.rento.apartments.ApartmentsInterface;
 import com.hansson.rento.entities.Apartment;
-import com.hansson.rento.utils.HtmlUtil;
 
 public class TrossoWamoFastigheter implements ApartmentsInterface {
 
@@ -37,7 +36,7 @@ public class TrossoWamoFastigheter implements ApartmentsInterface {
 					area += split[j];
 				}
 				apartment.setArea(area);
-				apartment.setAddress(HtmlUtil.textToHtml(data.select(".adress").get(0).child(0).childNode(0).toString()));
+				apartment.setAddress(data.select(".adress").get(0).child(0).childNode(0).toString());
 				String roomString = data.select(".rum").get(0).child(0).childNode(0).toString();
 				Pattern roomPattern = Pattern.compile("\\d*");
 				Matcher matcher = roomPattern.matcher(roomString);

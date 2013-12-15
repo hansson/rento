@@ -10,7 +10,6 @@ import org.jsoup.select.Elements;
 
 import com.hansson.rento.apartments.ApartmentsInterface;
 import com.hansson.rento.entities.Apartment;
-import com.hansson.rento.utils.HtmlUtil;
 
 public class KSFastigheter implements ApartmentsInterface {
 
@@ -30,7 +29,7 @@ public class KSFastigheter implements ApartmentsInterface {
 				Apartment apartment = new Apartment(LANDLORD);
 				Elements informationCells = element.getElementsByTag("td");
 				if (!informationCells.get(0).text().equals("Inget ledigt just nu.")) {
-					apartment.setAddress(HtmlUtil.textToHtml(informationCells.get(0).text()));
+					apartment.setAddress(informationCells.get(0).text());
 					apartment.setRooms(Double.valueOf(informationCells.get(1).text()));
 					apartment.setSize(Integer.valueOf(informationCells.get(2).text()));
 					apartment.setRent(Integer.valueOf(informationCells.get(3).text()));

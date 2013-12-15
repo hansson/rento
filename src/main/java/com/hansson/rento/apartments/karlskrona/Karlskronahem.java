@@ -78,10 +78,10 @@ public class Karlskronahem implements ApartmentsInterface {
 						Apartment apartment = new Apartment(LANDLORD);
 						Element address = element.child(1).getElementsByTag("a").get(0);
 						apartment.setUrl(BASE_URL + "/HSS/Object/" + address.attr("href"));
-						apartment.setAddress(HtmlUtil.textToHtml(address.childNode(0).toString()));
+						apartment.setAddress(address.childNode(0).toString());
 						apartment.setIdentifier(address.attr("href").split("[&=]")[3]);
 						apartment.setCity(KARLSKRONA);
-						apartment.setArea(HtmlUtil.textToHtml(element.child(2).getElementsByTag("span").get(0).childNode(0).toString()));
+						apartment.setArea(element.child(2).getElementsByTag("span").get(0).childNode(0).toString());
 						String rent = element.child(5).getElementsByTag("span").get(0).childNode(0).toString().replace("&nbsp;", "");
 						apartment.setRent(Integer.valueOf(rent));
 						apartment.setRooms(Double.valueOf(element.child(3).getElementsByTag("span").get(0).childNode(0).toString()));

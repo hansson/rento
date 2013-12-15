@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.hansson.rento.utils.HtmlUtil;
+
 @Entity
 @Table(name = "APARTMENTS")
 public class Apartment {
@@ -92,15 +94,15 @@ public class Apartment {
 	}
 
 	public void setArea(String area) {
-		mArea = area;
+		mArea = HtmlUtil.textToHtml(area);
 	}
 
 	public void setCity(String city) {
-		mCity = city;
+		mCity = HtmlUtil.textToHtml(city);
 	}
 
 	public void setAddress(String address) {
-		mAddress = address;
+		mAddress = HtmlUtil.textToHtml(address);
 	}
 
 	public void setUrl(String url) {

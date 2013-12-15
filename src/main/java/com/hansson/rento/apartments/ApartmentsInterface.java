@@ -2,9 +2,7 @@ package com.hansson.rento.apartments;
 
 import java.util.List;
 
-import com.google.gag.annotation.disclaimer.CarbonFootprint;
 import com.google.gag.annotation.disclaimer.HandsOff;
-import com.google.gag.enumeration.CO2Units;
 import com.google.gag.enumeration.Consequence;
 import com.hansson.rento.entities.Apartment;
 

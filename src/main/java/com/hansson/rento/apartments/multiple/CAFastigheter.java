@@ -16,7 +16,6 @@ import org.slf4j.LoggerFactory;
 
 import com.hansson.rento.apartments.ApartmentsInterface;
 import com.hansson.rento.entities.Apartment;
-import com.hansson.rento.utils.HtmlUtil;
 
 public class CAFastigheter implements ApartmentsInterface {
 
@@ -71,7 +70,7 @@ public class CAFastigheter implements ApartmentsInterface {
 						apartment.setUrl(BASE_URL + linkElement.attr("href"));
 						doc = Jsoup.connect(apartment.getUrl()).get();
 						Elements infoBox = doc.getElementsByClass("internalPuff").first().getElementsByTag("p");
-						apartment.setAddress(HtmlUtil.textToHtml(infoBox.get(0).childNode(0).toString().trim()));
+						apartment.setAddress(infoBox.get(0).childNode(0).toString().trim());
 						for (Element info : infoBox) {
 							if (info.childNode(0).toString().endsWith("kvm")) {
 								apartment.setSize(Integer.valueOf(info.childNode(0).toString().trim().split(" ")[0]));
