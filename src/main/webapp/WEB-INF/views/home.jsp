@@ -84,6 +84,9 @@
 				</thead>
 
 				<tbody id="apartment-table-body">
+					<tr>
+						<td colspan="8"><h4>S&ouml;k p&aring; en ort...</h4></td>
+					<tr>
 				</tbody>
 			</table>
 

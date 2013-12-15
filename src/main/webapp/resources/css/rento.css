@@ -4,9 +4,19 @@ input {
 	width: 250px;
 }
 
+footer {
+	margin-top: 55px;
+}
+
 /** My css **/
 .no-margin {
 	margin: 0px;
+}
+
+
+/** Overrides bootstrap **/
+.headline {
+	padding: 73px 0 70px;
 }
 
 /** jQuery css **/

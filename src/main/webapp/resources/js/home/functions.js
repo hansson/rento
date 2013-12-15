@@ -1,36 +1,40 @@
 function reloadApartments() {
 	var r = new Array(), j = -1;
-	for (var key = 0, size = a.length; key < size; key++) {
-		r[++j] = '<tr class="apartment" style="cursor: pointer" data="';
-	    r[++j] = a[key].mUrl;
-	    r[++j] = '"><td>';
-		r[++j] = a[key].mCity;
-		r[++j] = '</td><td>';
-		r[++j] = a[key].mArea;
-		r[++j] = '</td><td>';
-		r[++j] = a[key].mAddress;
-		r[++j] = '</td><td>';
-		r[++j] = a[key].mRent;
-		r[++j] = ' kr</td><td>';
-		r[++j] = a[key].mSize;
-		r[++j] = ' kvm</td><td>';
-		r[++j] = a[key].mRooms;
-		r[++j] = '</td><td>';
-		r[++j] = a[key].mLandlord;
-		r[++j] = '</td><td>';
-		
-		var d = new Date(a[key].mAdded);
-		
-		r[++j] = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + (d.getDate() + 1);
-		r[++j] = '</td></tr>';
-		
+	if(a.length > 0) {
+		for (var key = 0, size = a.length; key < size; key++) {
+			r[++j] = '<tr class="apartment" style="cursor: pointer" data="';
+		    r[++j] = a[key].mUrl;
+		    r[++j] = '"><td>';
+			r[++j] = a[key].mCity;
+			r[++j] = '</td><td>';
+			r[++j] = a[key].mArea;
+			r[++j] = '</td><td>';
+			r[++j] = a[key].mAddress;
+			r[++j] = '</td><td>';
+			r[++j] = a[key].mRent;
+			r[++j] = ' kr</td><td>';
+			r[++j] = a[key].mSize;
+			r[++j] = ' kvm</td><td>';
+			r[++j] = a[key].mRooms;
+			r[++j] = '</td><td>';
+			r[++j] = a[key].mLandlord;
+			r[++j] = '</td><td>';
+			
+			var d = new Date(a[key].mAdded);
+			
+			r[++j] = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + (d.getDate() + 1);
+			r[++j] = '</td></tr>';
+			
+		}
+		$('#apartment-table-body').html(r.join(''));
+		$(".apartment").on("click", function() {
+			window.open($(this).attr('data'));
+			return false;
+		});
+	} else {
+		$('#apartment-table-body').html('<tr><td colspan="8"><h4>Inga tr&auml;ffar!</h4></td><tr>');
 	}
-	$('#apartment-table-body').html(r.join(''));
 	
-	$(".apartment").on("click", function() {
-		window.open($(this).attr('data'));
-		return false;
-	});
 }
 		
 function sortApartments(prop, asc) {

@@ -1,5 +1,3 @@
-$('#apartment-table-body').load('/apartments');
-		
 $('#cityForm').on('submit', function(event) {
 
     var link = $(this).attr('action');

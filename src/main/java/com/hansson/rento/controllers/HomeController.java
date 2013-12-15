@@ -29,12 +29,6 @@ public class HomeController {
 		return "home";
 	}
 
-	@RequestMapping(value = "/apartments", method = RequestMethod.GET)
-	public String getApartments(Locale locale, Model model) {
-		model.addAttribute("apartments", new Gson().toJson(mApartmentDAO.findAll()));
-		return "apartments";
-	}
-
 	@RequestMapping(value = "/apartments", method = RequestMethod.POST)
 	public String postApartments(Locale locale, Model model, @RequestParam("city") String city) {
 		city = HtmlUtil.textToHtml(city);
