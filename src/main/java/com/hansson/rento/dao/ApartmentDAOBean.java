@@ -61,7 +61,7 @@ public class ApartmentDAOBean implements ApartmentDAO {
 	@Transactional
 	public List<Apartment> findAll() {
 		Session session = mSessionFactory.getCurrentSession();
-		Query query = session.createQuery("from Apartment a");
+		Query query = session.createQuery("from Apartment a ORDER BY mAdded DESC");
 		return (List<Apartment>) query.list();
 	}
 
@@ -71,7 +71,7 @@ public class ApartmentDAOBean implements ApartmentDAO {
 	public List<Apartment> findAllByCity(String city) {
 		Session session = mSessionFactory.getCurrentSession();
 		city = WordUtils.capitalize(city);
-		Query query = session.createQuery("from Apartment a where mCity = '" + city + "'");
+		Query query = session.createQuery("from Apartment a where mCity = '" + city + "' ORDER BY mAdded DESC");
 		return (List<Apartment>) query.list();
 	}
 	

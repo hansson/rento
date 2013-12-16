@@ -35,6 +35,7 @@ public class PBAFastigheter implements ApartmentsInterface {
 					Apartment apartment = new Apartment(LANDLORD);
 					apartment.setUrl(element.getElementsByTag("h2").get(0).getElementsByTag("a").attr("href"));
 					apartment.setIdentifier(apartment.getUrl().split("/")[apartment.getUrl().split("/").length - 1]);
+					
 					String[] areaAndCity = element.getElementsByTag("h2").text().replaceAll("Hy.* i ", "").trim().split("[ ,]");
 					apartment.setArea(areaAndCity[0]);
 					apartment.setCity(areaAndCity[2]);
@@ -44,16 +45,18 @@ public class PBAFastigheter implements ApartmentsInterface {
 					Matcher matcher = p.matcher(informationText);
 					matcher.find();
 					apartment.setAddress(matcher.group().replace("Adress: ", "").replace(",", ""));
-
-					p = Pattern.compile("Hyra/avgift: .+ SEK");
-					matcher = p.matcher(informationText);
-					matcher.find();
-					apartment.setRent(Integer.valueOf(matcher.group().replaceAll("Hyra/avgift: |\u00A0| |SEK", "")));
-
-					p = Pattern.compile("Antal Rum: \\d+");
-					matcher = p.matcher(informationText);
-					matcher.find();
-					apartment.setRooms(Double.valueOf(matcher.group().replaceAll("Antal Rum: ", "")));
+					
+					doc = Jsoup.connect(apartment.getUrl()).get();
+					Elements infoElements = doc.getElementsByTag("tbody").get(0).getElementsByTag("tr");
+					for(Element currentInfo : infoElements) {
+						if(currentInfo.getElementsByTag("th").text().equals("Avgift")) {
+							apartment.setRent(Integer.valueOf(currentInfo.getElementsByTag("td").text().replaceAll("\\D", "")));
+						}  else if(currentInfo.getElementsByTag("th").text().equals("Rum")) {
+							apartment.setRooms(Double.valueOf(currentInfo.getElementsByTag("td").text().replaceAll("\\D", "")));
+						} else if(currentInfo.getElementsByTag("th").text().equals("Boarea")) {
+							apartment.setSize(Integer.valueOf(currentInfo.getElementsByTag("td").text().replaceAll("\\D", "")));
+						} 
+					}
 					apartmentList.add(apartment);
 				} catch (Exception e) {
 					mLog.error(LANDLORD + " error on element #" + apartments.indexOf(element));
