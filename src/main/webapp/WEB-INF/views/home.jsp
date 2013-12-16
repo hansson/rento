@@ -9,6 +9,13 @@
 <meta http-equiv="content-language" content="sv" />
 <meta name="language" content="sv" />
 
+<!-- Kill the cache! -->
+<meta http-equiv="cache-control" content="max-age=0" />
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+<meta http-equiv="pragma" content="no-cache" />
+
 <title>Rento - L&auml;ttare hyresl&auml;genheter</title>
 
 <!-- Loading Bootstrap -->
