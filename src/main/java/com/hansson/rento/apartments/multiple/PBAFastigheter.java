@@ -35,7 +35,7 @@ public class PBAFastigheter implements ApartmentsInterface {
 					Apartment apartment = new Apartment(LANDLORD);
 					apartment.setUrl(element.getElementsByTag("h2").get(0).getElementsByTag("a").attr("href"));
 					apartment.setIdentifier(apartment.getUrl().split("/")[apartment.getUrl().split("/").length - 1]);
-					
+
 					String[] areaAndCity = element.getElementsByTag("h2").text().replaceAll("Hy.* i ", "").trim().split("[ ,]");
 					apartment.setArea(areaAndCity[0]);
 					apartment.setCity(areaAndCity[2]);
@@ -45,17 +45,20 @@ public class PBAFastigheter implements ApartmentsInterface {
 					Matcher matcher = p.matcher(informationText);
 					matcher.find();
 					apartment.setAddress(matcher.group().replace("Adress: ", "").replace(",", ""));
-					
+
+					p = Pattern.compile("Antal Rum: \\d+");
+					matcher = p.matcher(informationText);
+					matcher.find();
+					apartment.setRooms(Double.valueOf(matcher.group().replaceAll("Antal Rum: ", "")));
+
 					doc = Jsoup.connect(apartment.getUrl()).get();
 					Elements infoElements = doc.getElementsByTag("tbody").get(0).getElementsByTag("tr");
-					for(Element currentInfo : infoElements) {
-						if(currentInfo.getElementsByTag("th").text().equals("Avgift")) {
+					for (Element currentInfo : infoElements) {
+						if (currentInfo.getElementsByTag("th").text().equals("Avgift")) {
 							apartment.setRent(Integer.valueOf(currentInfo.getElementsByTag("td").text().replaceAll("\\D", "")));
-						}  else if(currentInfo.getElementsByTag("th").text().equals("Rum")) {
-							apartment.setRooms(Double.valueOf(currentInfo.getElementsByTag("td").text().replaceAll("\\D", "")));
-						} else if(currentInfo.getElementsByTag("th").text().equals("Boarea")) {
+						} else if (currentInfo.getElementsByTag("th").text().equals("Boarea")) {
 							apartment.setSize(Integer.valueOf(currentInfo.getElementsByTag("td").text().replaceAll("\\D", "")));
-						} 
+						}
 					}
 					apartmentList.add(apartment);
 				} catch (Exception e) {
@@ -70,7 +73,7 @@ public class PBAFastigheter implements ApartmentsInterface {
 		}
 		return apartmentList;
 	}
-	
+
 	@Override
 	public String getLandlord() {
 		return LANDLORD;
