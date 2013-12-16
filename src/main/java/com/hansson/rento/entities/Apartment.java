@@ -147,31 +147,31 @@ public class Apartment {
 		if (obj instanceof Apartment) {
 			Apartment that = (Apartment) obj;
 			int counter = 0;
-			if ((this.mAddress == null && that.mAddress == null) || (this.mAddress.equals(that.mAddress))) {
+			if ((this.mAddress == null && that.mAddress == null) || (this.mAddress != null && this.mAddress.equals(that.mAddress))) {
 				counter++;
 			}
-			if ((this.mArea == null && that.mArea == null) || (this.mArea.equals(that.mArea))) {
+			if ((this.mArea == null && that.mArea == null) || (this.mArea != null && this.mArea.equals(that.mArea))) {
 				counter++;
 			}
-			if ((this.mCity == null && that.mCity == null) || (this.mCity.equals(that.mCity))) {
+			if ((this.mCity == null && that.mCity == null) || (this.mCity != null && this.mCity.equals(that.mCity))) {
 				counter++;
 			}
-			if ((this.mIdentifier == null && that.mIdentifier == null) || (this.mIdentifier.equals(that.mIdentifier))) {
+			if ((this.mIdentifier == null && that.mIdentifier == null) || (this.mIdentifier != null && this.mIdentifier.equals(that.mIdentifier))) {
 				counter++;
 			}
-			if ((this.mLandlord == null && that.mLandlord == null) || (this.mLandlord.equals(that.mLandlord))) {
+			if ((this.mLandlord == null && that.mLandlord == null) || (this.mLandlord != null && this.mLandlord.equals(that.mLandlord))) {
 				counter++;
 			}
-			if ((this.mRent == null && that.mRent == null) || (this.mRent.equals(that.mRent))) {
+			if ((this.mRent == null && that.mRent == null) || (this.mRent != null && this.mRent.equals(that.mRent))) {
 				counter++;
 			}
-			if ((this.mRooms == null && that.mRooms == null) || (this.mRooms.equals(that.mRooms))) {
+			if ((this.mRooms == null && that.mRooms == null) || (this.mRooms != null && this.mRooms.equals(that.mRooms))) {
 				counter++;
 			}
-			if ((this.mSize == null && that.mSize == null) || (this.mSize.equals(that.mSize))) {
+			if ((this.mSize == null && that.mSize == null) || (this.mSize != null && this.mSize.equals(that.mSize))) {
 				counter++;
 			}
-			if ((this.mUrl == null && that.mUrl == null) || (this.mUrl.equals(that.mUrl))) {
+			if ((this.mUrl == null && that.mUrl == null) || (this.mUrl != null && this.mUrl.equals(that.mUrl))) {
 				counter++;
 			}
 			return counter == 9;

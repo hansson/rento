@@ -43,7 +43,7 @@
 			<div class="span3 no-margin">
 				<h1>Lediga l&auml;genheter</h1>
 				<form class="no-margin" action="/apartments" method="post" id="cityForm">  
-					<input id="cityAutocomplete" name="city" type="text" value="" placeholder="Ort">
+					<input id="cityAutocomplete" name="city" type="text" value="Karlskrona" placeholder="Ort">
 				</form>
 			</div>
 		</div>
@@ -84,9 +84,7 @@
 				</thead>
 
 				<tbody id="apartment-table-body">
-					<tr>
-						<td colspan="8"><h4>S&ouml;k p&aring; en ort...</h4></td>
-					<tr>
+					
 				</tbody>
 			</table>
 

@@ -25,7 +25,7 @@ public class Heimstaden implements ApartmentsInterface {
 		List<Apartment> apartmentLIst = new LinkedList<Apartment>();
 		try {
 			// Get html for first page
-			Document doc = Jsoup.connect(BASE_URL + "/For_sokande/Lediga_lagenheter").get();
+			Document doc = Jsoup.connect(BASE_URL + "/For_sokande/Lediga_bostader").get();
 			Elements elementsByClass = doc.getElementsByClass("listItem");
 			for (Element element : elementsByClass) {
 				try {
