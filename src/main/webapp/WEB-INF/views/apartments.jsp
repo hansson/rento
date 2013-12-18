@@ -4,7 +4,7 @@
 <script type="text/javascript">
 	var a_orig = ${apartments};
 	var a = a_orig.slice(0);
-	reloadApartments();
+	updateFilters();
 </script>
 
 

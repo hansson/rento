@@ -40,6 +40,8 @@ public class Apartment {
 	private String mLandlord;
 	@Column(name = "MADDED")
 	private Date mAdded;
+	@Column(name = "MSTUDENT")
+	private Boolean mStudent;
 
 	public Apartment() {
 	}
@@ -141,6 +143,14 @@ public class Apartment {
 	public String toString() {
 		return mLandlord + " - " + mIdentifier;
 	}
+	
+	public Boolean getStudent() {
+		return mStudent;
+	}
+
+	public void setStudent(Boolean student) {
+		mStudent = student;
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -174,7 +184,10 @@ public class Apartment {
 			if ((this.mUrl == null && that.mUrl == null) || (this.mUrl != null && this.mUrl.equals(that.mUrl))) {
 				counter++;
 			}
-			return counter == 9;
+			if ((this.mStudent == null && that.mStudent == null) || (this.mStudent != null && this.mStudent.equals(that.mStudent))) {
+				counter++;
+			}
+			return counter == 10;
 		} else {
 			return false;
 		}

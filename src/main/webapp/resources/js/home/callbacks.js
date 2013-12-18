@@ -27,3 +27,7 @@ $('.sortable-header').on('click', function(event) {
 		}
 	}
 });
+
+$('#studentApartment').on('change', function(event) {
+	updateFilters();
+});

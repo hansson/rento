@@ -71,6 +71,9 @@
 					<div id="sizeSlider" class="ui-slider">
 		         	</div>
 		         	
+		         	<input id="studentApartment" type="checkbox" name="studentApartment" value="studentApartment" style="float: left; margin-right: 15px">
+		         	<p style="float: left;">Inkludera Studentl&auml;genheter</p>
+		         	
 		   		</div>
 	        </div>
         </div>
