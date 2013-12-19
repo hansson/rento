@@ -1,4 +1,4 @@
-package com.hansson.rento.apartments.multiple;
+package com.hansson.rento.apartments.karlskrona;
 
 import java.util.LinkedList;
 import java.util.List;

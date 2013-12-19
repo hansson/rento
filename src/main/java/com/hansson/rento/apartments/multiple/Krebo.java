@@ -25,6 +25,7 @@ public class Krebo implements ApartmentsInterface {
 		apartment.setIdentifier("krebo-hardcoded");
 		apartment.setLandlord(LANDLORD);
 		apartment.setRooms(1.0);
+		apartment.setArea("Gr&auml;svik");
 		apartment.setAddress("Minervavägen");
 		apartment.setStudent(true);
 		apartment.setUrl("http://www.krebo.se/default.asp?page=4");
