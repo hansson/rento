@@ -16,7 +16,7 @@
 <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
 <meta http-equiv="pragma" content="no-cache" />
 
-<title>Rento - L&auml;ttare hyresl&auml;genheter</title>
+<title>Rento.nu - L&auml;ttare hyresl&auml;genheter</title>
 
 <!-- Loading Bootstrap -->
 <link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">
@@ -42,7 +42,7 @@
 		<div class="headline">
 			<h1 class="main-logo">
 				<div class="logo"></div>
-				Rento <small>L&auml;ttare hyresl&auml;genheter</small>
+				Rento.nu <small>L&auml;ttare hyresl&auml;genheter</small>
 			</h1>
 		</div>
 

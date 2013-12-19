@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 import com.hansson.rento.apartments.ApartmentsInterface;
 import com.hansson.rento.apartments.multiple.CAFastigheter;
 import com.hansson.rento.apartments.multiple.Heimstaden;
+import com.hansson.rento.apartments.multiple.Krebo;
 import com.hansson.rento.apartments.multiple.PBAFastigheter;
+import com.hansson.rento.apartments.multiple.PBAStudent;
 import com.hansson.rento.apartments.multiple.SvenskaBostadsfonden;
 import com.hansson.rento.apartments.karlskrona.BengtAkessonFastigheter;
 import com.hansson.rento.apartments.karlskrona.HansAkessonFastigheter;
@@ -43,6 +45,8 @@ public class ApartmentService {
 		{
 			add(new Karlskronahem());
 			add(new KarlskronahemStudent());
+			add(new Krebo());
+			add(new PBAStudent());
 			add(new LindebergFastigheter());
 			add(new HansAkessonFastigheter());
 			add(new BengtAkessonFastigheter()); 
