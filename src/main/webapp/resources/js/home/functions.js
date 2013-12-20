@@ -22,7 +22,7 @@ function reloadApartments() {
 			
 			var d = new Date(a[key].mAdded);
 			
-			r[++j] = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + (d.getDate() + 1);
+			r[++j] = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate() ;
 			r[++j] = '</td></tr>';
 			
 		}

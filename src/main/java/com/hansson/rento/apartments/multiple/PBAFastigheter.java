@@ -57,7 +57,10 @@ public class PBAFastigheter implements ApartmentsInterface {
 						if (currentInfo.getElementsByTag("th").text().equals("Avgift")) {
 							apartment.setRent(Integer.valueOf(currentInfo.getElementsByTag("td").text().replaceAll("\\D", "")));
 						} else if (currentInfo.getElementsByTag("th").text().equals("Boarea")) {
-							apartment.setSize(Integer.valueOf(currentInfo.getElementsByTag("td").text().replaceAll("\\D", "")));
+							p = Pattern.compile("[\\d]+[,\\d]+");
+							matcher = p.matcher(currentInfo.getElementsByTag("td").text());
+							matcher.find();
+							apartment.setSize(Integer.valueOf(matcher.group().replaceAll(",\\d", "")));
 						}
 					}
 					apartmentList.add(apartment);
