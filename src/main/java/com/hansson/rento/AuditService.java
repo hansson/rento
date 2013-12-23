@@ -15,10 +15,10 @@ import org.springframework.stereotype.Service;
 
 import com.hansson.rento.dao.AuditEventDAO;
 import com.hansson.rento.dao.DailyAuditEventDAO;
-import com.hansson.rento.dao.DailyAuditEventDAOBean;
-import com.hansson.rento.dao.MockDailyAuditEventDAOBean;
+import com.hansson.rento.dao.MonthlyAuditEventDAO;
 import com.hansson.rento.entities.AuditEvent;
 import com.hansson.rento.entities.DailyAuditEvent;
+import com.hansson.rento.entities.MonthlyAuditEvent;
 
 @Service
 public class AuditService {
@@ -30,6 +30,9 @@ public class AuditService {
 
 	@Autowired
 	private DailyAuditEventDAO mDailyAuditEventDAO;
+
+	@Autowired
+	private MonthlyAuditEventDAO mMonthlyAuditEventDAO;
 
 	public void putAuditEvent(String event, String extra) {
 		AuditEvent auditEvent = new AuditEvent(event, extra);
@@ -46,14 +49,14 @@ public class AuditService {
 			Date date = DateUtils.truncate(event.getDate(), Calendar.DAY_OF_MONTH);
 			dailyAuditEvent.setDate(date);
 			int indexOf = dailyEvents.indexOf(dailyAuditEvent);
-			if(indexOf > -1) {
+			if (indexOf > -1) {
 				dailyAuditEvent = dailyEvents.get(indexOf);
 				dailyAuditEvent.add();
-			}  else {
+			} else {
 				dailyEvents.add(dailyAuditEvent);
 			}
 		}
-		for(DailyAuditEvent event : dailyEvents) {
+		for (DailyAuditEvent event : dailyEvents) {
 			mDailyAuditEventDAO.create(event);
 		}
 		timeSpent = new Date().getTime() - timeSpent;
@@ -61,14 +64,25 @@ public class AuditService {
 		mLog.info("Daliy audit aggregation: " + timeSpent + " seconds");
 	}
 
-	@Scheduled(cron = "0 10 0 * * 1 *")
-	public void weeklyAuditAggregation() {
-
-	}
-
-	@Scheduled(cron = "0 15 0 1 * * *")
+	@Scheduled(cron = "0 10 0 1 * * *")
 	public void monthlyAuditAggregation() {
-
+		List<DailyAuditEvent> dailyEvents = mDailyAuditEventDAO.findAll();
+		List<MonthlyAuditEvent> monthlyEvents = mMonthlyAuditEventDAO.findAll();
+		for (DailyAuditEvent event : dailyEvents) {
+			MonthlyAuditEvent monthlyAuditEvent = new MonthlyAuditEvent(event.getEvent(), event.getExtra());
+			Date date = DateUtils.truncate(event.getDate(), Calendar.MONTH);
+			monthlyAuditEvent.setDate(date);
+			int indexOf = monthlyEvents.indexOf(monthlyAuditEvent);
+			if (indexOf > -1) {
+				monthlyAuditEvent = monthlyEvents.get(indexOf);
+				monthlyAuditEvent.add();
+			} else {
+				monthlyEvents.add(monthlyAuditEvent);
+			}
+		}
+		for (MonthlyAuditEvent event : monthlyEvents) {
+			mMonthlyAuditEventDAO.create(event);
+		}
 	}
 
 	public void setAuditEventDAO(AuditEventDAO auditEventDAO) {
@@ -77,6 +91,10 @@ public class AuditService {
 
 	public void setDailyAuditEventDAO(DailyAuditEventDAO dailyAuditEventDAO) {
 		mDailyAuditEventDAO = dailyAuditEventDAO;
+	}
+
+	public void setMonthlyAuditEventDAO(MonthlyAuditEventDAO monthlyAuditEventDAO) {
+		mMonthlyAuditEventDAO = monthlyAuditEventDAO;
 	}
 
 }

@@ -7,10 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.hansson.rento.entities.AuditEvent;
-import com.hansson.rento.entities.DailyAuditEvent;
 import com.hansson.rento.entities.MonthlyAuditEvent;
-import com.hansson.rento.entities.WeeklyAuditEvent;
 
 public class MonthlyAuditEventDAOBeanTest {
 	

@@ -72,7 +72,6 @@
 				<beans:value>com.hansson.rento.entities.Apartment</beans:value>
 				<beans:value>com.hansson.rento.entities.AuditEvent</beans:value>
 				<beans:value>com.hansson.rento.entities.DailyAuditEvent</beans:value>
-				<beans:value>com.hansson.rento.entities.WeeklyAuditEvent</beans:value>
 				<beans:value>com.hansson.rento.entities.MonthlyAuditEvent</beans:value>
 			</beans:list>
 		</beans:property>
@@ -90,10 +89,6 @@
 		<beans:property name="sessionFactory" ref="sessionFactory" />
 	</beans:bean>
 
-	<beans:bean id="weeklyAuditEventDao" class="com.hansson.rento.dao.WeeklyAuditEventDAOBean">
-		<beans:property name="sessionFactory" ref="sessionFactory" />
-	</beans:bean>
-	
 	<beans:bean id="monthlyAuditEventDao" class="com.hansson.rento.dao.MonthlyAuditEventDAOBean">
 		<beans:property name="sessionFactory" ref="sessionFactory" />
 	</beans:bean>
