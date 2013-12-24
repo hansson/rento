@@ -28,13 +28,17 @@ public class BengtAkessonFastigheter implements ApartmentsInterface {
 			Document doc = Jsoup.connect(BASE_URL + "/category/lediga-objekt/lediga-lagenheter/").get();
 			Elements elementsByClass = doc.getElementsByClass("post");
 			for (Element element : elementsByClass) {
-				Apartment apartment = new Apartment(LANDLORD);
-				apartment.setCity(KARLSKRONA);
-				apartment.setUrl(element.getElementsByTag("a").get(0).attr("href"));
-				for (Node node : element.getElementsByClass("entry").get(0).childNodes()) {
-					handleNode(node, apartment);
+				try {
+					Apartment apartment = new Apartment(LANDLORD);
+					apartment.setCity(KARLSKRONA);
+					apartment.setUrl(element.getElementsByTag("a").get(0).attr("href"));
+					for (Node node : element.getElementsByClass("entry").get(0).childNodes()) {
+						handleNode(node, apartment);
+					}
+					apartmentLIst.add(apartment);
+				} catch (Exception e) {
+					e.printStackTrace();
 				}
-				apartmentLIst.add(apartment);
 			}
 		} catch (IOException e) {
 			e.printStackTrace();

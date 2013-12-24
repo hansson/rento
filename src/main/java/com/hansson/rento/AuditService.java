@@ -39,7 +39,7 @@ public class AuditService {
 		mAuditEventDAO.create(auditEvent);
 	}
 
-	@Scheduled(cron = "0 0 0 * * * *")
+	@Scheduled(cron = "0 0 0 * * *")
 	public void dailyAuditAggregation() {
 		long timeSpent = new Date().getTime();
 		List<AuditEvent> auditEvents = mAuditEventDAO.findAll();
@@ -64,7 +64,7 @@ public class AuditService {
 		mLog.info("Daliy audit aggregation: " + timeSpent + " seconds");
 	}
 
-	@Scheduled(cron = "0 10 0 1 * * *")
+	@Scheduled(cron = "0 10 0 1 * *")
 	public void monthlyAuditAggregation() {
 		List<DailyAuditEvent> dailyEvents = mDailyAuditEventDAO.findAll();
 		List<MonthlyAuditEvent> monthlyEvents = mMonthlyAuditEventDAO.findAll();
