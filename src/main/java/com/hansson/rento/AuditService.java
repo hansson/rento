@@ -66,6 +66,7 @@ public class AuditService {
 
 	@Scheduled(cron = "0 10 0 1 * *")
 	public void monthlyAuditAggregation() {
+		long timeSpent = new Date().getTime();
 		List<DailyAuditEvent> dailyEvents = mDailyAuditEventDAO.findAll();
 		List<MonthlyAuditEvent> monthlyEvents = mMonthlyAuditEventDAO.findAll();
 		for (DailyAuditEvent event : dailyEvents) {
@@ -83,6 +84,9 @@ public class AuditService {
 		for (MonthlyAuditEvent event : monthlyEvents) {
 			mMonthlyAuditEventDAO.create(event);
 		}
+		timeSpent = new Date().getTime() - timeSpent;
+		timeSpent = timeSpent / 1000;
+		mLog.info("Monthly audit aggregation: " + timeSpent + " seconds");
 	}
 
 	public void setAuditEventDAO(AuditEventDAO auditEventDAO) {
