@@ -1,8 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	
-	<!-- Root Context: defines shared resources visible to all other web components -->
-		
-</beans>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+     http://www.springframework.org/schema/security
+     http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+<!-- 	<beans:bean id="userDao" class="com.hansson.rento.dao.UserDAOBean"> -->
+<!--		<beans:property name="sessionFactory" ref="securitySessionFactory" /> -->
+<!-- 	</beans:bean> -->
+
+<!-- 	<http auto-config="true"> -->
+
+<!-- 		<intercept-url pattern="/restricted/user/*" access="USER" /> -->
+<!-- 		<intercept-url pattern="/restricted/admin/*" access="ADMIN" /> -->
+
+<!-- 		<form-login login-page="/login" default-target-url="/success-login.html" -->
+<!-- 			authentication-failure-url="/error-login" /> -->
+<!-- 		<logout logout-success-url="/" /> -->
+
+<!-- 	</http> -->
+
+<!-- 	<authentication-manager> -->
+<!-- 		<authentication-provider user-service-ref="userDao"> -->
+<!-- 			<password-encoder hash="sha-256" /> -->
+<!-- 		</authentication-provider> -->
+<!-- 	</authentication-manager> -->
+
+</beans:beans>

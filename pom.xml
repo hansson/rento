@@ -10,6 +10,7 @@
 	<properties>
 		<java-version>1.6</java-version>
 		<spring.version>4.0.0.RELEASE</spring.version>
+		<!-- Spring security is not same version -->
 		<org.aspectj-version>1.7.0</org.aspectj-version>
 		<org.slf4j-version>1.7.1</org.slf4j-version>
 		<hibernate.version>4.2.8.Final</hibernate.version>
@@ -124,6 +125,17 @@
 			<artifactId>spring-test</artifactId>
 			<version>${spring.version}</version>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>3.2.0.RELEASE</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>3.2.0.RELEASE</version>
 		</dependency>
 
 
@@ -266,13 +278,13 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>dom4j</groupId>
 			<artifactId>dom4j</artifactId>
 			<version>1.6.1</version>
 		</dependency>
-            
+
 
 		<!-- <dependency> -->
 		<!-- <groupId>org.hibernate</groupId> -->
