@@ -41,7 +41,7 @@ public class PBAFastigheter implements ApartmentsInterface {
 					apartment.setCity(areaAndCity[2]);
 					String informationText = element.getElementsByTag("span").get(2).text();
 
-					Pattern p = Pattern.compile("Adress: .+,");
+					Pattern p = Pattern.compile("Adress: .+?,");
 					Matcher matcher = p.matcher(informationText);
 					matcher.find();
 					apartment.setAddress(matcher.group().replace("Adress: ", "").replace(",", ""));
@@ -55,7 +55,10 @@ public class PBAFastigheter implements ApartmentsInterface {
 					Elements infoElements = doc.getElementsByTag("tbody").get(0).getElementsByTag("tr");
 					for (Element currentInfo : infoElements) {
 						if (currentInfo.getElementsByTag("th").text().equals("Avgift")) {
-							apartment.setRent(Integer.valueOf(currentInfo.getElementsByTag("td").text().replaceAll("\\D", "")));
+							p = Pattern.compile("[ \\d]+ kr");
+							matcher = p.matcher(currentInfo.getElementsByTag("td").text());
+							matcher.find();
+							apartment.setRent(Integer.valueOf(matcher.group().replaceAll("\\D", "")));
 						} else if (currentInfo.getElementsByTag("th").text().equals("Boarea")) {
 							p = Pattern.compile("[\\d]+[,\\d]+");
 							matcher = p.matcher(currentInfo.getElementsByTag("td").text());

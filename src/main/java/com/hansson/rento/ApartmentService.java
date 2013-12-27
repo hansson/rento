@@ -30,7 +30,7 @@ import com.hansson.rento.entities.Apartment;
 
 @Service
 public class ApartmentService {
-	
+
 	// * ********CAUTION********
 	// * Entering html scraping area.. prepare yourself for some nasty stuff!
 	// * ********CAUTION********
@@ -41,55 +41,63 @@ public class ApartmentService {
 		 * 
 		 */
 		private static final long serialVersionUID = -2411798345463453006L;
-		// Add new implementations of the ApartmentsInterface here to include them in the scan loop
+		// Add new implementations of the ApartmentsInterface here to include
+		// them in the scan loop
 		{
+			add(new PBAFastigheter());
 			add(new Karlskronahem());
 			add(new KarlskronahemStudent());
 			add(new Krebo());
 			add(new PBAStudent());
 			add(new LindebergFastigheter());
 			add(new HansAkessonFastigheter());
-			add(new BengtAkessonFastigheter()); 
+			add(new BengtAkessonFastigheter());
 			add(new Heimstaden());
 			add(new CAFastigheter());
 			add(new TrossoWamoFastigheter());
 			add(new KSFastigheter());
 			add(new MagistratusFastigheter());
-			add(new PBAFastigheter());
 			add(new SvenskaBostadsfonden());
 			add(new Utklippan());
 		}
 	};
-	
+
 	@Autowired
 	private ApartmentDAO mApartmentDAO;
 
-	@Scheduled(fixedDelayString = "14400000") //Every 4 hours
+	@Scheduled(fixedDelayString = "14400000")
+	// Every 4 hours
 	public void updateApartmentList() {
-		for(ApartmentsInterface landlord : mLandlords) {
-			List<Apartment> currentApartments = landlord.getAvailableApartments();
-			List<Apartment> storedApartments = mApartmentDAO.findAllByLandlord(landlord.getLandlord());
-			
-			if(currentApartments == null) {
-				currentApartments = new LinkedList<Apartment>();
-			}
-			if(storedApartments == null) {
-				storedApartments = new LinkedList<Apartment>();
-			}
-			
-			for(Apartment apartment : currentApartments) {
-				if(!storedApartments.contains(apartment)) {
-					mApartmentDAO.create(apartment);
-					mLog.info("Created: " + apartment);
+		for (ApartmentsInterface landlord : mLandlords) {
+			try {
+				List<Apartment> currentApartments = landlord.getAvailableApartments();
+				List<Apartment> storedApartments = mApartmentDAO.findAllByLandlord(landlord.getLandlord());
+
+				if (currentApartments == null) {
+					currentApartments = new LinkedList<Apartment>();
 				}
-			}
-			
-			for(Apartment apartment : storedApartments) {
-				if(!currentApartments.contains(apartment)) {
-					mApartmentDAO.delete(apartment);
-					mLog.info("Deleted: " + apartment);
+				if (storedApartments == null) {
+					storedApartments = new LinkedList<Apartment>();
 				}
+
+				for (Apartment apartment : currentApartments) {
+					if (!storedApartments.contains(apartment)) {
+						mApartmentDAO.create(apartment);
+						mLog.info("Created: " + apartment);
+					}
+				}
+
+				for (Apartment apartment : storedApartments) {
+					if (!currentApartments.contains(apartment)) {
+						mApartmentDAO.delete(apartment);
+						mLog.info("Deleted: " + apartment);
+					}
+				}
+			} catch (Exception e) {
+				mLog.error("Error at: " + landlord.getLandlord());
+				e.printStackTrace();
 			}
 		}
+
 	}
 }
