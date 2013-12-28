@@ -27,7 +27,6 @@ more cities in the future!
 * Faxe Fastigheter - No apartment listing available
 * Hyreshuset AB - No apartment listing available
 * Konradssons Fastigheter - No apartment listing available
-* Lena Åkesson Fastigheter - No apartment listing available
 * P&E Förvaltning - No apartment listing available
 * Stenhusen AB - No apartment listing available
 * Vibohus Fastigheter AB

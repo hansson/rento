@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.hansson.rento.apartments.ApartmentsInterface;
 import com.hansson.rento.apartments.multiple.CAFastigheter;
+import com.hansson.rento.apartments.multiple.HSBSydost;
 import com.hansson.rento.apartments.multiple.Heimstaden;
 import com.hansson.rento.apartments.multiple.Krebo;
 import com.hansson.rento.apartments.multiple.PBAFastigheter;
@@ -44,6 +45,7 @@ public class ApartmentService {
 		// Add new implementations of the ApartmentsInterface here to include
 		// them in the scan loop
 		{
+			add(new HSBSydost());
 			add(new PBAFastigheter());
 			add(new Karlskronahem());
 			add(new KarlskronahemStudent());
