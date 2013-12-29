@@ -25,6 +25,7 @@ public class HSBSydost implements ApartmentsInterface {
 	private static final String BASE_URL = "http://www.hsbmarknad.se";
 	private static final Logger mLog = LoggerFactory.getLogger("rento");
 
+	//TODO: Implement backoff!
 	@Override
 	public List<Apartment> getAvailableApartments() {
 		List<Apartment> apartmentList = new LinkedList<Apartment>();
@@ -34,20 +35,24 @@ public class HSBSydost implements ApartmentsInterface {
 			Matcher matcher = p.matcher(doc.getElementsByTag("script").get(5).childNode(0).toString());
 			matcher.find();
 			Gson gson = new Gson();
-			HSBCitiesJson[] fromJson = gson.fromJson(matcher.group().replaceAll("addMarkersVisaNoll\\(|, firstMap\\)", ""), HSBCitiesJson[].class);
-			System.out.println("TEST");
-//			for (Element element : cities) {
-//				doc = Jsoup.connect(BASE_URL + element.attr("href")).get();
-//				Elements apartments = doc.getElementsByClass("search-result-box");
-//				for(Element apartmentInfo : apartments) {
-//					Apartment apartment = new Apartment(LANDLORD);
-//					apartment.setAddress(apartmentInfo.getElementsByTag("h2").text());
-//					apartment.setCity(apartmentInfo.getElementsByClass("srb-image-title").get(0).text());
-//					
-//					Element infoBox = apartmentInfo.getElementsByClass("srb-info-basic").get(0);
-//					apartment.setAddress(infoBox.getElementsByTag("h2").get(0).text());
-//				}
-//			}
+			HSBCitiesJson[] cities = gson.fromJson(matcher.group().replaceAll("addMarkersVisaNoll\\(|, firstMap\\)", ""), HSBCitiesJson[].class);
+			for (HSBCitiesJson city : cities) {
+				doc = Jsoup.connect(BASE_URL + city.getUrl()).get();
+				Elements apartments = doc.getElementsByClass("search-result-box");
+				for(Element apartmentInfo : apartments) {
+					Apartment apartment = new Apartment(LANDLORD);
+					apartment.setAddress(apartmentInfo.getElementsByTag("h2").text());
+					apartment.setCity(city.getName());
+					apartment.setIdentifier(apartmentInfo.getElementsByTag("a").attr("href").split("/")[3]);
+					
+					Element infoBox = apartmentInfo.getElementsByClass("srb-info-basic").get(0);
+					String[] infoArray = infoBox.getElementsByTag("p").get(0).text().split("\\|");
+					apartment.setRooms(Double.valueOf(infoArray[0].replaceAll("\\D", "")));
+					apartment.setSize(Integer.valueOf(infoArray[1].replaceAll("\\D", "")));
+					apartment.setRent(Integer.valueOf(infoArray[2].replaceAll("\\D", "")));
+					apartmentList.add(apartment);
+				}
+			}
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
