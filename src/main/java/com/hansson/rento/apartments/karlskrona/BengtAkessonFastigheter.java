@@ -1,21 +1,20 @@
 package com.hansson.rento.apartments.karlskrona;
 
-import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
 
+import com.hansson.rento.apartments.ApartmentUtils;
 import com.hansson.rento.apartments.ApartmentsInterface;
 import com.hansson.rento.entities.Apartment;
 
-public class BengtAkessonFastigheter implements ApartmentsInterface {
+public class BengtAkessonFastigheter extends ApartmentUtils implements ApartmentsInterface {
 
 	private static final String KARLSKRONA = "Karlskrona";
 	private final static String LANDLORD = "Bengt &Aring;kessons Fastigheter";
@@ -24,8 +23,8 @@ public class BengtAkessonFastigheter implements ApartmentsInterface {
 	@Override
 	public List<Apartment> getAvailableApartments() {
 		List<Apartment> apartmentLIst = new LinkedList<Apartment>();
-		try {
-			Document doc = Jsoup.connect(BASE_URL + "/category/lediga-objekt/lediga-lagenheter/").get();
+		Document doc = connect(BASE_URL + "/category/lediga-objekt/lediga-lagenheter/");
+		if (doc != null) {
 			Elements elementsByClass = doc.getElementsByClass("post");
 			for (Element element : elementsByClass) {
 				try {
@@ -40,8 +39,6 @@ public class BengtAkessonFastigheter implements ApartmentsInterface {
 					e.printStackTrace();
 				}
 			}
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		return apartmentLIst;
 	}
@@ -78,7 +75,7 @@ public class BengtAkessonFastigheter implements ApartmentsInterface {
 			}
 		}
 	}
-	
+
 	@Override
 	public String getLandlord() {
 		return LANDLORD;

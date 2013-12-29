@@ -5,17 +5,17 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.hansson.rento.apartments.ApartmentUtils;
 import com.hansson.rento.apartments.ApartmentsInterface;
 import com.hansson.rento.entities.Apartment;
 
-public class LindebergFastigheter implements ApartmentsInterface {
+public class LindebergFastigheter extends ApartmentUtils implements ApartmentsInterface {
 
 	private final static String KARLSKRONA = "Karlskrona";
 	private final static String LANDLORD = "Lindeberg Fastigheter";
@@ -26,17 +26,17 @@ public class LindebergFastigheter implements ApartmentsInterface {
 	@Override
 	public List<Apartment> getAvailableApartments() {
 		List<Apartment> apartmentList = new LinkedList<Apartment>();
-		try {
-			Document doc = Jsoup.connect(BASE_URL + "ajax.aspx?content=3").get();
+		Document doc = connect(BASE_URL + "ajax.aspx?content=3");
+		if (doc != null) {
 			Elements elements = doc.getElementsByClass("module").get(0).getElementsByAttribute("href");
 			for (Element element : elements) {
 				String link = element.attr("href");
 				Pattern p = Pattern.compile("item=\\d+");
 				Matcher matcher = p.matcher(link);
-				if(matcher.find()) {
+				if (matcher.find()) {
 					Apartment apartment = new Apartment(LANDLORD);
 					apartment.setCity(KARLSKRONA);
-					doc = Jsoup.connect(BASE_URL + "ajax.aspx?content=3&" + matcher.group()).get();
+					doc = connect(BASE_URL + "ajax.aspx?content=3&" + matcher.group());
 					Element header = doc.getElementsByTag("h1").get(0);
 					String[] roomsAndAddress = header.text().split(" r o k ");
 					apartment.setRooms(Double.valueOf(roomsAndAddress[0]));
@@ -52,8 +52,6 @@ public class LindebergFastigheter implements ApartmentsInterface {
 					apartmentList.add(apartment);
 				}
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		return apartmentList;
 	}

@@ -5,15 +5,15 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.hansson.rento.apartments.ApartmentUtils;
 import com.hansson.rento.apartments.ApartmentsInterface;
 import com.hansson.rento.entities.Apartment;
 
-public class HansAkessonFastigheter implements ApartmentsInterface {
+public class HansAkessonFastigheter extends ApartmentUtils implements ApartmentsInterface {
 
 	private static final String KARLSKRONA = "Karlskrona";
 	private final static String LANDLORD = "Hans &Aring;kessons Fastigheter";
@@ -22,18 +22,18 @@ public class HansAkessonFastigheter implements ApartmentsInterface {
 	@Override
 	public List<Apartment> getAvailableApartments() {
 		List<Apartment> apartmentLIst = new LinkedList<Apartment>();
-		try {
-			Document doc = Jsoup.connect(BASE_URL).get();
+		Document doc = connect(BASE_URL);
+		if (doc != null) {
 			Elements elementsByClass = doc.getElementsByClass("cutebox");
 			for (Element element : elementsByClass) {
 				Apartment apartment = new Apartment(LANDLORD);
 				apartment.setCity(KARLSKRONA);
 				apartment.setUrl(BASE_URL);
 				Elements header = element.getElementsByTag("h2");
-				
+
 				Pattern p = Pattern.compile("\\d+[\\.\\d]* rok");
 				Matcher matcher = p.matcher(header.text());
-				if(matcher.find()) {
+				if (matcher.find()) {
 					Elements apartmentTable = element.getElementsByTag("tbody");
 					apartment.setAddress(apartmentTable.get(0).child(1).child(0).text());
 					apartment.setRooms(Double.valueOf(apartmentTable.get(0).child(1).child(1).text()));
@@ -45,8 +45,6 @@ public class HansAkessonFastigheter implements ApartmentsInterface {
 					apartmentLIst.add(apartment);
 				}
 			}
-		} catch (Exception e) {
-			e.printStackTrace();
 		}
 		return apartmentLIst;
 	}

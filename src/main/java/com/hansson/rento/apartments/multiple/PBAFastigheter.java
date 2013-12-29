@@ -1,24 +1,21 @@
 package com.hansson.rento.apartments.multiple;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.hansson.rento.apartments.ApartmentUtils;
 import com.hansson.rento.apartments.ApartmentsInterface;
 import com.hansson.rento.entities.Apartment;
-import com.hansson.rento.utils.HtmlUtil;
 
-public class PBAFastigheter implements ApartmentsInterface {
+public class PBAFastigheter extends ApartmentUtils implements ApartmentsInterface {
 
 	private static final String LANDLORD = "PBA Karlskrona Malm&ouml; AB";
 	private static final String BASE_URL = "http://www.pba.se/page/18/lediga-lagenheterlokaler.aspx";
@@ -27,8 +24,8 @@ public class PBAFastigheter implements ApartmentsInterface {
 	@Override
 	public List<Apartment> getAvailableApartments() {
 		List<Apartment> apartmentList = new LinkedList<Apartment>();
-		try {
-			Document doc = Jsoup.connect(BASE_URL).get();
+		Document doc = connect(BASE_URL);
+		if (doc != null) {
 			Elements apartments = doc.getElementById("content").getElementsByClass("entry");
 			for (Element element : apartments) {
 				try {
@@ -51,7 +48,7 @@ public class PBAFastigheter implements ApartmentsInterface {
 					matcher.find();
 					apartment.setRooms(Double.valueOf(matcher.group().replaceAll("Antal Rum: ", "")));
 
-					doc = Jsoup.connect(apartment.getUrl()).get();
+					doc = connect(apartment.getUrl());
 					Elements infoElements = doc.getElementsByTag("tbody").get(0).getElementsByTag("tr");
 					for (Element currentInfo : infoElements) {
 						if (currentInfo.getElementsByTag("th").text().equals("Avgift")) {
@@ -72,10 +69,6 @@ public class PBAFastigheter implements ApartmentsInterface {
 					e.printStackTrace();
 				}
 			}
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		return apartmentList;
 	}

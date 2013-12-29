@@ -1,21 +1,19 @@
 package com.hansson.rento.apartments.karlskrona;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.hansson.rento.apartments.ApartmentUtils;
 import com.hansson.rento.apartments.ApartmentsInterface;
 import com.hansson.rento.entities.Apartment;
 
-public class Utklippan implements ApartmentsInterface {
+public class Utklippan extends ApartmentUtils implements ApartmentsInterface {
 
 	private static final String LANDLORD = "Utklippan";
 	private static final String CITY = "Karlskrona";
@@ -25,8 +23,8 @@ public class Utklippan implements ApartmentsInterface {
 	@Override
 	public List<Apartment> getAvailableApartments() {
 		List<Apartment> apartmentList = new LinkedList<Apartment>();
-		try {
-			Document doc = Jsoup.connect(BASE_URL + "/pages/fastigheter/ledigt-just-nu.php").get();
+		Document doc = connect(BASE_URL + "/pages/fastigheter/ledigt-just-nu.php");
+		if (doc != null) {
 			Elements apartments = doc.getElementById("wrapper").getElementsByTag("tr");
 			apartments.remove(0);
 			apartments.remove(0);
@@ -34,7 +32,7 @@ public class Utklippan implements ApartmentsInterface {
 			for (Element element : apartments) {
 				try {
 					Apartment apartment = new Apartment(LANDLORD);
-					apartment.setUrl(BASE_URL + element.getElementsByTag("td").get(0).getElementsByTag("a").attr("href")); 
+					apartment.setUrl(BASE_URL + element.getElementsByTag("td").get(0).getElementsByTag("a").attr("href"));
 					apartment.setCity(CITY);
 					apartment.setAddress(element.getElementsByTag("td").get(1).text());
 					apartment.setRooms(Double.valueOf(element.getElementsByTag("td").get(2).text().replaceAll(",", ".")));
@@ -47,10 +45,6 @@ public class Utklippan implements ApartmentsInterface {
 					e.printStackTrace();
 				}
 			}
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		return apartmentList;
 	}

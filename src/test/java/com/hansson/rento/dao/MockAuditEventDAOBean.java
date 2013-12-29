@@ -4,7 +4,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import com.hansson.rento.entities.AuditEvent;
-import com.hansson.rento.entities.DailyAuditEvent;
 
 public class MockAuditEventDAOBean implements AuditEventDAO {
 	

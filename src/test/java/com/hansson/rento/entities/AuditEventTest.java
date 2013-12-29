@@ -1,7 +1,5 @@
 package com.hansson.rento.entities;
 
-import static org.junit.Assert.*;
-
 import java.util.Date;
 
 import org.junit.Assert;

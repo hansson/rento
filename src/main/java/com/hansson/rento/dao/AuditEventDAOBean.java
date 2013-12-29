@@ -8,7 +8,6 @@ import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hansson.rento.entities.AuditEvent;
-import com.hansson.rento.entities.AuditEvent;
 
 public class AuditEventDAOBean implements AuditEventDAO {
 

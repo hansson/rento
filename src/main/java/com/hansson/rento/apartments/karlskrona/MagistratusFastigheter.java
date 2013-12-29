@@ -1,20 +1,17 @@
 package com.hansson.rento.apartments.karlskrona;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.hansson.rento.apartments.ApartmentUtils;
 import com.hansson.rento.apartments.ApartmentsInterface;
 import com.hansson.rento.entities.Apartment;
-import com.hansson.rento.utils.HtmlUtil;
 
-public class MagistratusFastigheter implements ApartmentsInterface {
+public class MagistratusFastigheter extends ApartmentUtils implements ApartmentsInterface {
 
 	private static final String LANDLORD = "Magistratus Fastigheter";
 	private static final String BASE_URL = "http://www.magistratus.se/index.php?go=hyresledigt";
@@ -23,10 +20,10 @@ public class MagistratusFastigheter implements ApartmentsInterface {
 	@Override
 	public List<Apartment> getAvailableApartments() {
 		List<Apartment> apartmentList = new LinkedList<Apartment>();
-		try {
-			Document doc = Jsoup.connect(BASE_URL).get();
+		Document doc = connect(BASE_URL);
+		if (doc != null) {
 			Elements apartments = doc.getElementsByClass("apartmenttable");
-			for(Element element : apartments) {
+			for (Element element : apartments) {
 				Apartment apartment = new Apartment(LANDLORD);
 				Elements informationCells = element.getElementsByTag("tr");
 				apartment.setRooms(Double.valueOf(informationCells.get(2).getAllElements().get(2).text().replaceAll("\\D", "")));
@@ -36,7 +33,7 @@ public class MagistratusFastigheter implements ApartmentsInterface {
 				apartment.setCity(CITY);
 				apartment.setArea(addressInformation[addressInformation.length - 1]);
 				String address = "";
-				for(int i = 0 ; i < addressInformation.length - 1 ; i++) {
+				for (int i = 0; i < addressInformation.length - 1; i++) {
 					address += addressInformation[i];
 				}
 				apartment.setAddress(address);
@@ -44,14 +41,10 @@ public class MagistratusFastigheter implements ApartmentsInterface {
 				apartment.setUrl(BASE_URL);
 				apartmentList.add(apartment);
 			}
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		return apartmentList;
 	}
-	
+
 	@Override
 	public String getLandlord() {
 		return LANDLORD;

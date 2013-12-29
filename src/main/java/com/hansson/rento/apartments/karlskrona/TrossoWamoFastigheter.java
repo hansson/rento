@@ -1,21 +1,19 @@
 package com.hansson.rento.apartments.karlskrona;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.hansson.rento.apartments.ApartmentUtils;
 import com.hansson.rento.apartments.ApartmentsInterface;
 import com.hansson.rento.entities.Apartment;
 
-public class TrossoWamoFastigheter implements ApartmentsInterface {
+public class TrossoWamoFastigheter extends ApartmentUtils implements ApartmentsInterface {
 
 	private static final String LANDLORD = "Tross&ouml;, W&auml;m&ouml; & Pribo fastigheter";
 	private static final String BASE_URL = "http://bovision.se/more/MaklarLista.aspx?ai=9530";
@@ -23,8 +21,8 @@ public class TrossoWamoFastigheter implements ApartmentsInterface {
 	@Override
 	public List<Apartment> getAvailableApartments() {
 		List<Apartment> apartmentLIst = new LinkedList<Apartment>();
-		try {
-			Document doc = Jsoup.connect(BASE_URL).get();
+		Document doc = connect(BASE_URL);
+		if (doc != null) {
 			Elements dataList = doc.select(".data");
 			for (int i = 0; i < dataList.size(); i++) {
 				Element data = dataList.get(i);
@@ -49,14 +47,10 @@ public class TrossoWamoFastigheter implements ApartmentsInterface {
 				apartment.setIdentifier(apartment.getUrl().split("/")[apartment.getUrl().split("/").length - 1]);
 				apartmentLIst.add(apartment);
 			}
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 		return apartmentLIst;
 	}
-	
+
 	@Override
 	public String getLandlord() {
 		return LANDLORD;

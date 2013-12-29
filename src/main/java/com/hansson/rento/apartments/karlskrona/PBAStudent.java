@@ -3,13 +3,11 @@ package com.hansson.rento.apartments.karlskrona;
 import java.util.LinkedList;
 import java.util.List;
 
-
-
 import com.hansson.rento.apartments.ApartmentsInterface;
 import com.hansson.rento.entities.Apartment;
 
 /**
- * Krebo has no  apartment listing, hard coding apartments.
+ * PBA Student has no  apartment listing, hard coding apartments.
  * @author hansson
  *
  */

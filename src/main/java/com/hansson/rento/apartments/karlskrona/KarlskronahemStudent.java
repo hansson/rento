@@ -1,24 +1,21 @@
 package com.hansson.rento.apartments.karlskrona;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.hansson.rento.apartments.ApartmentUtils;
 import com.hansson.rento.apartments.ApartmentsInterface;
 import com.hansson.rento.entities.Apartment;
-import com.hansson.rento.utils.HtmlUtil;
 
-public class KarlskronahemStudent implements ApartmentsInterface {
+public class KarlskronahemStudent extends ApartmentUtils implements ApartmentsInterface {
 
 	private final static String KARLSKRONA = "Karlskrona";
 	private final static String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36";
@@ -26,43 +23,13 @@ public class KarlskronahemStudent implements ApartmentsInterface {
 	private final static String BASE_URL = "http://marknad.karlskronahem.se";
 
 	private Logger mLog = LoggerFactory.getLogger("rento");
-	private long mBackoff = 2;
 
 	@Override
 	public List<Apartment> getAvailableApartments() {
-		boolean isDone = false;
-		List<Apartment> apartments = null;
-		while (!isDone) {
-			try {
-				apartments = getApartments();
-				if (apartments != null) {
-					isDone = true;
-				}
-			} catch (IOException io) {
-				mLog.info("IO Exception, doing " + mBackoff + " backoff");
-				if (mBackoff <= 64) {
-					try {
-						Thread.sleep(mBackoff * 1000); 
-						mBackoff *= 2;
-					} catch (InterruptedException e) {
-						// Should never occur
-					}
-				} else {
-					//Better luck next time
-					isDone = true;
-				}
-
-			}
-		}
-		return apartments;
-
-	}
-
-	private List<Apartment> getApartments() throws IOException {
 		List<Apartment> apartmentList = new LinkedList<Apartment>();
-		try {
-			// Get html for first page
-			Document doc = Jsoup.connect(BASE_URL + "/HSS/Object/object_list.aspx?objectgroup=6").get();
+		// Get html for first page
+		Document doc = connect(BASE_URL + "/HSS/Object/object_list.aspx?objectgroup=6");
+		if (doc != null) {
 			int currentPage = 1;
 			// Find number of pages
 			Elements pageSwitcher = doc.select(".right").get(0).getElementsByTag("a");
@@ -70,7 +37,8 @@ public class KarlskronahemStudent implements ApartmentsInterface {
 			// Handle and iterate all pages
 			do {
 				// Parse data from html
-				// Get all <tr> tags from html with listitem-even or listitem-odd class
+				// Get all <tr> tags from html with listitem-even or
+				// listitem-odd class
 				Elements elementsByTag = doc.getElementsByTag("tr");
 				// Iterate all elements
 				for (Element element : elementsByTag) {
@@ -110,15 +78,14 @@ public class KarlskronahemStudent implements ApartmentsInterface {
 					postData.put("ctl00$ctl01$DefaultSiteContentPlaceHolder1$Col1$hdnSearchedRoomMin", "1");
 					postData.put("ctl00$ctl01$DefaultSiteContentPlaceHolder1$Col1$hdnSearchedRoomMax", "6");
 					postData.put("__ASYNCPOST", "true");
-					doc = Jsoup.connect("http://marknad.karlskronahem.se/HSS/Object/object_list.aspx?objectgroup=1").data(postData).userAgent(USER_AGENT).header("Content-Type", "application/x-www-form-urlencoded; charset=utf-8").post();
+					doc = connect("http://marknad.karlskronahem.se/HSS/Object/object_list.aspx?objectgroup=1", postData, USER_AGENT);
 				}
 				currentPage++;
 			} while (currentPage <= pages);
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
 		}
 		return apartmentList;
 	}
+
 	@Override
 	public String getLandlord() {
 		return LANDLORD;

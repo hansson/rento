@@ -7,7 +7,6 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.hansson.rento.entities.AuditEvent;
 import com.hansson.rento.entities.DailyAuditEvent;
 
 public class DailyAuditEventDAOBean implements DailyAuditEventDAO {
