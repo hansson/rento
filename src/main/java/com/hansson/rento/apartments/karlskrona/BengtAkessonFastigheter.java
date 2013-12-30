@@ -9,6 +9,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.nodes.Node;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hansson.rento.apartments.ApartmentUtils;
 import com.hansson.rento.apartments.ApartmentsInterface;
@@ -20,13 +22,15 @@ public class BengtAkessonFastigheter extends ApartmentUtils implements Apartment
 	private final static String LANDLORD = "Bengt &Aring;kessons Fastigheter";
 	private final static String BASE_URL = "http://web.bafast.se";
 
+	private static final Logger mLog = LoggerFactory.getLogger("rento");
+
 	@Override
 	public List<Apartment> getAvailableApartments() {
-		List<Apartment> apartmentLIst = new LinkedList<Apartment>();
+		List<Apartment> apartmentList = new LinkedList<Apartment>();
 		Document doc = connect(BASE_URL + "/category/lediga-objekt/lediga-lagenheter/");
 		if (doc != null) {
-			Elements elementsByClass = doc.getElementsByClass("post");
-			for (Element element : elementsByClass) {
+			Elements apartments = doc.getElementsByClass("post");
+			for (Element element : apartments) {
 				try {
 					Apartment apartment = new Apartment(LANDLORD);
 					apartment.setCity(KARLSKRONA);
@@ -34,13 +38,14 @@ public class BengtAkessonFastigheter extends ApartmentUtils implements Apartment
 					for (Node node : element.getElementsByClass("entry").get(0).childNodes()) {
 						handleNode(node, apartment);
 					}
-					apartmentLIst.add(apartment);
+					apartmentList.add(apartment);
 				} catch (Exception e) {
+					mLog.error(LANDLORD + " error on element #" + apartments.indexOf(element));
 					e.printStackTrace();
 				}
 			}
 		}
-		return apartmentLIst;
+		return apartmentList;
 	}
 
 	private void handleNode(Node node, Apartment apartment) {

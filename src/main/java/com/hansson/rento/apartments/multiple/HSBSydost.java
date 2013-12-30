@@ -36,20 +36,21 @@ public class HSBSydost extends ApartmentUtils implements ApartmentsInterface {
 			for (HSBCitiesJson city : cities) {
 				doc = connect(BASE_URL + city.getUrl());
 				Elements apartments = doc.getElementsByClass("search-result-box");
-				for (Element apartmentInfo : apartments) {
+				for (Element element : apartments) {
 					try {
 						Apartment apartment = new Apartment(LANDLORD);
-						apartment.setAddress(apartmentInfo.getElementsByTag("h2").text());
+						apartment.setAddress(element.getElementsByTag("h2").text());
 						apartment.setCity(city.getName());
-						apartment.setIdentifier(apartmentInfo.getElementsByTag("a").attr("href").split("/")[3]);
+						apartment.setIdentifier(element.getElementsByTag("a").attr("href").split("/")[3]);
 
-						Element infoBox = apartmentInfo.getElementsByClass("srb-info-basic").get(0);
+						Element infoBox = element.getElementsByClass("srb-info-basic").get(0);
 						String[] infoArray = infoBox.getElementsByTag("p").get(0).text().split("\\|");
 						apartment.setRooms(Double.valueOf(infoArray[0].replaceAll("\\D", "")));
 						apartment.setSize(Integer.valueOf(infoArray[1].replaceAll("\\D", "")));
 						apartment.setRent(Integer.valueOf(infoArray[2].replaceAll("\\D", "")));
 						apartmentList.add(apartment);
 					} catch (Exception e) {
+						mLog.error(LANDLORD + " error on element #" + apartments.indexOf(element));
 						e.printStackTrace();
 					}
 				}

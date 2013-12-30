@@ -9,6 +9,8 @@ import org.apache.commons.lang3.text.WordUtils;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.hansson.rento.apartments.ApartmentUtils;
 import com.hansson.rento.apartments.ApartmentsInterface;
@@ -18,15 +20,17 @@ public class Heimstaden extends ApartmentUtils implements ApartmentsInterface {
 
 	private final static String LANDLORD = "Heimstaden";
 	private final static String BASE_URL = "http://www.heimstaden.com";
+	
+	private static final Logger mLog = LoggerFactory.getLogger("rento");
 
 	@Override
 	public List<Apartment> getAvailableApartments() {
-		List<Apartment> apartmentLIst = new LinkedList<Apartment>();
+		List<Apartment> apartmentList = new LinkedList<Apartment>();
 		// Get html for first page
 		Document doc = connect(BASE_URL + "/For_sokande/Lediga_bostader");
 		if (doc != null) {
-			Elements elementsByClass = doc.getElementsByClass("listItem");
-			for (Element element : elementsByClass) {
+			Elements apartments = doc.getElementsByClass("listItem");
+			for (Element element : apartments) {
 				try {
 					Apartment apartment = new Apartment(LANDLORD);
 					apartment.setIdentifier(element.attr("id"));
@@ -48,16 +52,14 @@ public class Heimstaden extends ApartmentUtils implements ApartmentsInterface {
 							apartment.setCity(WordUtils.capitalize(infoElement.nextElementSibling().text().toLowerCase()));
 						}
 					}
-					apartmentLIst.add(apartment);
+					apartmentList.add(apartment);
 				} catch (Exception e) {
-					// To make sure that even if one apartment listing fails it
-					// will continue.
-					// Log error to be able to fix it.
+					mLog.error(LANDLORD + " error on element #" + apartments.indexOf(element));
 					e.printStackTrace();
 				}
 			}
 		}
-		return apartmentLIst;
+		return apartmentList;
 	}
 
 	@Override

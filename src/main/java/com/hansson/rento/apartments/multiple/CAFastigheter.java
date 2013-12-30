@@ -27,7 +27,7 @@ public class CAFastigheter extends ApartmentUtils implements ApartmentsInterface
 
 	@Override
 	public List<Apartment> getAvailableApartments() {
-		List<Apartment> apartmentLIst = new LinkedList<Apartment>();
+		List<Apartment> apartmentList = new LinkedList<Apartment>();
 		try {
 			// Get html for first page
 			Document doc = connect(BASE_URL + "/Sok_ledigt/Lediga_bostader");
@@ -83,10 +83,10 @@ public class CAFastigheter extends ApartmentUtils implements ApartmentsInterface
 									apartment.setIdentifier(info.childNode(0).toString().trim());
 								}
 							}
-							apartmentLIst.add(apartment);
+							apartmentList.add(apartment);
 						} catch (Exception e) {
 							Element linkElement = element.getElementsByTag("a").first();
-							mLog.error("Failed to retrieve apartment at url: " + BASE_URL + linkElement.attr("href"));
+							mLog.error(LANDLORD + " failed to retrieve apartment at url: " + BASE_URL + linkElement.attr("href"));
 						}
 						element = element.nextElementSibling();
 					}
@@ -95,7 +95,7 @@ public class CAFastigheter extends ApartmentUtils implements ApartmentsInterface
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return apartmentLIst;
+		return apartmentList;
 	}
 
 	private boolean isDate(String inputString) {

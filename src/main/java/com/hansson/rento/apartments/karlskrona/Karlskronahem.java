@@ -39,22 +39,27 @@ public class Karlskronahem extends ApartmentUtils implements ApartmentsInterface
 				// Parse data from html
 				// Get all <tr> tags from html with listitem-even or
 				// listitem-odd class
-				Elements elementsByTag = doc.getElementsByTag("tr");
+				Elements apartments = doc.getElementsByTag("tr");
 				// Iterate all elements
-				for (Element element : elementsByTag) {
-					if (element.hasClass("listitem-even") || element.hasClass("listitem-odd")) {
-						Apartment apartment = new Apartment(LANDLORD);
-						Element address = element.child(1).getElementsByTag("a").get(0);
-						apartment.setUrl(BASE_URL + "/HSS/Object/" + address.attr("href"));
-						apartment.setAddress(address.childNode(0).toString());
-						apartment.setIdentifier(address.attr("href").split("[&=]")[3]);
-						apartment.setCity(KARLSKRONA);
-						apartment.setArea(element.child(2).getElementsByTag("span").get(0).childNode(0).toString());
-						String rent = element.child(5).getElementsByTag("span").get(0).childNode(0).toString().replace("&nbsp;", "");
-						apartment.setRent(Integer.valueOf(rent));
-						apartment.setRooms(Double.valueOf(element.child(3).getElementsByTag("span").get(0).childNode(0).toString()));
-						apartment.setSize(Integer.valueOf(element.child(4).getElementsByTag("span").get(0).childNode(0).toString()));
-						apartmentList.add(apartment);
+				for (Element element : apartments) {
+					try {
+						if (element.hasClass("listitem-even") || element.hasClass("listitem-odd")) {
+							Apartment apartment = new Apartment(LANDLORD);
+							Element address = element.child(1).getElementsByTag("a").get(0);
+							apartment.setUrl(BASE_URL + "/HSS/Object/" + address.attr("href"));
+							apartment.setAddress(address.childNode(0).toString());
+							apartment.setIdentifier(address.attr("href").split("[&=]")[3]);
+							apartment.setCity(KARLSKRONA);
+							apartment.setArea(element.child(2).getElementsByTag("span").get(0).childNode(0).toString());
+							String rent = element.child(5).getElementsByTag("span").get(0).childNode(0).toString().replace("&nbsp;", "");
+							apartment.setRent(Integer.valueOf(rent));
+							apartment.setRooms(Double.valueOf(element.child(3).getElementsByTag("span").get(0).childNode(0).toString()));
+							apartment.setSize(Integer.valueOf(element.child(4).getElementsByTag("span").get(0).childNode(0).toString()));
+							apartmentList.add(apartment);
+						}
+					} catch (Exception e) {
+						mLog.error(LANDLORD + " error on element #" + apartments.indexOf(element));
+						e.printStackTrace();
 					}
 				}
 				// If there are more pages, prepare the next post

@@ -28,28 +28,33 @@ public class LindebergFastigheter extends ApartmentUtils implements ApartmentsIn
 		List<Apartment> apartmentList = new LinkedList<Apartment>();
 		Document doc = connect(BASE_URL + "ajax.aspx?content=3");
 		if (doc != null) {
-			Elements elements = doc.getElementsByClass("module").get(0).getElementsByAttribute("href");
-			for (Element element : elements) {
-				String link = element.attr("href");
-				Pattern p = Pattern.compile("item=\\d+");
-				Matcher matcher = p.matcher(link);
-				if (matcher.find()) {
-					Apartment apartment = new Apartment(LANDLORD);
-					apartment.setCity(KARLSKRONA);
-					doc = connect(BASE_URL + "ajax.aspx?content=3&" + matcher.group());
-					Element header = doc.getElementsByTag("h1").get(0);
-					String[] roomsAndAddress = header.text().split(" r o k ");
-					apartment.setRooms(Double.valueOf(roomsAndAddress[0]));
-					apartment.setAddress(roomsAndAddress[1]);
-					apartment.setIdentifier(matcher.group());
-					apartment.setRent(Integer.valueOf(doc.getElementsByClass("price").get(0).text().replaceAll("\\D", "")));
-					String description = doc.getElementsByClass("description").get(0).text();
-					p = Pattern.compile("[\\d\\.,]+ kvm");
-					matcher = p.matcher(description);
-					matcher.find();
-					apartment.setSize(Integer.valueOf(matcher.group().split(" ")[0]));
-					apartment.setUrl(BASE_URL + link);
-					apartmentList.add(apartment);
+			Elements apartments = doc.getElementsByClass("module").get(0).getElementsByAttribute("href");
+			for (Element element : apartments) {
+				try {
+					String link = element.attr("href");
+					Pattern p = Pattern.compile("item=\\d+");
+					Matcher matcher = p.matcher(link);
+					if (matcher.find()) {
+						Apartment apartment = new Apartment(LANDLORD);
+						apartment.setCity(KARLSKRONA);
+						doc = connect(BASE_URL + "ajax.aspx?content=3&" + matcher.group());
+						Element header = doc.getElementsByTag("h1").get(0);
+						String[] roomsAndAddress = header.text().split(" r o k ");
+						apartment.setRooms(Double.valueOf(roomsAndAddress[0]));
+						apartment.setAddress(roomsAndAddress[1]);
+						apartment.setIdentifier(matcher.group());
+						apartment.setRent(Integer.valueOf(doc.getElementsByClass("price").get(0).text().replaceAll("\\D", "")));
+						String description = doc.getElementsByClass("description").get(0).text();
+						p = Pattern.compile("[\\d\\.,]+ kvm");
+						matcher = p.matcher(description);
+						matcher.find();
+						apartment.setSize(Integer.valueOf(matcher.group().split(" ")[0]));
+						apartment.setUrl(BASE_URL + link);
+						apartmentList.add(apartment);
+					}
+				} catch (Exception e) {
+					mLog.error(LANDLORD + " error on element #" + apartments.indexOf(element));
+					e.printStackTrace();
 				}
 			}
 		}

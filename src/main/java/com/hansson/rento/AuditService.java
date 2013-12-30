@@ -53,6 +53,7 @@ public class AuditService {
 			} else {
 				dailyEvents.add(dailyAuditEvent);
 			}
+			mAuditEventDAO.delete(event);
 		}
 		for (DailyAuditEvent event : dailyEvents) {
 			mDailyAuditEventDAO.create(event);
@@ -78,6 +79,7 @@ public class AuditService {
 			} else {
 				monthlyEvents.add(monthlyAuditEvent);
 			}
+			mDailyAuditEventDAO.delete(event);
 		}
 		for (MonthlyAuditEvent event : monthlyEvents) {
 			mMonthlyAuditEventDAO.create(event);
