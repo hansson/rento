@@ -10,16 +10,17 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.hansson.rento.apartments.ApartmentsInterface;
-import com.hansson.rento.apartments.karlskrona.BengtAkessonFastigheter;
-import com.hansson.rento.apartments.karlskrona.HansAkessonFastigheter;
-import com.hansson.rento.apartments.karlskrona.KSFastigheter;
-import com.hansson.rento.apartments.karlskrona.Karlskronahem;
-import com.hansson.rento.apartments.karlskrona.KarlskronahemStudent;
-import com.hansson.rento.apartments.karlskrona.LindebergFastigheter;
-import com.hansson.rento.apartments.karlskrona.MagistratusFastigheter;
-import com.hansson.rento.apartments.karlskrona.PBAStudent;
-import com.hansson.rento.apartments.karlskrona.TrossoWamoFastigheter;
-import com.hansson.rento.apartments.karlskrona.Utklippan;
+import com.hansson.rento.apartments.blekinge.TrossoWamoFastigheter;
+import com.hansson.rento.apartments.blekinge.karlshamn.Karlshamnsbostader;
+import com.hansson.rento.apartments.blekinge.karlskrona.BengtAkessonFastigheter;
+import com.hansson.rento.apartments.blekinge.karlskrona.HansAkessonFastigheter;
+import com.hansson.rento.apartments.blekinge.karlskrona.KSFastigheter;
+import com.hansson.rento.apartments.blekinge.karlskrona.Karlskronahem;
+import com.hansson.rento.apartments.blekinge.karlskrona.KarlskronahemStudent;
+import com.hansson.rento.apartments.blekinge.karlskrona.LindebergFastigheter;
+import com.hansson.rento.apartments.blekinge.karlskrona.MagistratusFastigheter;
+import com.hansson.rento.apartments.blekinge.karlskrona.PBAStudent;
+import com.hansson.rento.apartments.blekinge.karlskrona.Utklippan;
 import com.hansson.rento.apartments.multiple.CAFastigheter;
 import com.hansson.rento.apartments.multiple.HSBSydost;
 import com.hansson.rento.apartments.multiple.Heimstaden;
@@ -45,22 +46,26 @@ public class ApartmentService {
 		// Add new implementations of the ApartmentsInterface here to include
 		// them in the scan loop
 		{
-			add(new HSBSydost());
-			add(new PBAFastigheter());
+			//Karlshamn
+//			add(new Karlshamnsbostader());
+			//Karlskrona
+			add(new BengtAkessonFastigheter());
+			add(new HansAkessonFastigheter());
 			add(new Karlskronahem());
 			add(new KarlskronahemStudent());
-			add(new Krebo());
-			add(new PBAStudent());
-			add(new LindebergFastigheter());
-			add(new HansAkessonFastigheter());
-			add(new BengtAkessonFastigheter());
-			add(new Heimstaden());
-			add(new CAFastigheter());
-			add(new TrossoWamoFastigheter());
 			add(new KSFastigheter());
+			add(new LindebergFastigheter());
 			add(new MagistratusFastigheter());
-			add(new SvenskaBostadsfonden());
+			add(new PBAStudent());
+			add(new TrossoWamoFastigheter());
 			add(new Utklippan());
+			//Multiple
+			add(new CAFastigheter());
+			add(new Heimstaden());
+			add(new HSBSydost());
+			add(new Krebo());
+			add(new PBAFastigheter());
+			add(new SvenskaBostadsfonden());
 		}
 	};
 

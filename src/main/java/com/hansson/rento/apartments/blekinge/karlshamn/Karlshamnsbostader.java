@@ -1,4 +1,4 @@
-package com.hansson.rento.apartments.karlshamn;
+package com.hansson.rento.apartments.blekinge.karlshamn;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -28,7 +28,20 @@ public class Karlshamnsbostader extends ApartmentUtils implements ApartmentsInte
 			for (Element element : apartments) {
 				try {
 					if (element.getElementsByTag("td").get(0).getElementsByTag("img").size() > 0) {
-
+						Apartment apartment = new Apartment(LANDLORD);
+						apartment.setUrl(BASE_URL + element.getElementsByTag("td").get(0).getElementsByTag("a").attr("href"));
+						apartment.setIdentifier(apartment.getUrl().split("=")[1]);
+						doc = (connect(apartment.getUrl()));
+						String[] cityAndAreaSplit = element.getElementById("Label7").text().split(" ");
+						apartment.setCity(cityAndAreaSplit[0]);
+						String area = "";
+						for(int i = 1 ; i < cityAndAreaSplit.length ; i++) {
+							area+= cityAndAreaSplit[i];
+						}
+						apartment.setArea(area);
+						
+						Elements apartmentInfo = element.getElementsByTag("tr");
+						apartment.setStudent(false);
 					}
 				} catch (Exception e) {
 					mLog.error(LANDLORD + " error on element #" + apartments.indexOf(element));

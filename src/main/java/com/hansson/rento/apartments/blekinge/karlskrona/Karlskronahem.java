@@ -1,4 +1,4 @@
-package com.hansson.rento.apartments.karlskrona;
+package com.hansson.rento.apartments.blekinge.karlskrona;
 
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -15,11 +15,11 @@ import com.hansson.rento.apartments.ApartmentUtils;
 import com.hansson.rento.apartments.ApartmentsInterface;
 import com.hansson.rento.entities.Apartment;
 
-public class KarlskronahemStudent extends ApartmentUtils implements ApartmentsInterface {
+public class Karlskronahem extends ApartmentUtils implements ApartmentsInterface {
 
 	private final static String KARLSKRONA = "Karlskrona";
 	private final static String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36";
-	private final static String LANDLORD = "Karlskronahem studentl&auml;genhet";
+	private final static String LANDLORD = "Karlskronahem";
 	private final static String BASE_URL = "http://marknad.karlskronahem.se";
 
 	private Logger mLog = LoggerFactory.getLogger("rento");
@@ -28,7 +28,7 @@ public class KarlskronahemStudent extends ApartmentUtils implements ApartmentsIn
 	public List<Apartment> getAvailableApartments() {
 		List<Apartment> apartmentList = new LinkedList<Apartment>();
 		// Get html for first page
-		Document doc = connect(BASE_URL + "/HSS/Object/object_list.aspx?objectgroup=6");
+		Document doc = connect(BASE_URL + "/HSS/Object/object_list.aspx?objectgroup=1");
 		if (doc != null) {
 			int currentPage = 1;
 			// Find number of pages
@@ -55,7 +55,6 @@ public class KarlskronahemStudent extends ApartmentUtils implements ApartmentsIn
 							apartment.setRent(Integer.valueOf(rent));
 							apartment.setRooms(Double.valueOf(element.child(3).getElementsByTag("span").get(0).childNode(0).toString()));
 							apartment.setSize(Integer.valueOf(element.child(4).getElementsByTag("span").get(0).childNode(0).toString()));
-							apartment.setStudent(true);
 							apartmentList.add(apartment);
 						}
 					} catch (Exception e) {

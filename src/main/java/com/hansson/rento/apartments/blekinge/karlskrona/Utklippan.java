@@ -1,4 +1,4 @@
-package com.hansson.rento.apartments.karlskrona;
+package com.hansson.rento.apartments.blekinge.karlskrona;
 
 import java.util.LinkedList;
 import java.util.List;
