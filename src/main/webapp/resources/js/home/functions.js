@@ -105,7 +105,7 @@ function updateFilters() {
 			currentSize = 200;
 		}
 		
-		//Decide if a apartment is within the range
+		//Decide if an apartment is within the range
 		if(currentRooms < $("#roomSlider").slider("values", 0) || currentRooms > $("#roomSlider").slider("values", 1)) {
 			continue;
 		}

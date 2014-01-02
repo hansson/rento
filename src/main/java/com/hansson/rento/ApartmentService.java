@@ -76,7 +76,7 @@ public class ApartmentService {
 	@Autowired
 	private ApartmentDAO mApartmentDAO;
 
-	@Scheduled(fixedDelayString = "14400000")
+//	@Scheduled(fixedDelayString = "14400000")
 	// Every 4 hours
 	public void updateApartmentList() {
 		for (ApartmentsInterface landlord : mLandlords) {

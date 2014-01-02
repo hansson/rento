@@ -25,6 +25,8 @@
 
 <!-- Loading Flat UI -->
 <link href="resources/css/flat-ui.css" rel="stylesheet">
+
+<!-- Rento specific css -->
 <link href="resources/css/rento.css" rel="stylesheet">
 
 <link rel="shortcut icon" href="resources/resources/images/favicon.ico">
@@ -49,37 +51,44 @@
 		<div class="span12 no-margin">
 			<div class="span3 no-margin">
 				<h1>Lediga l&auml;genheter</h1>
-				<form class="no-margin" action="/apartments" method="post" id="cityForm">  
-					<input id="cityAutocomplete" name="city" type="text" value="Karlskrona" placeholder="Ort">
+				<form class="no-margin" action="/apartments" method="post"
+					id="cityForm">
+					<input id="cityAutocomplete" name="city" type="text"
+						value="Karlskrona" placeholder="Ort">
 				</form>
 			</div>
 		</div>
-		
+
 		<div class="span12 no-margin">
 			<div id="advancedSettings" class="span6 no-margin">
 				<p>Fler alternativ</p>
 				<div id="advancedSettingsContainer">
 					<p id="roomRange">Rum, 1 - 6+</p>
-					<div id="roomSlider" class="ui-slider">
-		         	</div>
-		         		
-		         	<p id="rentRange">Hyra, 0 kr - 20000 kr</p>
-					<div id="rentSlider" class="ui-slider">
-		         	</div>
-		         		
-		         	<p id="sizeRange">Storlek, 0 kvm - 200 kvm</p>
-					<div id="sizeSlider" class="ui-slider">
-		         	</div>
-		         	
-		         	<input id="studentApartment" type="checkbox" name="studentApartment" value="studentApartment" style="float: left; margin-right: 15px">
-		         	<p style="float: left;">Inkludera Studentl&auml;genheter</p>
-		         	
-		   		</div>
-	        </div>
-        </div>
-		
+					<div id="roomSlider" class="ui-slider"></div>
+
+					<p id="rentRange">Hyra, 0 kr - 20000 kr</p>
+					<div id="rentSlider" class="ui-slider"></div>
+
+					<p id="sizeRange">Storlek, 0 kvm - 200 kvm</p>
+					<div id="sizeSlider" class="ui-slider"></div>
+
+					<input 
+						id="studentApartment" 
+						type="checkbox" 
+						data-toggle="checkbox"
+						name="studentApartment" 
+						value="studentApartment"
+						style="float: left; margin-right: 15px"/>
+						
+					<p style="float: left;">Inkludera Studentl&auml;genheter</p>
+
+				</div>
+			</div>
+		</div>
+
 		<div class="span12 no-margin">
-			<table id="apartment-table"class="table table-striped" style="cursor: pointer">
+			<table id="apartment-table" class="table table-striped"
+				style="cursor: pointer">
 				<thead>
 					<tr>
 						<th class="sortable-header" id="mCity">Ort</th>
@@ -94,7 +103,7 @@
 				</thead>
 
 				<tbody id="apartment-table-body">
-					
+
 				</tbody>
 			</table>
 
@@ -107,8 +116,7 @@
 			<div class="row">
 				<div class="span7">
 					<h3 class="footer-title" style="padding-left: 5px">Kontakt</h3>
-					<p style="padding-left: 5px">
-						tobias@tobiashansson.nu</p>
+					<p style="padding-left: 5px">tobias@tobiashansson.nu</p>
 				</div>
 			</div>
 		</div>
@@ -134,13 +142,13 @@
 
 
 	<script type="text/javascript">
-	
 		$(document).ready(function() {
 
 		});
-		
+
 		$(function() {
-			var availableCities = ${cities};
+			var availableCities = ${cities}
+			;
 			$("#cityAutocomplete").autocomplete({
 				source : availableCities,
 				messages : {
@@ -148,85 +156,92 @@
 					results : function() {
 					}
 				},
-				select: function(event, ui) { 
+				select : function(event, ui) {
 					$("#cityAutocomplete").val(ui.item.label);
-		            $("#cityForm").submit(); 
-		        }
+					$("#cityForm").submit();
+				}
 			});
 		});
 
 		$(function() {
-		    $("#advancedSettings").accordion({
-		      collapsible: true,
-		      active: false
-		    });
+			$("#advancedSettings").accordion({
+				collapsible : true,
+				active : false
+			});
 		});
 
 		$(function() {
-		    $("filterAdvancedSettings").button().click(function( event ) {
-		        event.preventDefault();
-		    });
+			$("filterAdvancedSettings").button().click(function(event) {
+				event.preventDefault();
+			});
 		});
 
 		$(function() {
-		    $("#roomSlider").slider({
-				range: true,
-			    min: 1,
-			    max: 6,
-			    values: [1, 6],
-			    slide: function( event, ui ) {
-				    var toValue = ui.values[1];
-				    if(toValue == 6) {
-				    	toValue = '6+';
-				    }
-				    $("#roomRange").html("Rum, " + ui.values[0] + " - " + toValue);
-			    },
-			    stop: function(event, ui) {
-					updateFilters();
-				}
-		    });
+			$("#roomSlider").slider(
+					{
+						range : true,
+						min : 1,
+						max : 6,
+						values : [ 1, 6 ],
+						slide : function(event, ui) {
+							var toValue = ui.values[1];
+							if (toValue == 6) {
+								toValue = '6+';
+							}
+							$("#roomRange").html(
+									"Rum, " + ui.values[0] + " - " + toValue);
+						},
+						stop : function(event, ui) {
+							updateFilters();
+						}
+					});
 		});
 
 		$(function() {
-		    $("#rentSlider").slider({
-			    range: true,
-			    min: 0,
-			    max: 20000,
-			    values: [0, 20000],
-			    step: 100,
-			    slide: function( event, ui ) {
-			    	var toValue = ui.values[1];
-			    	if(toValue == 20000) {
-			    		toValue = '20000+';
-			    	}
-			      	$("#rentRange").html("Hyra, " + ui.values[0] + " kr - " + toValue + " kr");
-			    },
-			    stop: function(event, ui) {
-					updateFilters();
-				}
-		    });
+			$("#rentSlider").slider(
+					{
+						range : true,
+						min : 0,
+						max : 20000,
+						values : [ 0, 20000 ],
+						step : 100,
+						slide : function(event, ui) {
+							var toValue = ui.values[1];
+							if (toValue == 20000) {
+								toValue = '20000+';
+							}
+							$("#rentRange").html(
+									"Hyra, " + ui.values[0] + " kr - "
+											+ toValue + " kr");
+						},
+						stop : function(event, ui) {
+							updateFilters();
+						}
+					});
 		});
 
 		$(function() {
-		    $("#sizeSlider").slider({
-		    	range: true,
-		    	min: 0,
-		    	max: 200,
-		    	values: [0, 200],
-		    	step: 5,
-		    	slide: function( event, ui ) {
-		    		var toValue = ui.values[1];
-		    		if(toValue == 200) {
-		    			toValue = '200+';
-		    		}
-		        	$("#sizeRange").html("Storlek, " + ui.values[0] + " kvm - " + toValue + " kvm");
-		      	},
-		      	stop: function(event, ui) {
-					updateFilters();
-				}
-		    });
+			$("#sizeSlider").slider(
+					{
+						range : true,
+						min : 0,
+						max : 200,
+						values : [ 0, 200 ],
+						step : 5,
+						slide : function(event, ui) {
+							var toValue = ui.values[1];
+							if (toValue == 200) {
+								toValue = '200+';
+							}
+							$("#sizeRange").html(
+									"Storlek, " + ui.values[0] + " kvm - "
+											+ toValue + " kvm");
+						},
+						stop : function(event, ui) {
+							updateFilters();
+						}
+					});
 		});
-		
 	</script>
 
 </body>
