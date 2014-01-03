@@ -52,32 +52,32 @@
 			<div class="span3 no-margin">
 				<h1>Lediga l&auml;genheter</h1>
 				<form class="no-margin" action="/apartments" method="post"
-					id="cityForm">
-					<input id="cityAutocomplete" name="city" type="text"
+					id="city-form">
+					<input id="city-autocomplete" name="city" type="text"
 						value="Karlskrona" placeholder="Ort">
 				</form>
 			</div>
 		</div>
 
 		<div class="span12 no-margin">
-			<div id="advancedSettings" class="span6 no-margin">
+			<div id="advanced-settings" class="span6 no-margin">
 				<p>Fler alternativ</p>
-				<div id="advancedSettingsContainer">
-					<p id="roomRange">Rum, 1 - 6+</p>
-					<div id="roomSlider" class="ui-slider"></div>
+				<div id="advanced-settings-container">
+					<p id="room-range">Rum, 1 - 6+</p>
+					<div id="room-slider" class="ui-slider"></div>
 
-					<p id="rentRange">Hyra, 0 kr - 20000 kr</p>
-					<div id="rentSlider" class="ui-slider"></div>
+					<p id="rent-range">Hyra, 0 kr - 20000 kr</p>
+					<div id="rent-slider" class="ui-slider"></div>
 
-					<p id="sizeRange">Storlek, 0 kvm - 200 kvm</p>
-					<div id="sizeSlider" class="ui-slider"></div>
+					<p id="size-range">Storlek, 0 kvm - 200 kvm</p>
+					<div id="size-slider" class="ui-slider"></div>
 
 					<input 
-						id="studentApartment" 
+						id="student-apartment" 
 						type="checkbox" 
 						data-toggle="checkbox"
-						name="studentApartment" 
-						value="studentApartment"
+						name="student-apartment" 
+						value="student-apartment"
 						style="float: left; margin-right: 15px"/>
 						
 					<p style="float: left;">Inkludera Studentl&auml;genheter</p>
@@ -147,9 +147,8 @@
 		});
 
 		$(function() {
-			var availableCities = ${cities}
-			;
-			$("#cityAutocomplete").autocomplete({
+			var availableCities = ${cities};
+			$("#city-autocomplete").autocomplete({
 				source : availableCities,
 				messages : {
 					noResults : '',
@@ -157,27 +156,27 @@
 					}
 				},
 				select : function(event, ui) {
-					$("#cityAutocomplete").val(ui.item.label);
-					$("#cityForm").submit();
+					$("#city-autocomplete").val(ui.item.label);
+					$("#city-form").submit();
 				}
 			});
 		});
 
 		$(function() {
-			$("#advancedSettings").accordion({
+			$("#advanced-settings").accordion({
 				collapsible : true,
 				active : false
 			});
 		});
 
 		$(function() {
-			$("filterAdvancedSettings").button().click(function(event) {
+			$("filter-advanced-settings").button().click(function(event) {
 				event.preventDefault();
 			});
 		});
 
 		$(function() {
-			$("#roomSlider").slider(
+			$("#room-slider").slider(
 					{
 						range : true,
 						min : 1,
@@ -188,7 +187,7 @@
 							if (toValue == 6) {
 								toValue = '6+';
 							}
-							$("#roomRange").html(
+							$("#room-range").html(
 									"Rum, " + ui.values[0] + " - " + toValue);
 						},
 						stop : function(event, ui) {
@@ -198,7 +197,7 @@
 		});
 
 		$(function() {
-			$("#rentSlider").slider(
+			$("#rent-slider").slider(
 					{
 						range : true,
 						min : 0,
@@ -210,7 +209,7 @@
 							if (toValue == 20000) {
 								toValue = '20000+';
 							}
-							$("#rentRange").html(
+							$("#rent-range").html(
 									"Hyra, " + ui.values[0] + " kr - "
 											+ toValue + " kr");
 						},
@@ -221,7 +220,7 @@
 		});
 
 		$(function() {
-			$("#sizeSlider").slider(
+			$("#size-slider").slider(
 					{
 						range : true,
 						min : 0,
@@ -233,7 +232,7 @@
 							if (toValue == 200) {
 								toValue = '200+';
 							}
-							$("#sizeRange").html(
+							$("#size-range").html(
 									"Storlek, " + ui.values[0] + " kvm - "
 											+ toValue + " kvm");
 						},

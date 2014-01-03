@@ -1,6 +1,6 @@
 $('#apartment-table-body').load('/apartments');
 
-$('#cityForm').on('submit', function(event) {
+$('#city-form').on('submit', function(event) {
 
     var link = $(this).attr('action');
     
@@ -28,6 +28,6 @@ $('.sortable-header').on('click', function(event) {
 	}
 });
 
-$('#studentApartment').on('change', function(event) {
+$('#student-apartment').on('change', function(event) {
 	updateFilters();
 });

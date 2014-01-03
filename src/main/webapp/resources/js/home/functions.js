@@ -106,19 +106,19 @@ function updateFilters() {
 		}
 		
 		//Decide if an apartment is within the range
-		if(currentRooms < $("#roomSlider").slider("values", 0) || currentRooms > $("#roomSlider").slider("values", 1)) {
+		if(currentRooms < $("#room-slider").slider("values", 0) || currentRooms > $("#room-slider").slider("values", 1)) {
 			continue;
 		}
 		
-		if(currentRent < $("#rentSlider").slider("values", 0) || currentRent > $("#rentSlider").slider("values", 1)) {
+		if(currentRent < $("#rent-slider").slider("values", 0) || currentRent > $("#rent-slider").slider("values", 1)) {
 			continue;
 		}
 		
-		if(currentSize < $("#sizeSlider").slider("values", 0) || currentSize > $("#sizeSlider").slider("values", 1)) {
+		if(currentSize < $("#size-slider").slider("values", 0) || currentSize > $("#size-slider").slider("values", 1)) {
 			continue;
 		}
 		
-		if(a_orig[i].mStudent && !$("#studentApartment").is(":checked") ) {
+		if(a_orig[i].mStudent && !$("#student-apartment").is(":checked") ) {
 			continue;
 		}
 		

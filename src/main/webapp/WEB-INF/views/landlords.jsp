@@ -58,7 +58,10 @@
 		</div>
 		
 		<div class="span12 no-margin">
-			<h2></h2>
+			<h2 id="city"></h2>
+			<ul id="landlords">
+				
+			</ul>
 		</div>
 	</div>
 	<!-- /container -->
