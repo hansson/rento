@@ -137,8 +137,8 @@
 	<!--<script src="resources/js/flatui-radio.js"></script> -->
 	<!--<script src="resources/js/application.js"></script> -->
 	<script src="resources/js/bootstrap-sortable.js"></script>
-	<script src="resources/js/home/functions.js"></script>
-	<script src="resources/js/home/callbacks.js"></script>
+	<script src="resources/js/apartments/functions.js"></script>
+	<script src="resources/js/apartments/callbacks.js"></script>
 
 
 	<script type="text/javascript">

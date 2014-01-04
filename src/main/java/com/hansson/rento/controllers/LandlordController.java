@@ -16,13 +16,23 @@ import com.hansson.rento.dao.ApartmentDAO;
 import com.hansson.rento.utils.HtmlUtil;
 
 @Controller
-public class HomeController {
+public class LandlordController {
 
 	private static final Logger mLog = LoggerFactory.getLogger("rento");
 
-	@RequestMapping(value = "/flat", method = RequestMethod.GET)
-	public String flat(Locale locale, Model model) {
-		return "flat";
+	@Autowired
+	private ApartmentDAO mApartmentDAO;
+
+	@RequestMapping(value = "/landlords", method = RequestMethod.GET)
+	public String getLandlords(Locale locale, Model model) {
+		model.addAttribute("apartments", new Gson().toJson(mApartmentDAO.findAllByCity("Karlskrona")));
+		return "landlords";
+	}
+	
+	@RequestMapping(value = "/landlords", method = RequestMethod.POST)
+	public String postLandlords(Locale locale, Model model,  @RequestParam("city") String city) {
+		model.addAttribute("apartments", new Gson().toJson(mApartmentDAO.findAllByCity(city)));
+		return "landlords";
 	}
 
 }
