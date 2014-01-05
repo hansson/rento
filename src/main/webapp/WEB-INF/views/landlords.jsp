@@ -3,5 +3,5 @@
 
 <script type="text/javascript">
 	var l = ${apartments};
-	updateLandlords();
+	reloadLandlords();
 </script>
