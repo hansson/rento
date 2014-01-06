@@ -1,5 +1,3 @@
-
-/** Components **/
 input {
 	width: 250px;
 }
@@ -8,15 +6,20 @@ footer {
 	margin-top: 55px;
 }
 
-/** My css **/
-.no-margin {
-	margin: 0px;
+.clickable-text {
+	cursor: pointer;
 }
-
 
 /** Overrides bootstrap **/
 .headline {
 	padding: 25px 0 50px;
+}
+[class*="span"] {
+  margin: 0px;
+}
+
+.span6 {
+	width: 575px;
 }
 
 /** jQuery css **/
@@ -54,8 +57,7 @@ footer {
 	background: white;
 }
 
-.ui-menu .ui-menu-item a.ui-state-focus,.ui-menu .ui-menu-item a.ui-state-active
-	{
+.ui-menu .ui-menu-item a.ui-state-focus,.ui-menu .ui-menu-item a.ui-state-active {
 	font-weight: bold;
 }
 

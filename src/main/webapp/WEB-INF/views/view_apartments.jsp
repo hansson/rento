@@ -40,16 +40,18 @@
 
 <body>
 
+	<a href="help" style="position: absolute; top: 0px; left: 0px;"><img src="resources/images/triangle.jpg"/></a>
+
 	<div class="container">
-		<div class="headline">
+		<div class="headline clickable-text">
 			<h1 class="main-logo">
 				<div class="logo"></div>
 				Rento.nu <small>L&auml;ttare hyresl&auml;genheter</small>
 			</h1>
 		</div>
 
-		<div class="span12 no-margin">
-			<div class="span3 no-margin">
+		<div class="span12">
+			<div class="span3">
 				<h1>Lediga l&auml;genheter</h1>
 				<form class="no-margin" action="/apartments" method="post"
 					id="city-form">
@@ -59,9 +61,9 @@
 			</div>
 		</div>
 
-		<div class="span12 no-margin">
-			<div id="advanced-settings" class="span6 no-margin">
-				<p>Fler alternativ</p>
+		<div class="span12">
+			<div id="advanced-settings" class="span6">
+				<p class="clickable-text">Fler alternativ</p>
 				<div id="advanced-settings-container">
 					<p id="room-range">Rum, 1 - 6+</p>
 					<div id="room-slider" class="ui-slider"></div>
@@ -86,9 +88,9 @@
 			</div>
 		</div>
 
-		<div class="span12 no-margin">
-			<table id="apartment-table" class="table table-striped"
-				style="cursor: pointer">
+		<div class="span12">
+			<table id="apartment-table" class="table table-striped clickable-text"
+				>
 				<thead>
 					<tr>
 						<th class="sortable-header" id="mCity">Ort</th>
@@ -121,7 +123,7 @@
 			</div>
 		</div>
 	</footer>
-
+	
 	<!-- Load JS here for greater good =============================-->
 	<script src="resources/js/jquery-2.0.3.min.js"></script>
 	<script src="resources/js/jquery-ui.min.js"></script>
@@ -131,14 +133,15 @@
 	<script src="resources/js/jquery.stacktable.js"></script>
 	<script src="resources/js/jquery.cookie.js"></script>
 	<script src="resources/js/bootstrap.min.js"></script>
-	<script src="resources/js/bootstrap-select.js"></script>
-	<script src="resources/js/bootstrap-switch.js"></script>
+	<!-- <script src="resources/js/bootstrap-select.js"></script> -->
+	<!--<script src="resources/js/bootstrap-switch.js"></script> -->
 	<!--<script src="resources/js/flatui-checkbox.js"></script>-->
 	<!--<script src="resources/js/flatui-radio.js"></script> -->
 	<!--<script src="resources/js/application.js"></script> -->
-	<script src="resources/js/bootstrap-sortable.js"></script>
+	<!-- <script src="resources/js/bootstrap-sortable.js"></script> -->
 	<script src="resources/js/apartments/functions.js"></script>
 	<script src="resources/js/apartments/callbacks.js"></script>
+	<script src="resources/js/global/callbacks.js"></script>
 
 
 	<script type="text/javascript">

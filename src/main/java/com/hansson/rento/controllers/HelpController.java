@@ -13,15 +13,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.google.gson.Gson;
 import com.hansson.rento.dao.ApartmentDAO;
-import com.hansson.rento.utils.HtmlUtil;
 
 @Controller
-public class LandlordController {
+public class HelpController {
 
 	private static final Logger mLog = LoggerFactory.getLogger("rento");
 
-	@Autowired
+	@Autowired 
 	private ApartmentDAO mApartmentDAO;
+	
+	@RequestMapping(value = "/help", method = RequestMethod.GET)
+	public String help(Locale locale, Model model) {
+		return "view_help";
+	}
 
 	@RequestMapping(value = "/landlords", method = RequestMethod.GET)
 	public String getLandlords(Locale locale, Model model) {
