@@ -15,11 +15,7 @@ footer {
 	padding: 25px 0 50px;
 }
 [class*="span"] {
-  margin: 0px;
-}
-
-.span6 {
-	width: 575px;
+  	margin: 0px;
 }
 
 /** jQuery css **/

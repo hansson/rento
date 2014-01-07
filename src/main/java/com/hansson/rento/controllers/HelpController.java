@@ -24,6 +24,7 @@ public class HelpController {
 	
 	@RequestMapping(value = "/help", method = RequestMethod.GET)
 	public String help(Locale locale, Model model) {
+		model.addAttribute("cities", new Gson().toJson(mApartmentDAO.findAllCities()));
 		return "view_help";
 	}
 
