@@ -12,9 +12,11 @@ function reloadLandlords() {
 	var r = new Array(), j = -1;
 	if(l.length > 0) {
 		for (var key = 0, size = l.length; key < size; key++) {
-			r[++j] = '<li>';
-			r[++j] = a[key];
-			r[++j] = '</li>';
+			r[++j] = '<li><a href="';
+			r[++j] = l[key].url;
+			r[++j] = '" target="_blank">';
+			r[++j] = l[key].name;
+			r[++j] = '</a></li>';
 		}
 		$('#landlords').html(r.join(''));
 	} else {

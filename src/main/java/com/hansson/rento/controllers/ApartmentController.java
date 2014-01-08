@@ -25,7 +25,6 @@ public class ApartmentController {
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String getViewApartments(Locale locale, Model model) {
-		model.addAttribute("cities", new Gson().toJson(mApartmentDAO.findAllCities()));
 		return "view_apartments";
 	}
 

@@ -40,7 +40,7 @@
 
 <body>
 
-	<a href="help" style="position: absolute; top: 0px; left: 0px;"><img src="resources/images/triangle.jpg"/></a>
+	<!-- <a href="help" style="position: absolute; top: 0px; left: 0px;"><img src="resources/images/help.png"/></a> -->
 
 	<div class="container">
 		<div class="headline clickable-text">
@@ -139,9 +139,9 @@
 	<!--<script src="resources/js/flatui-radio.js"></script> -->
 	<!--<script src="resources/js/application.js"></script> -->
 	<!-- <script src="resources/js/bootstrap-sortable.js"></script> -->
-	<script src="resources/js/apartments/functions.js"></script>
-	<script src="resources/js/apartments/callbacks.js"></script>
-	<script src="resources/js/global/callbacks.js"></script>
+	<script src="resources/js/apartments/functions.js" charset="UTF-8"></script>
+	<script src="resources/js/apartments/callbacks.js" charset="UTF-8"></script>
+	<script src="resources/js/global/callbacks.js" charset="UTF-8"></script>
 
 
 	<script type="text/javascript">
@@ -150,19 +150,21 @@
 		});
 
 		$(function() {
-			var availableCities = ${cities};
-			$("#city-autocomplete").autocomplete({
-				source : availableCities,
-				messages : {
-					noResults : '',
-					results : function() {
+		    $.get('/resources/json/_cities.json',function(data) {
+		    	var availableCities = data.cities;
+				$("#city-autocomplete").autocomplete({
+					source : availableCities,
+					messages : {
+						noResults : '',
+						results : function() {
+						}
+					},
+					select : function(event, ui) {
+						$("#city-autocomplete").val(ui.item.label);
+						$("#city-form").submit();
 					}
-				},
-				select : function(event, ui) {
-					$("#city-autocomplete").val(ui.item.label);
-					$("#city-form").submit();
-				}
-			});
+				});
+		    });
 		});
 
 		$(function() {

@@ -35,8 +35,8 @@ public class BengtAkessonFastigheter extends ApartmentUtils implements Apartment
 					Apartment apartment = new Apartment(LANDLORD);
 					apartment.setCity(KARLSKRONA);
 					apartment.setUrl(element.getElementsByTag("a").get(0).attr("href"));
-					for (Node node : element.getElementsByClass("entry").get(0).childNodes()) {
-						handleNode(node, apartment);
+					for (Element infoElement : element.getElementsByClass("entry").get(0).getAllElements()) {
+						handleNode(infoElement, apartment);
 					}
 					apartmentList.add(apartment);
 				} catch (Exception e) {
@@ -48,15 +48,15 @@ public class BengtAkessonFastigheter extends ApartmentUtils implements Apartment
 		return apartmentList;
 	}
 
-	private void handleNode(Node node, Apartment apartment) {
-		if (node.childNodeSize() > 0) {
-			if (node.nodeName().equalsIgnoreCase("p")) {
-				Node childNode = node.childNode(0);
+	private void handleNode(Element element, Apartment apartment) {
+		if (element.childNodeSize() > 0) {
+			if (element.nodeName().equalsIgnoreCase("p")) {
+				Node childNode = element.childNode(0);
 				while (childNode != null) {
 					if (!childNode.nodeName().equalsIgnoreCase("a") && childNode.toString().trim().length() != 0) {
 						Pattern p = Pattern.compile("Objekt: [-0-9]+");
 						try {
-							Matcher matcher = p.matcher(node.childNode(0).childNode(0).toString());
+							Matcher matcher = p.matcher(element.childNode(0).childNode(0).toString());
 							if (matcher.find()) {
 								apartment.setIdentifier(matcher.group().split(" ")[1]);
 							}
@@ -66,17 +66,18 @@ public class BengtAkessonFastigheter extends ApartmentUtils implements Apartment
 					}
 					childNode = childNode.nextSibling();
 				}
-			} else if (node.nodeName().equalsIgnoreCase("table")) {
-				apartment.setRooms(Double.valueOf(node.childNode(1).childNode(1).childNode(1).childNode(1).childNode(0).toString().replaceAll(",", ".")));
-				apartment.setRent(Integer.valueOf(node.childNode(1).childNode(1).childNode(3).childNode(1).childNode(0).toString().replaceAll("\\D", "")));
-				apartment.setSize(Integer.valueOf(node.childNode(1).childNode(3).childNode(1).childNode(1).childNode(0).toString().replace("m&sup2;", "").replaceAll("\\D", "")));
-				Node addressNode = node.childNode(1).childNode(3).childNode(3).childNode(1).childNode(0);
-				if (addressNode.hasAttr("href")) {
-					addressNode = node.childNode(1).childNode(3).childNode(3).childNode(1).childNode(0).childNode(0);
-				} else {
-					addressNode = node.childNode(1).childNode(3).childNode(3).childNode(1).childNode(0);
+			} else if (element.nodeName().equalsIgnoreCase("table")) {
+				for (Element info : element.getElementsByTag("td")) {
+					if (info.text().contains("Antal rum")) {
+						apartment.setRooms(Double.valueOf(info.text().split(" ")[2].replaceAll(",", ".")));
+					} else if (info.text().contains("Månadshyra")) {
+						apartment.setRent(Integer.valueOf(info.text().replaceAll("\\D", "")));
+					} else if(info.text().contains("Boyta")) {
+						apartment.setSize(Integer.valueOf(info.text().replaceAll("\\D", "")));
+					} else if(info.text().contains("Adress")) {
+						apartment.setAddress(info.text().replaceAll("Adress: ", ""));
+					}
 				}
-				apartment.setAddress(addressNode.toString());
 			}
 		}
 	}

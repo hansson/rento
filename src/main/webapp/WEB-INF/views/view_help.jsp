@@ -40,7 +40,7 @@
 
 <body>
 
-	<a href="help" style="position: absolute; top: 0px; left: 0px;"><img src="resources/images/triangle.jpg"/></a>
+	<a href="help" style="position: absolute; top: 0px; left: 0px;"><img src="resources/images/help.png"/></a>
 
 	<div class="container">
 		<div class="headline clickable-text">
@@ -80,16 +80,15 @@
 		
 
 		<div class="span12">
-			<div class="span3">
-				<h2>Ort</h2>
+			<div class="span4">
+				<h2>Visa hyresv&auml;rdar f&ouml;r ort</h2>
 				<form class="no-margin" action="/apartments" method="post" id="city-form">  
-					<input id="city-autocomplete" name="city" type="text" value="Karlskrona" placeholder="Ort">
+					<input id="city-autocomplete" name="city" type="text"  placeholder="Ort">
 				</form>
 			</div>
 		</div>
 		
 		<div class="span12">
-			<h2 id="city"></h2>
 			<ul id="landlords">
 				
 			</ul>
@@ -124,9 +123,9 @@
 	<!--<script src="resources/js/flatui-radio.js"></script> -->
 	<!--<script src="resources/js/application.js"></script> -->
 	<!-- <script src="resources/js/bootstrap-sortable.js"></script> -->
-	<script src="resources/js/help/functions.js"></script>
-	<script src="resources/js/help/callbacks.js"></script>
-	<script src="resources/js/global/callbacks.js"></script>
+	<script src="resources/js/help/functions.js" charset="UTF-8"></script>
+	<script src="resources/js/help/callbacks.js" charset="UTF-8"></script>
+	<script src="resources/js/global/callbacks.js" charset="UTF-8"></script>
 
 
 	<script type="text/javascript">
@@ -136,18 +135,20 @@
 		});
 		
 		$(function() {
-			var availableCities = ${cities};
-			$("#city-autocomplete").autocomplete({
-				source : availableCities,
-				messages : {
-					noResults : '',
-					results : function() {
-					}
-				},
-				select: function(event, ui) { 
-					$("#city-autocomplete").val(ui.item.label);
-		            $("#city-form").submit(); 
-		        }
+			$.get('/resources/json/_cities.json',function(data) {
+				var availableCities = data.cities;
+				$("#city-autocomplete").autocomplete({
+					source : availableCities,
+					messages : {
+						noResults : '',
+						results : function() {
+						}
+					},
+					select: function(event, ui) { 
+						$("#city-autocomplete").val(ui.item.label);
+			            $("#city-form").submit(); 
+			        }
+				});
 			});
 		});
 	</script>
