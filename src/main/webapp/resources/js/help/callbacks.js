@@ -11,7 +11,7 @@ $('#city-form').on('submit', function(event) {
     $(".ui-autocomplete").hide();
 
     $.get(url,function(data, status) {
-    	l = jQuery.parseJSON(data).landlords;
+    	l = data.landlords;
     	reloadLandlords();
     }).fail(function(){
     	l = [];
