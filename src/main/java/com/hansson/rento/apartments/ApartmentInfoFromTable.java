@@ -84,35 +84,34 @@ public class ApartmentInfoFromTable {
 		return true;
 	}
 
-	//TODO write junit tests
 	protected boolean checkIsValidCityOrArea(String text) {
-		Pattern p = Pattern.compile("[\\d]+");
+		Pattern p = Pattern.compile("[\\d\\.,!?]+");
 		Matcher matcher = p.matcher(text);
 		return !matcher.find();
 	}
 
 	protected boolean checkIsValidRent(String text) {
 		text = text.toLowerCase();
-		text.replaceAll("[\\dkrse\\., ]", "");
+		text = text.replaceAll("[\\dkrse\\., ]", "");
 		Pattern p = Pattern.compile("[\\D]+");
 		Matcher matcher = p.matcher(text);
-		return !(text.equals("") || matcher.find());
+		return text.equals("") || !matcher.find();
 	}
 
 	protected boolean checkIsValidSize(String text) {
 		text = text.toLowerCase();
-		text.replaceAll("[\\dkvm ]", "");
+		text = text.replaceAll("[\\dkvm ]", "");
 		Pattern p = Pattern.compile("[\\D]+");
 		Matcher matcher = p.matcher(text);
-		return !(text.equals("") || matcher.find());
+		return text.equals("") || !matcher.find();
 	}
 
 	protected boolean checkIsValidRooms(String text) {
 		text = text.toLowerCase();
-		text.replaceAll("[\\d,\\. rok]", "");
+		text = text.replaceAll("[\\d,\\. rok]", "");
 		Pattern p = Pattern.compile("[\\D]+");
 		Matcher matcher = p.matcher(text);
-		return !(text.equals("") || matcher.find());
+		return text.equals("") || !matcher.find();
 	}
 
 	private Columns resolveColumns(Elements cells, Columns cols) {
