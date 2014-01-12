@@ -7,7 +7,7 @@ public class Columns {
 	private int mAddress = -1;
 	private int mRooms = -1;
 	private int mSize = -1;
-	private int mPrice = -1;
+	private int mRent = -1;
 	private int mHightest = -1;
 
 	public int getCity() {
@@ -65,14 +65,14 @@ public class Columns {
 		}
 	}
 
-	public int getPrice() {
-		return mPrice;
+	public int getRent() {
+		return mRent;
 	}
 
-	public void setPrice(int price) {
-		mPrice = price;
-		if (price > mHightest) {
-			mHightest = price;
+	public void setRent(int rent) {
+		mRent = rent;
+		if (rent > mHightest) {
+			mHightest = rent;
 		}
 	}
 
