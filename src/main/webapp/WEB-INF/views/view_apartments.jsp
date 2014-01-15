@@ -94,12 +94,12 @@
 				<thead>
 					<tr>
 						<th class="sortable-header" id="mCity">Ort</th>
-						<th class="sortable-header" id="mArea">Omr&aring;de</th>
-						<th class="sortable-header" id="mAddress">Adress</th>
+						<th class="sortable-header hidden-phone" id="mArea">Omr&aring;de</th>
+						<th class="sortable-header hidden-phone hidden-tablet" id="mAddress">Adress</th>
 						<th class="sortable-header" id="mRent">Hyra</th>
 						<th class="sortable-header" id="mSize">Storlek</th>
 						<th class="sortable-header" id="mRooms">Rum</th>
-						<th class="sortable-header" id="mLandlord">Hyresv&auml;rd</th>
+						<th class="sortable-header hidden-phone hidden-tablet" id="mLandlord">Hyresv&auml;rd</th>
 						<th class="sortable-header" id="mAdded">Tillagd</th>
 					</tr>
 				</thead>

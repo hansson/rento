@@ -6,9 +6,9 @@ function reloadApartments() {
 		    r[++j] = a[key].mUrl;
 		    r[++j] = '"><td>';
 			r[++j] = a[key].mCity;
-			r[++j] = '</td><td>';
+			r[++j] = '</td><td class="hidden-phone">';
 			r[++j] = a[key].mArea;
-			r[++j] = '</td><td>';
+			r[++j] = '</td><td class="hidden-phone hidden-tablet">';
 			r[++j] = a[key].mAddress;
 			r[++j] = '</td><td>';
 			r[++j] = a[key].mRent;
@@ -16,7 +16,7 @@ function reloadApartments() {
 			r[++j] = a[key].mSize;
 			r[++j] = ' kvm</td><td>';
 			r[++j] = a[key].mRooms;
-			r[++j] = '</td><td>';
+			r[++j] = '</td><td class="hidden-phone hidden-tablet">';
 			r[++j] = a[key].mLandlord;
 			r[++j] = '</td><td>';
 			
@@ -68,6 +68,7 @@ function sortApartments(prop, asc) {
     		first = new Date(first);
     		second = new Date(second);
     	} 
+    	
 		if (asc) {
 			return (first > second) ? 1 : ((first < second) ? -1 : 0);
 		} else {
