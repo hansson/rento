@@ -64,11 +64,15 @@ function sortApartments(prop, asc) {
     		//Will happen if first/second is a number
     	}
     	
-        if (asc) {
-        	return (first > second) ? 1 : ((first < second) ? -1 : 0);
-        } else {
-        	return (second > first) ? 1 : ((second < first) ? -1 : 0);
-        } 
+    	if(prop == "mAdded") {
+    		first = new Date(first);
+    		second = new Date(second);
+    	} 
+		if (asc) {
+			return (first > second) ? 1 : ((first < second) ? -1 : 0);
+		} else {
+			return (second > first) ? 1 : ((second < first) ? -1 : 0);
+		} 
     });
     reloadApartments();
 }
