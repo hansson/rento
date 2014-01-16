@@ -5,13 +5,14 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import com.hansson.rento.entities.Apartment;
 
-public class ApartmentInfoFromTable {
+public class ApartmentInfoFromTable extends ApartmentUtils {
 
 	public List<Apartment> handle(Document doc, String baseUrl, String landlord) {
 		List<Apartment> apartmentList = null;
@@ -33,7 +34,9 @@ public class ApartmentInfoFromTable {
 				if (cells.size() >= cols.getHightest()) {
 					Apartment apartment = new Apartment(landlord);
 					if(resolveColumnValues(apartment, cols, cells)) {
-						apartmentList.add(apartment);
+						String url = element.getElementsByTag("a").attr("href");
+						Document connect = connect(baseUrl + url);
+						apartmentList.add(new ApartmentInfoSecondPage().handle(doc, apartment));
 					}
 				}
 			}
@@ -80,38 +83,69 @@ public class ApartmentInfoFromTable {
 			apartment.setArea(cells.get(cols.getArea()).text());
 		} else if (cols.getAddress() > -1 && !cellIsAddress(cells.get(cols.getAddress()))) {
 			apartment.setAddress(cells.get(cols.getAddress()).text());
+		} else {
+			return false;
 		}
 		return true;
 	}
 
 	protected boolean checkIsValidCityOrArea(String text) {
+		if(text == null || text.equals("")) {
+			return false;
+		}
 		Pattern p = Pattern.compile("[\\d\\.,!?]+");
 		Matcher matcher = p.matcher(text);
-		return !matcher.find();
+		if(text.equals("")) {
+			return true;
+		} else {
+			return !matcher.find();
+		}
 	}
 
 	protected boolean checkIsValidRent(String text) {
+		if(text == null || text.equals("")) {
+			return false;
+		}
 		text = text.toLowerCase();
-		text = text.replaceAll("[\\dkrse\\., ]", "");
+		text = text.replaceAll("[-:\\dkrse\\., ]", "");
 		Pattern p = Pattern.compile("[\\D]+");
 		Matcher matcher = p.matcher(text);
-		return text.equals("") || !matcher.find();
+		if(text.equals("")) {
+			return true;
+		} else {
+			return !matcher.find();
+		}
 	}
 
 	protected boolean checkIsValidSize(String text) {
+		if(text == null || text.equals("")) {
+			return false;
+		}
 		text = text.toLowerCase();
 		text = text.replaceAll("[\\dkvm ]", "");
 		Pattern p = Pattern.compile("[\\D]+");
 		Matcher matcher = p.matcher(text);
-		return text.equals("") || !matcher.find();
+		if(text.equals("")) {
+			return true;
+		} else {
+			return !matcher.find();
+		}
+		
 	}
 
 	protected boolean checkIsValidRooms(String text) {
+		if(text == null || text.equals("")) {
+			return false;
+		}
 		text = text.toLowerCase();
 		text = text.replaceAll("[\\d,\\. rok]", "");
 		Pattern p = Pattern.compile("[\\D]+");
 		Matcher matcher = p.matcher(text);
-		return text.equals("") || !matcher.find();
+		if(text.equals("")) {
+			return true;
+		} else {
+			return !matcher.find();
+		}
 	}
 
 	private Columns resolveColumns(Elements cells, Columns cols) {

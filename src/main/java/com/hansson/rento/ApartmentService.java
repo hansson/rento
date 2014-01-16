@@ -28,6 +28,7 @@ import com.hansson.rento.apartments.multiple.HSBSydost;
 import com.hansson.rento.apartments.multiple.Heimstaden;
 import com.hansson.rento.apartments.multiple.Krebo;
 import com.hansson.rento.apartments.multiple.PBAFastigheter;
+import com.hansson.rento.apartments.multiple.SolvedalsForvaltning;
 import com.hansson.rento.apartments.multiple.SvenskaBostadsfonden;
 import com.hansson.rento.dao.ApartmentDAO;
 import com.hansson.rento.entities.Apartment;
@@ -49,6 +50,7 @@ public class ApartmentService {
 		// them in the scan loop
 		{
 			//Karlshamn
+			add(new SolvedalsForvaltning());
 //			add(new Karlshamnsbostader());
 			add(new KjellsonsSkogOchFastighetsForvaltning());
 			add(new StrandbergsFastigheter());
