@@ -33,10 +33,11 @@ public class ApartmentInfoFromTable extends ApartmentUtils {
 				Elements cells = element.getElementsByTag("td");
 				if (cells.size() >= cols.getHightest()) {
 					Apartment apartment = new Apartment(landlord);
-					if(resolveColumnValues(apartment, cols, cells)) {
+					if (resolveColumnValues(apartment, cols, cells)) {
 						String url = element.getElementsByTag("a").attr("href");
-						Document connect = connect(baseUrl + url);
-						if(connect != null) {
+						apartment.setUrl(baseUrl + url);
+						doc = connect(apartment.getUrl());
+						if (doc != null) {
 							apartmentList.add(new ApartmentInfoSecondPage().handle(doc, apartment));
 						}
 					}
@@ -49,6 +50,7 @@ public class ApartmentInfoFromTable extends ApartmentUtils {
 	}
 
 	private boolean resolveColumnValues(Apartment apartment, Columns cols, Elements cells) {
+		boolean somethingSet = false;
 		if (cols.getRooms() > -1 && !cellIsRooms(cells.get(cols.getRooms()))) {
 			if (!checkIsValidRooms(cells.get(cols.getRooms()).text())) {
 				return false;
@@ -57,7 +59,9 @@ public class ApartmentInfoFromTable extends ApartmentUtils {
 			Matcher matcher = p.matcher(cells.get(cols.getRooms()).text());
 			matcher.find();
 			apartment.setRooms(Double.valueOf(matcher.group().replaceAll(",", ".")));
-		} else if (cols.getSize() > -1 && !cellIsSize(cells.get(cols.getSize()))) {
+			somethingSet = true;
+		}
+		if (cols.getSize() > -1 && !cellIsSize(cells.get(cols.getSize()))) {
 			if (!checkIsValidSize(cells.get(cols.getSize()).text())) {
 				return false;
 			}
@@ -65,7 +69,9 @@ public class ApartmentInfoFromTable extends ApartmentUtils {
 			Matcher matcher = p.matcher(cells.get(cols.getSize()).text());
 			matcher.find();
 			apartment.setSize(Integer.valueOf(matcher.group()));
-		} else if (cols.getRent() > -1 && !cellIsRent(cells.get(cols.getRent()))) {
+			somethingSet = true;
+		}
+		if (cols.getRent() > -1 && !cellIsRent(cells.get(cols.getRent()))) {
 			if (!checkIsValidRent(cells.get(cols.getRent()).text())) {
 				return false;
 			}
@@ -73,31 +79,36 @@ public class ApartmentInfoFromTable extends ApartmentUtils {
 			Matcher matcher = p.matcher(cells.get(cols.getRent()).text());
 			matcher.find();
 			apartment.setRent(Integer.valueOf(matcher.group()));
-		} else if (cols.getCity() > -1 && !cellIsCity(cells.get(cols.getCity()))) {
+			somethingSet = true;
+		}
+		if (cols.getCity() > -1 && !cellIsCity(cells.get(cols.getCity()))) {
 			if (!checkIsValidCityOrArea(cells.get(cols.getCity()).text())) {
 				return false;
 			}
 			apartment.setCity(cells.get(cols.getCity()).text());
-		} else if (cols.getArea() > -1 && !cellIsArea(cells.get(cols.getArea()))) {
+			somethingSet = true;
+		}
+		if (cols.getArea() > -1 && !cellIsArea(cells.get(cols.getArea()))) {
 			if (!checkIsValidCityOrArea(cells.get(cols.getArea()).text())) {
 				return false;
 			}
 			apartment.setArea(cells.get(cols.getArea()).text());
-		} else if (cols.getAddress() > -1 && !cellIsAddress(cells.get(cols.getAddress()))) {
-			apartment.setAddress(cells.get(cols.getAddress()).text());
-		} else {
-			return false;
+			somethingSet = true;
 		}
-		return true;
+		if (cols.getAddress() > -1 && !cellIsAddress(cells.get(cols.getAddress()))) {
+			apartment.setAddress(cells.get(cols.getAddress()).text());
+			somethingSet = true;
+		} 
+		return somethingSet;
 	}
 
 	protected boolean checkIsValidCityOrArea(String text) {
-		if(text == null || text.equals("")) {
+		if (text == null || text.equals("")) {
 			return false;
 		}
 		Pattern p = Pattern.compile("[\\d\\.,!?]+");
 		Matcher matcher = p.matcher(text);
-		if(text.equals("")) {
+		if (text.equals("")) {
 			return true;
 		} else {
 			return !matcher.find();
@@ -105,14 +116,14 @@ public class ApartmentInfoFromTable extends ApartmentUtils {
 	}
 
 	protected boolean checkIsValidRent(String text) {
-		if(text == null || text.equals("")) {
+		if (text == null || text.equals("")) {
 			return false;
 		}
 		text = text.toLowerCase();
 		text = text.replaceAll("[-:\\dkrse\\., ]", "");
 		Pattern p = Pattern.compile("[\\D]+");
 		Matcher matcher = p.matcher(text);
-		if(text.equals("")) {
+		if (text.equals("")) {
 			return true;
 		} else {
 			return !matcher.find();
@@ -120,30 +131,30 @@ public class ApartmentInfoFromTable extends ApartmentUtils {
 	}
 
 	protected boolean checkIsValidSize(String text) {
-		if(text == null || text.equals("")) {
+		if (text == null || text.equals("")) {
 			return false;
 		}
 		text = text.toLowerCase();
 		text = text.replaceAll("[\\dkvm ]", "");
 		Pattern p = Pattern.compile("[\\D]+");
 		Matcher matcher = p.matcher(text);
-		if(text.equals("")) {
+		if (text.equals("")) {
 			return true;
 		} else {
 			return !matcher.find();
 		}
-		
+
 	}
 
 	protected boolean checkIsValidRooms(String text) {
-		if(text == null || text.equals("")) {
+		if (text == null || text.equals("")) {
 			return false;
 		}
 		text = text.toLowerCase();
 		text = text.replaceAll("[\\d,\\. rok]", "");
 		Pattern p = Pattern.compile("[\\D]+");
 		Matcher matcher = p.matcher(text);
-		if(text.equals("")) {
+		if (text.equals("")) {
 			return true;
 		} else {
 			return !matcher.find();

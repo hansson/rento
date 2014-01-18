@@ -67,23 +67,18 @@ public abstract class ApartmentUtils {
 		return null;
 	}
 
-	protected List<Apartment> getApartmentsMultiPage(Document doc, String baseUrl, String landlord) {
+	protected List<Apartment> getApartmentsMultiPage(Document doc, String baseUrl, String landlord, Method method) {
 		List<Apartment> apartmentList = null;
-		int methodCounter = 0;
-		while (apartmentList == null) {
-			switch (methodCounter) {
-			case 0:
-				if (doc.getElementsByTag("tr").size() > 0) {
-					apartmentList = new ApartmentInfoFromTable().handle(doc, baseUrl, landlord);
-				}
-				break;
-			default:
-				apartmentList = new LinkedList<Apartment>();
-				break;
+		switch (method) {
+		case TABULAR:
+			if (doc.getElementsByTag("tr").size() > 0) {
+				apartmentList = new ApartmentInfoFromTable().handle(doc, baseUrl, landlord);
 			}
-			methodCounter++;
+			break;
+		default:
+			apartmentList = new LinkedList<Apartment>();
+			break;
 		}
-
 		return apartmentList;
 	}
 }

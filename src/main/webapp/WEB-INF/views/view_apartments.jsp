@@ -4,38 +4,48 @@
 <html lang="sv">
 <head>
 
-<meta charset="utf-8">
-<meta lang="sv">
-<meta http-equiv="content-language" content="sv" />
-<meta name="language" content="sv" />
-
-<!-- Kill the cache! -->
-<meta http-equiv="cache-control" content="max-age=0" />
-<meta http-equiv="cache-control" content="no-cache" />
-<meta http-equiv="expires" content="0" />
-<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
-<meta http-equiv="pragma" content="no-cache" />
-
-<title>Rento.nu - L&auml;ttare hyresl&auml;genheter</title>
-
-<!-- Loading Bootstrap -->
-<link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">
-<link href="resources/bootstrap/css/bootstrap-responsive.css"
-	rel="stylesheet">
-
-<!-- Loading Flat UI -->
-<link href="resources/css/flat-ui.css" rel="stylesheet">
-
-<!-- Rento specific css -->
-<link href="resources/css/rento.css" rel="stylesheet">
-
-<link rel="shortcut icon" href="resources/resources/images/favicon.ico">
+	<meta charset="utf-8">
+	<meta lang="sv">
+	<meta http-equiv="content-language" content="sv" />
+	<meta name="language" content="sv" />
+	
+	<!-- Kill the cache! -->
+	<meta http-equiv="cache-control" content="max-age=0" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+	<meta http-equiv="pragma" content="no-cache" />
+	
+	<title>Rento.nu - L&auml;ttare hyresl&auml;genheter</title>
+	
+	<!-- Loading Bootstrap -->
+	<link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">
+	<link href="resources/bootstrap/css/bootstrap-responsive.css"
+		rel="stylesheet">
+	
+	<!-- Loading Flat UI -->
+	<link href="resources/css/flat-ui.css" rel="stylesheet">
+	
+	<!-- Rento specific css -->
+	<link href="resources/css/rento.css" rel="stylesheet">
+	
+	<link rel="shortcut icon" href="resources/resources/images/favicon.ico">
 
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements. All other JS at the end of file. -->
 <!--[if lt IE 9]>
       <script src="js/html5shiv.js"></script>
     <![endif]-->
+    
+   	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	
+	  ga('create', 'UA-47281562-1', 'rento.nu');
+	  ga('send', 'pageview');
+	</script>
 </head>
 
 <body>
@@ -247,7 +257,7 @@
 					});
 		});
 	</script>
-
+	
 </body>
 </html>
 

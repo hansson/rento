@@ -20,16 +20,16 @@ public class ApartmentInfoSecondPage {
 
 	}
 
-	private String getRentFromDescription(String description) {
+	protected String getRentFromDescription(String description) {
 		description = description.toLowerCase();
-		Pattern p = Pattern.compile("[\\d\\., ]+(:-|kr|) */{0,1}(mån|månad){0,1}");
+		Pattern p = Pattern.compile("[\\d ]+:-/mån");
 		Matcher matcher = p.matcher(description);
 		if(matcher.find()) {
 			String rent = matcher.group();
 			rent = rent.replaceAll("\\D", "");
 			return rent;
 		}
-		return null;
+		return "0";
 	}
 
 }
