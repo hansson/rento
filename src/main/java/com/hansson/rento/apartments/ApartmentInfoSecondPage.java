@@ -22,10 +22,12 @@ public class ApartmentInfoSecondPage {
 
 	private String getRentFromDescription(String description) {
 		description = description.toLowerCase();
-		Pattern p = Pattern.compile("[\\d\\., ]+(:-/mån|kr|)");
+		Pattern p = Pattern.compile("[\\d\\., ]+(:-|kr|) */{0,1}(mån|månad){0,1}");
 		Matcher matcher = p.matcher(description);
 		if(matcher.find()) {
 			String rent = matcher.group();
+			rent = rent.replaceAll("\\D", "");
+			return rent;
 		}
 		return null;
 	}

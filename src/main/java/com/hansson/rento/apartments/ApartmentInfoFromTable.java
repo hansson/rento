@@ -36,7 +36,9 @@ public class ApartmentInfoFromTable extends ApartmentUtils {
 					if(resolveColumnValues(apartment, cols, cells)) {
 						String url = element.getElementsByTag("a").attr("href");
 						Document connect = connect(baseUrl + url);
-						apartmentList.add(new ApartmentInfoSecondPage().handle(doc, apartment));
+						if(connect != null) {
+							apartmentList.add(new ApartmentInfoSecondPage().handle(doc, apartment));
+						}
 					}
 				}
 			}
