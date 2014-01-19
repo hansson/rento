@@ -153,44 +153,82 @@ public class Apartment {
 	}
 
 	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((mAddress == null) ? 0 : mAddress.hashCode());
+		result = prime * result + ((mArea == null) ? 0 : mArea.hashCode());
+		result = prime * result + ((mCity == null) ? 0 : mCity.hashCode());
+		result = prime * result + ((mIdentifier == null) ? 0 : mIdentifier.hashCode());
+		result = prime * result + ((mLandlord == null) ? 0 : mLandlord.hashCode());
+		result = prime * result + ((mRent == null) ? 0 : mRent.hashCode());
+		result = prime * result + ((mRooms == null) ? 0 : mRooms.hashCode());
+		result = prime * result + ((mSize == null) ? 0 : mSize.hashCode());
+		result = prime * result + ((mStudent == null) ? 0 : mStudent.hashCode());
+		result = prime * result + ((mUrl == null) ? 0 : mUrl.hashCode());
+		return result;
+	}
+
+	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Apartment) {
-			Apartment that = (Apartment) obj;
-			int counter = 0;
-			if ((this.mAddress == null && that.mAddress == null) || (this.mAddress != null && this.mAddress.equals(that.mAddress))) {
-				counter++;
-			}
-			if ((this.mArea == null && that.mArea == null) || (this.mArea != null && this.mArea.equals(that.mArea))) {
-				counter++;
-			}
-			if ((this.mCity == null && that.mCity == null) || (this.mCity != null && this.mCity.equals(that.mCity))) {
-				counter++;
-			}
-			if ((this.mIdentifier == null && that.mIdentifier == null) || (this.mIdentifier != null && this.mIdentifier.equals(that.mIdentifier))) {
-				counter++;
-			}
-			if ((this.mLandlord == null && that.mLandlord == null) || (this.mLandlord != null && this.mLandlord.equals(that.mLandlord))) {
-				counter++;
-			}
-			if ((this.mRent == null && that.mRent == null) || (this.mRent != null && this.mRent.equals(that.mRent))) {
-				counter++;
-			}
-			if ((this.mRooms == null && that.mRooms == null) || (this.mRooms != null && this.mRooms.equals(that.mRooms))) {
-				counter++;
-			}
-			if ((this.mSize == null && that.mSize == null) || (this.mSize != null && this.mSize.equals(that.mSize))) {
-				counter++;
-			}
-			if ((this.mUrl == null && that.mUrl == null) || (this.mUrl != null && this.mUrl.equals(that.mUrl))) {
-				counter++;
-			}
-			if ((this.mStudent == null && that.mStudent == null) || (this.mStudent != null && this.mStudent.equals(that.mStudent))) {
-				counter++;
-			}
-			return counter == 10;
-		} else {
+		if (this == obj)
+			return true;
+		if (obj == null)
 			return false;
-		}
+		if (getClass() != obj.getClass())
+			return false;
+		Apartment other = (Apartment) obj;
+		if (mAddress == null) {
+			if (other.mAddress != null)
+				return false;
+		} else if (!mAddress.equals(other.mAddress))
+			return false;
+		if (mArea == null) {
+			if (other.mArea != null)
+				return false;
+		} else if (!mArea.equals(other.mArea))
+			return false;
+		if (mCity == null) {
+			if (other.mCity != null)
+				return false;
+		} else if (!mCity.equals(other.mCity))
+			return false;
+		if (mIdentifier == null) {
+			if (other.mIdentifier != null)
+				return false;
+		} else if (!mIdentifier.equals(other.mIdentifier))
+			return false;
+		if (mLandlord == null) {
+			if (other.mLandlord != null)
+				return false;
+		} else if (!mLandlord.equals(other.mLandlord))
+			return false;
+		if (mRent == null) {
+			if (other.mRent != null)
+				return false;
+		} else if (!mRent.equals(other.mRent))
+			return false;
+		if (mRooms == null) {
+			if (other.mRooms != null)
+				return false;
+		} else if (!mRooms.equals(other.mRooms))
+			return false;
+		if (mSize == null) {
+			if (other.mSize != null)
+				return false;
+		} else if (!mSize.equals(other.mSize))
+			return false;
+		if (mStudent == null) {
+			if (other.mStudent != null)
+				return false;
+		} else if (!mStudent.equals(other.mStudent))
+			return false;
+		if (mUrl == null) {
+			if (other.mUrl != null)
+				return false;
+		} else if (!mUrl.equals(other.mUrl))
+			return false;
+		return true;
 	}
 
 }

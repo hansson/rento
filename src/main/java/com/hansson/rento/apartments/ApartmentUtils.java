@@ -1,9 +1,11 @@
 package com.hansson.rento.apartments;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -70,15 +72,31 @@ public abstract class ApartmentUtils {
 	protected List<Apartment> getApartmentsMultiPage(Document doc, String baseUrl, String landlord, Method method) {
 		List<Apartment> apartmentList = null;
 		switch (method) {
-		case TABULAR:
+		case TABLE:
 			if (doc.getElementsByTag("tr").size() > 0) {
 				apartmentList = new ApartmentInfoFromTable().handle(doc, baseUrl, landlord);
 			}
 			break;
+		case BLOCKET:
+			apartmentList = new ApartmentInfoFromBlocket().handle(doc, landlord);
 		default:
 			apartmentList = new LinkedList<Apartment>();
 			break;
 		}
 		return apartmentList;
+	}
+
+	protected List<Apartment> getApartmentsSinglePage(Document doc, String baseUrl, String landlord, Method method) {
+		List<Apartment> apartmentList = null;
+		switch (method) {
+		case TABLE_SINGLE_COLUMN:
+			if (doc.getElementsByTag("tr").size() > 0) {
+				apartmentList = new LinkedList<Apartment>(new ApartmentInfoFromSingleColumnTable().handle(doc, baseUrl, landlord));
+			}
+			break;
+		default:
+			apartmentList = new LinkedList<Apartment>();
+		}
+		return new LinkedList<Apartment>(apartmentList);
 	}
 }

@@ -10,10 +10,12 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import com.hansson.rento.apartments.ApartmentsInterface;
+import com.hansson.rento.apartments.blekinge.Hermanssonbolagen;
 import com.hansson.rento.apartments.blekinge.TrossoWamoFastigheter;
 import com.hansson.rento.apartments.blekinge.karlshamn.Karlshamnsbostader;
 import com.hansson.rento.apartments.blekinge.karlshamn.KjellsonsSkogOchFastighetsForvaltning;
 import com.hansson.rento.apartments.blekinge.karlshamn.StrandbergsFastigheter;
+import com.hansson.rento.apartments.blekinge.karlshamn.ThernstromsForvaltning;
 import com.hansson.rento.apartments.blekinge.karlskrona.BengtAkessonFastigheter;
 import com.hansson.rento.apartments.blekinge.karlskrona.HansAkessonFastigheter;
 import com.hansson.rento.apartments.blekinge.karlskrona.KSFastigheter;
@@ -50,10 +52,12 @@ public class ApartmentService {
 		// them in the scan loop
 		{
 			//Karlshamn
-			add(new SolvedalsForvaltning());
+			add(new Hermanssonbolagen());
 //			add(new Karlshamnsbostader());
 			add(new KjellsonsSkogOchFastighetsForvaltning());
+			add(new SolvedalsForvaltning());
 			add(new StrandbergsFastigheter());
+			add(new ThernstromsForvaltning());
 			//Karlskrona
 			add(new BengtAkessonFastigheter());
 			add(new HansAkessonFastigheter());
