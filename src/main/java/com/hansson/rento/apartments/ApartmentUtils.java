@@ -73,9 +73,7 @@ public abstract class ApartmentUtils {
 		List<Apartment> apartmentList = null;
 		switch (method) {
 		case TABLE:
-			if (doc.getElementsByTag("tr").size() > 0) {
-				apartmentList = new ApartmentInfoFromTable().handle(doc, baseUrl, landlord);
-			}
+			apartmentList = new ApartmentInfoFromTable().handle(doc, baseUrl, landlord);
 			break;
 		case BLOCKET:
 			apartmentList = new ApartmentInfoFromBlocket().handle(doc, landlord);
