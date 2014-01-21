@@ -73,7 +73,7 @@ public abstract class ApartmentUtils {
 		List<Apartment> apartmentList = null;
 		switch (method) {
 		case TABLE:
-			apartmentList = new ApartmentInfoFromTable().handle(doc, baseUrl, landlord);
+			apartmentList = new ApartmentInfoFromTable().handle(doc, baseUrl, landlord, false);
 			break;
 		case BLOCKET:
 			apartmentList = new ApartmentInfoFromBlocket().handle(doc, landlord);
@@ -87,14 +87,15 @@ public abstract class ApartmentUtils {
 	protected List<Apartment> getApartmentsSinglePage(Document doc, String baseUrl, String landlord, Method method) {
 		List<Apartment> apartmentList = null;
 		switch (method) {
+		case TABLE:
+			apartmentList = new ApartmentInfoFromTable().handle(doc, baseUrl, landlord, true);
+			break;
 		case TABLE_SINGLE_COLUMN:
-			if (doc.getElementsByTag("tr").size() > 0) {
-				apartmentList = new LinkedList<Apartment>(new ApartmentInfoFromSingleColumnTable().handle(doc, baseUrl, landlord));
-			}
+			apartmentList = new LinkedList<Apartment>(new ApartmentInfoFromSingleColumnTable().handle(doc, baseUrl, landlord));
 			break;
 		default:
 			apartmentList = new LinkedList<Apartment>();
 		}
-		return new LinkedList<Apartment>(apartmentList);
+		return apartmentList;
 	}
 }

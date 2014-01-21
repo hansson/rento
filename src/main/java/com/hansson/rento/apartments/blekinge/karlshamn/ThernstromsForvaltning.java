@@ -17,7 +17,6 @@ public class ThernstromsForvaltning extends ApartmentUtils implements Apartments
 	@Override
 	public List<Apartment> getAvailableApartments() {
 		List<Apartment> apartmentList = null;
-		// Get html for first page
 		Document doc = connect(BASE_URL);
 		if (doc != null) {
 			apartmentList = getApartmentsSinglePage(doc, BASE_URL, LANDLORD, Method.TABLE_SINGLE_COLUMN);
