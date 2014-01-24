@@ -8,25 +8,7 @@ more cities in the future!
 * Fix template file set_envs.sh.template
 
 
-## Implemented landlords
-* Trossö & Wämö Fastigheter
-* Karlskronahem
-* Bengt åkessons fastigheter
-* Heimstaden/Gallionen
-* CA-Fastigheter
-* KS Fastigheter
-* Magistratus Fastigheter
-* PBA Karlskrona AB
-* Svenska Bostadsfonden
-* Utklippan Fastigheter
-* Hans Åkessons Fastigheter
-* Lindeberg Fastigheter 
-
-## In progress
-
-## Not started
-* Faxe Fastigheter - No apartment listing available
-* Hyreshuset AB - No apartment listing available
-* Konradssons Fastigheter - No apartment listing available
-* Stenhusen AB - No apartment listing available
-* Vibohus Fastigheter AB
+## Cities with all landlords done or in issues
+* Karlshamn
+* Karlskrona
+* Växjö

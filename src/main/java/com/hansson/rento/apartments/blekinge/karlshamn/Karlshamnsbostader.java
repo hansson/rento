@@ -1,7 +1,9 @@
 package com.hansson.rento.apartments.blekinge.karlshamn;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -17,12 +19,14 @@ public class Karlshamnsbostader extends ApartmentUtils implements ApartmentsInte
 
 	private static final String LANDLORD = "Karlshamnsbost&auml;der";
 	private static final String BASE_URL = "http://sokbostad.karlshamnsbostader.se/";
+	private final static String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36";
 	private Logger mLog = LoggerFactory.getLogger("rento");
 
 	@Override
 	public List<Apartment> getAvailableApartments() {
 		List<Apartment> apartmentList = new LinkedList<Apartment>();
-		Document doc = connect(BASE_URL + "SearchResult1.aspx");
+		Document doc = getSearchPage();
+		
 		if (doc != null) {
 			Elements apartments = doc.getElementsByTag("tr");
 			for (Element element : apartments) {
@@ -50,6 +54,21 @@ public class Karlshamnsbostader extends ApartmentUtils implements ApartmentsInte
 			}
 		}
 		return apartmentList;
+	}
+	private Document getSearchPage() {
+		Document doc = connect(BASE_URL + "AppSearch.aspx");
+		Elements viewState = doc.getElementsByAttributeValue("name", "__VIEWSTATE");
+		Map<String, String> postData = new HashMap<String, String>();
+		postData.put("__EVENTTARGET", "");
+		postData.put("__EVENTARGUMENT", "");
+		postData.put("__VIEWSTATE", viewState.attr("value"));
+		postData.put("SearchMenu1:Dropdownlist7", "0");
+		postData.put("SearchMenu1:Dropdownlist2", "15000");
+		postData.put("SearchMenu1:Dropdownlist3", "1");
+		postData.put("SearchMenu1:Dropdownlist4", "1");
+		postData.put("SearchMenu1:Dropdownlist5", "1");
+		postData.put("SearchMenu1:Dropdownlist6", "1");
+		return connect(BASE_URL + "AppSearch.aspx", postData, USER_AGENT);
 	}
 
 	@Override

@@ -52,10 +52,10 @@ public class ApartmentService {
 		// Add new implementations of the ApartmentsInterface here to include
 		// them in the scan loop
 		{
-			add(new BroBizForvaltningsAB());
+			add(new Karlshamnsbostader());
+			
 			//Karlshamn
 			add(new Hermanssonbolagen());
-//			add(new Karlshamnsbostader());
 			add(new KjellsonsSkogOchFastighetsForvaltning());
 			add(new SolvedalsForvaltning());
 			add(new StrandbergsFastigheter());
@@ -72,6 +72,7 @@ public class ApartmentService {
 			add(new TrossoWamoFastigheter());
 			add(new Utklippan());
 			//Multiple
+			add(new BroBizForvaltningsAB());
 			add(new CAFastigheter());
 			add(new Heimstaden());
 			add(new HSBSydost());
