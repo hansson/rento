@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.slf4j.Logger;
@@ -50,6 +51,35 @@ public abstract class ApartmentUtils {
 		while (!giveUp) {
 			try {
 				return Jsoup.connect(url).data(postData).userAgent(userAgent).header("Content-Type", "application/x-www-form-urlencoded; charset=utf-8").post();
+			} catch (IOException e) {
+				if (backoff < MAX_BACKOFF) {
+					backoff *= 2;
+					mLog.info("Failed to connect to: " + url);
+					mLog.info("Doing backoff, " + backoff);
+					try {
+						Thread.sleep(backoff * 1000);
+					} catch (InterruptedException e1) {
+						// Should not occur
+					}
+				} else {
+					giveUp = true;
+					mLog.error(url + ", is unreachable!");
+				}
+			}
+		}
+		return null;
+	}
+	
+	protected Document connect(String url, Map<String, String> postData, Map<String,String> headers, boolean ignoreContentType) {
+		boolean giveUp = false;
+		int backoff = 1;
+		while (!giveUp) {
+			try {
+				Connection connection = Jsoup.connect(url).data(postData).ignoreContentType(ignoreContentType);
+				for(String header : headers.keySet()) {
+					connection = connection.header(header, headers.get(header));
+				}
+				return connection.post();
 			} catch (IOException e) {
 				if (backoff < MAX_BACKOFF) {
 					backoff *= 2;
