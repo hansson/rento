@@ -31,3 +31,7 @@ $('.sortable-header').on('click', function(event) {
 $('#student-apartment').on('change', function(event) {
 	updateFilters();
 });
+
+$('#non-student-apartment').on('change', function(event) {
+	updateFilters();
+});

@@ -86,15 +86,23 @@
 					<div id="size-slider" class="ui-slider"></div>
 
 					<input 
+						id="non-student-apartment" 
+						type="checkbox" 
+						data-toggle="checkbox"
+						name="non-student-apartment" 
+						value="non-student-apartment"
+						checked="checked"
+						style="float: left; margin-right: 15px"/>
+					<label for="non-student-apartment">Inkludera icke studentl&auml;genheter</label>
+					
+					<input 
 						id="student-apartment" 
 						type="checkbox" 
 						data-toggle="checkbox"
 						name="student-apartment" 
 						value="student-apartment"
 						style="float: left; margin-right: 15px"/>
-						
-					<p style="float: left;">Inkludera Studentl&auml;genheter</p>
-
+						<label for="student-apartment">Inkludera studentl&auml;genheter</label>
 				</div>
 			</div>
 		</div>

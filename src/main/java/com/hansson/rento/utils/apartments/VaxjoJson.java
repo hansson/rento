@@ -1,13 +1,15 @@
 package com.hansson.rento.utils.apartments;
 
-public class VaxjoJson {
-	private VaxjoApartment Result;
+import java.util.List;
 
-	public VaxjoApartment getResult() {
+public class VaxjoJson {
+	private List<VaxjoApartment> Result;
+
+	public List<VaxjoApartment> getResult() {
 		return Result;
 	}
 
-	public void setResult(VaxjoApartment result) {
+	public void setResult(List<VaxjoApartment> result) {
 		Result = result;
 	}
 }

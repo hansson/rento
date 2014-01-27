@@ -127,6 +127,10 @@ function updateFilters() {
 			continue;
 		}
 		
+		if(!a_orig[i].mStudent && !$("#non-student-apartment").is(":checked") ) {
+			continue;
+		}
+		
 		a.push(a_orig[i]);
 	}
 	sortApartments($.cookie('sorted'),$.cookie('sorted-asc') == "true");

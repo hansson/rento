@@ -9,10 +9,12 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import com.google.gson.Gson;
 import com.hansson.rento.apartments.ApartmentUtils;
 import com.hansson.rento.apartments.ApartmentsInterface;
 import com.hansson.rento.entities.Apartment;
 import com.hansson.rento.utils.apartments.VaxjoApartment;
+import com.hansson.rento.utils.apartments.VaxjoJson;
 
 public class BoplatsVaxjoStudent extends ApartmentUtils implements ApartmentsInterface {
 	
@@ -32,10 +34,17 @@ public class BoplatsVaxjoStudent extends ApartmentUtils implements ApartmentsInt
 		postData.put("__WWEVENTCALLBACK", "");
 		Document doc = connect(BASE_URL, postData, headers, true);
 		List<Apartment> apartmentList = new LinkedList<Apartment>();
+		List<VaxjoApartment>  results = new Gson().fromJson(doc.text(), VaxjoJson.class).getResult();
 		for(VaxjoApartment result : results) {
 			Apartment apartment = new Apartment(LANDLORD);
 			apartment.setStudent(true);
 			apartment.setUrl(String.format(URL_TEMPLATE, result.getObjectNo()));
+			apartment.setAddress(result.getStreet());
+			apartment.setArea(result.getSeekAreaDescription());
+			apartment.setCity(result.getPlaceName());
+			apartment.setRent(result.getRentPerMonthSort());
+			apartment.setRooms(Double.valueOf(result.getObjectSubDescription().replaceAll("\\D", "")));
+			apartment.setSize((int)result.getObjectAreaSort());
 			apartmentList.add(apartment);
 		}
 		return apartmentList;
@@ -43,7 +52,7 @@ public class BoplatsVaxjoStudent extends ApartmentUtils implements ApartmentsInt
 
 	@Override
 	public String getLandlord() {
-		return null;
+		return LANDLORD;
 	}
 
 }
