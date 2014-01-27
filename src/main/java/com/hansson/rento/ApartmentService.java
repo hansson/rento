@@ -33,6 +33,7 @@ import com.hansson.rento.apartments.multiple.PBAFastigheter;
 import com.hansson.rento.apartments.multiple.SolvedalsForvaltning;
 import com.hansson.rento.apartments.multiple.SvenskaBostadsfonden;
 import com.hansson.rento.apartments.skane.BroBizForvaltningsAB;
+import com.hansson.rento.apartments.smaland.vaxjo.BoplatsVaxjo;
 import com.hansson.rento.apartments.smaland.vaxjo.BoplatsVaxjoStudent;
 import com.hansson.rento.dao.ApartmentDAO;
 import com.hansson.rento.entities.Apartment;
@@ -54,6 +55,7 @@ public class ApartmentService {
 		// them in the scan loop
 		{
 			//Växjö
+			add(new BoplatsVaxjo());
 			add(new BoplatsVaxjoStudent());
 			
 			//Karlshamn

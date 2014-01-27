@@ -33,7 +33,7 @@ public class KSFastigheter extends ApartmentUtils implements ApartmentsInterface
 				try {
 					Apartment apartment = new Apartment(LANDLORD);
 					Elements informationCells = element.getElementsByTag("td");
-					if (!informationCells.get(0).text().equals("Inget ledigt just nu.")) {
+					if (!informationCells.get(0).text().contains("Inget ledigt just nu")) {
 						apartment.setAddress(informationCells.get(0).text());
 						apartment.setRooms(Double.valueOf(informationCells.get(1).text()));
 						apartment.setSize(Integer.valueOf(informationCells.get(2).text()));

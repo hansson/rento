@@ -72,8 +72,13 @@ public class KarlskronahemStudent extends ApartmentUtils implements ApartmentsIn
 					Map<String, String> postData = new HashMap<String, String>();
 					postData.put("__EVENTTARGET", eventTarget);
 					postData.put("__EVENTARGUMENT", "");
-					postData.put("__VIEWSTATE", viewState.get(0).attr("value"));
-					postData.put("__EVENTVALIDATION", eventValidation.get(0).attr("value"));
+					if (viewState.size() == 0) {
+						postData.put("__VIEWSTATE", doc.text().split("\\|")[19]);
+						postData.put("__EVENTVALIDATION", doc.text().split("\\|")[23]);
+					} else {
+						postData.put("__VIEWSTATE", viewState.get(0).attr("value"));
+						postData.put("__EVENTVALIDATION", eventValidation.get(0).attr("value"));
+					}
 					postData.put("ctl00$ctl01$DefaultSiteContentPlaceHolder1$Col1$hdnRentMin", "0");
 					postData.put("ctl00$ctl01$DefaultSiteContentPlaceHolder1$Col1$hdnRentMax", "15000");
 					postData.put("ctl00$ctl01$DefaultSiteContentPlaceHolder1$Col1$hdnRoomMin", "1");
