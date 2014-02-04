@@ -22,7 +22,21 @@ function reloadApartments() {
 			
 			var d = new Date(a[key].mAdded);
 			
-			r[++j] = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate() ;
+			var date;
+			if(d.getDate() < 10) {
+				date = "0" + d.getDate();
+			} else {
+				date = d.getDate();
+			}
+			
+			var month;
+			if((d.getMonth() + 1) < 10) {
+				month = "0" + (d.getMonth() + 1);
+			} else {
+				month = (d.getMonth() + 1);
+			}
+			
+			r[++j] = d.getFullYear() + "-" + month + "-" + date;
 			r[++j] = '</td></tr>';
 			
 		}
