@@ -39,6 +39,7 @@ public class HSBSydost extends ApartmentUtils implements ApartmentsInterface {
 				for (Element element : apartments) {
 					try {
 						Apartment apartment = new Apartment(LANDLORD);
+						apartment.setUrl(BASE_URL + element.getElementsByTag("a").attr("href")); 
 						apartment.setAddress(element.getElementsByTag("h2").text());
 						apartment.setCity(city.getName());
 						apartment.setIdentifier(element.getElementsByTag("a").attr("href").split("/")[3]);
