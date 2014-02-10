@@ -50,8 +50,8 @@ public class LindebergFastigheter extends ApartmentUtils implements ApartmentsIn
 						String description = doc.getElementsByClass("description").get(0).text();
 						p = Pattern.compile("[\\d\\.,]+ kvm");
 						matcher = p.matcher(description);
-						matcher.find();
-						apartment.setSize(Integer.valueOf(matcher.group().split(" ")[0]));
+						String size = matcher.find() ? matcher.group().split(" ")[0] : "0";
+						apartment.setSize(Integer.valueOf(size));
 						apartment.setUrl(BASE_URL + link);
 						apartmentList.add(apartment);
 					}

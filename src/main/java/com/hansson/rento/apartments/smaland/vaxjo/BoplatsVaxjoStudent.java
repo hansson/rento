@@ -43,7 +43,8 @@ public class BoplatsVaxjoStudent extends ApartmentUtils implements ApartmentsInt
 			apartment.setArea(result.getSeekAreaDescription());
 			apartment.setCity(result.getPlaceName());
 			apartment.setRent(result.getRentPerMonthSort());
-			apartment.setRooms(Double.valueOf(result.getObjectSubDescription().replaceAll("\\D", "")));
+			String rooms = result.getObjectSubDescription().replaceAll("\\D", "");
+			apartment.setRooms(Double.valueOf(!rooms.trim().equals("") ? rooms : "0"));
 			apartment.setSize((int)result.getObjectAreaSort());
 			apartmentList.add(apartment);
 		}

@@ -54,8 +54,8 @@ public class KjellsonsSkogOchFastighetsForvaltning extends ApartmentUtils implem
 						
 						p = Pattern.compile("\\d+ kr/m");
 						matcher = p.matcher(element.getElementsByTag("td").get(1).text());
-						matcher.find();
-						apartment.setRent(Integer.valueOf(matcher.group().replaceAll("\\D", "")));
+						String rent = matcher.find() ? matcher.group().replaceAll("\\D", "") : "0";
+						apartment.setRent(Integer.valueOf(rent));
 						
 						p = Pattern.compile("\\d+ kvm");
 						matcher = p.matcher(element.getElementsByTag("td").get(1).text());
