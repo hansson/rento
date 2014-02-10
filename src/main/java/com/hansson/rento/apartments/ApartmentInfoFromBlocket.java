@@ -13,7 +13,7 @@ public class ApartmentInfoFromBlocket extends ApartmentUtils {
 
 	public List<Apartment> handle(Document doc, String landlord) {
 		List<Apartment> apartmentList = new LinkedList<Apartment>();
-		Elements elements = doc.getElementsByClass("item_row");
+		Elements elements = doc.getElementById("item_list").children();
 		for(Element element : elements) {
 			Apartment apartment = new Apartment(landlord);
 			apartment.setUrl(element.getElementsByTag("a").attr("href"));

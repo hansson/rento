@@ -1,4 +1,4 @@
-package com.hansson.rento.apartments.blekinge;
+package com.hansson.rento;
 
 import java.util.List;
 
@@ -9,10 +9,10 @@ import com.hansson.rento.apartments.ApartmentsInterface;
 import com.hansson.rento.apartments.Method;
 import com.hansson.rento.entities.Apartment;
 
-public class Hermanssonbolagen extends ApartmentUtils implements ApartmentsInterface {
+public class KonradssonsFastigheter extends ApartmentUtils implements ApartmentsInterface {
 
-	private final static String LANDLORD = "JN von Bergen &amp; Son";
-	private final static String BASE_URL = "http://www.jnvonbergen.se/von_Bergen300Sida6.htm";
+	private final static String LANDLORD = "Konradssons Fastigheter";
+	private final static String BASE_URL = "http://www.blocket.se/peter-konradssons-fastigheter";
 	
 	@Override
 	public List<Apartment> getAvailableApartments() {
@@ -29,4 +29,5 @@ public class Hermanssonbolagen extends ApartmentUtils implements ApartmentsInter
 	public String getLandlord() {
 		return LANDLORD;
 	}
+
 }

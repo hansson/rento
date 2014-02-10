@@ -61,6 +61,7 @@ public class ApartmentService {
 			//Karlshamn
 //			add(new Karlshamnsbostader());
 			add(new Hermanssonbolagen());
+//			add(new JnVonBergen());
 			add(new KjellsonsSkogOchFastighetsForvaltning());
 			add(new SolvedalsForvaltning());
 			add(new StrandbergsFastigheter());
@@ -70,6 +71,7 @@ public class ApartmentService {
 			add(new HansAkessonFastigheter());
 			add(new Karlskronahem());
 			add(new KarlskronahemStudent());
+			add(new KonradssonsFastigheter());
 			add(new KSFastigheter());
 			add(new LindebergFastigheter());
 			add(new MagistratusFastigheter());
