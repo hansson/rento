@@ -108,7 +108,6 @@ public class Akelius extends ApartmentUtils implements ApartmentsInterface {
 			apartment.setStudent(false);
 			apartment.setUrl(BASE_URL + city);
 			apartment.setAddress(result.getStreet());
-			apartment.setArea(result.getSeekAreaDescription());
 			apartment.setCity(result.getPlaceName());
 			apartment.setRent(result.getRentPerMonthSort());
 			String rooms = result.getObjectSubDescription().replaceAll("\\D", "");
