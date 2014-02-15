@@ -25,6 +25,7 @@ import com.hansson.rento.apartments.blekinge.karlskrona.LindebergFastigheter;
 import com.hansson.rento.apartments.blekinge.karlskrona.MagistratusFastigheter;
 import com.hansson.rento.apartments.blekinge.karlskrona.PBAStudent;
 import com.hansson.rento.apartments.blekinge.karlskrona.Utklippan;
+import com.hansson.rento.apartments.multiple.Akelius;
 import com.hansson.rento.apartments.multiple.CAFastigheter;
 import com.hansson.rento.apartments.multiple.HSBSydost;
 import com.hansson.rento.apartments.multiple.Heimstaden;
@@ -54,6 +55,7 @@ public class ApartmentService {
 		// Add new implementations of the ApartmentsInterface here to include
 		// them in the scan loop
 		{
+			add(new Akelius());
 			//Växjö
 			add(new BoplatsVaxjo());
 			add(new BoplatsVaxjoStudent());

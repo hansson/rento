@@ -1,6 +1,6 @@
 package com.hansson.rento.utils.apartments;
 
-public class VaxjoApartment {
+public class BaseJsonApartment {
 	private String Street;
 	private int RentPerMonthSort;
 	private double ObjectAreaSort;

@@ -13,8 +13,8 @@ import com.google.gson.Gson;
 import com.hansson.rento.apartments.ApartmentUtils;
 import com.hansson.rento.apartments.ApartmentsInterface;
 import com.hansson.rento.entities.Apartment;
-import com.hansson.rento.utils.apartments.VaxjoApartment;
-import com.hansson.rento.utils.apartments.VaxjoJson;
+import com.hansson.rento.utils.apartments.BaseJsonApartment;
+import com.hansson.rento.utils.apartments.BaseJsonResult;
 
 public class BoplatsVaxjoStudent extends ApartmentUtils implements ApartmentsInterface {
 	
@@ -34,8 +34,8 @@ public class BoplatsVaxjoStudent extends ApartmentUtils implements ApartmentsInt
 		postData.put("__WWEVENTCALLBACK", "");
 		Document doc = connect(BASE_URL, postData, headers, true);
 		List<Apartment> apartmentList = new LinkedList<Apartment>();
-		List<VaxjoApartment>  results = new Gson().fromJson(doc.text(), VaxjoJson.class).getResult();
-		for(VaxjoApartment result : results) {
+		List<BaseJsonApartment>  results = new Gson().fromJson(doc.text(), BaseJsonResult.class).getResult();
+		for(BaseJsonApartment result : results) {
 			Apartment apartment = new Apartment(LANDLORD);
 			apartment.setStudent(true);
 			apartment.setUrl(String.format(URL_TEMPLATE, result.getObjectNo()));

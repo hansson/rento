@@ -23,13 +23,13 @@ public class AuditService {
 
 	private static final Logger mLog = LoggerFactory.getLogger("rento");
 
-	@Autowired
+//	@Autowired
 	private AuditEventDAO mAuditEventDAO;
 
-	@Autowired
+//	@Autowired
 	private DailyAuditEventDAO mDailyAuditEventDAO;
 
-	@Autowired
+//	@Autowired
 	private MonthlyAuditEventDAO mMonthlyAuditEventDAO;
 
 	public void putAuditEvent(String event, String extra) {
@@ -37,7 +37,7 @@ public class AuditService {
 		mAuditEventDAO.create(auditEvent);
 	}
 
-	@Scheduled(cron = "0 0 0 * * *")
+//	@Scheduled(cron = "0 0 0 * * *")
 	public void dailyAuditAggregation() {
 		long timeSpent = new Date().getTime();
 		List<AuditEvent> auditEvents = mAuditEventDAO.findAll();
@@ -63,7 +63,7 @@ public class AuditService {
 		mLog.info("Daliy audit aggregation: " + timeSpent + " seconds");
 	}
 
-	@Scheduled(cron = "0 10 0 1 * *")
+//	@Scheduled(cron = "0 10 0 1 * *")
 	public void monthlyAuditAggregation() {
 		long timeSpent = new Date().getTime();
 		List<DailyAuditEvent> dailyEvents = mDailyAuditEventDAO.findAll();

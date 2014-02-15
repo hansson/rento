@@ -11,8 +11,8 @@ import com.hansson.rento.entities.Apartment;
 
 public class Hermanssonbolagen extends ApartmentUtils implements ApartmentsInterface {
 
-	private final static String LANDLORD = "JN von Bergen &amp; Son";
-	private final static String BASE_URL = "http://www.jnvonbergen.se/von_Bergen300Sida6.htm";
+	private final static String LANDLORD = "Hermanssonbolagen";
+	private final static String BASE_URL = "http://www.blocket.se/hermanssonbolagen";
 	
 	@Override
 	public List<Apartment> getAvailableApartments() {
