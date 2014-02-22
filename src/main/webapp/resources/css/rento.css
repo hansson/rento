@@ -10,6 +10,15 @@ footer {
 	cursor: pointer;
 }
 
+p.clickable-text {
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+
+.no-margin {
+	margin: 0px;
+}
+
 /** Overrides bootstrap **/
 .headline {
 	padding: 25px 0 50px;

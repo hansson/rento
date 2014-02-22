@@ -64,8 +64,7 @@
 		<div class="span12">
 			<div class="span3">
 				<h1>Lediga l&auml;genheter</h1>
-				<form class="no-margin" action="/apartments" method="post"
-					id="city-form">
+				<form class="no-margin" action="/apartments" method="post" id="city-form">
 					<input id="city-autocomplete" name="city" type="text"
 						value="Karlskrona" placeholder="Ort">
 				</form>

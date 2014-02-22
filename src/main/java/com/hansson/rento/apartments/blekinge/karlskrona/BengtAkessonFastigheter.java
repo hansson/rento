@@ -68,15 +68,21 @@ public class BengtAkessonFastigheter extends ApartmentUtils implements Apartment
 				}
 			} else if (element.nodeName().equalsIgnoreCase("table")) {
 				for (Element info : element.getElementsByTag("td")) {
-					if (info.text().contains("Antal rum")) {
+					if (info.text().contains("rum:")) {
 						apartment.setRooms(Double.valueOf(info.text().split(" ")[2].replaceAll(",", ".")));
 					} else if (info.text().contains("Månadshyra")) {
 						apartment.setRent(Integer.valueOf(info.text().replaceAll("\\D", "")));
 					} else if(info.text().contains("Boyta")) {
 						apartment.setSize(Integer.valueOf(info.text().replaceAll("\\D", "")));
 					} else if(info.text().contains("Adress")) {
-						apartment.setAddress(info.text().replaceAll("Adress: ", ""));
+						apartment.setAddress(info.text().replaceAll("Adress: |Objekt \\d+-\\d+", ""));
 					}
+				}
+			}  else {
+				Pattern p = Pattern.compile("Hyra: \\d+\\.\\d+\\.");
+				Matcher matcher = p.matcher(element.text());
+				if(matcher.find()) {
+					apartment.setRent(Integer.valueOf(matcher.group().replaceAll("\\D", "")));
 				}
 			}
 		}

@@ -28,11 +28,11 @@ public class Apartment {
 	@Column(name = "MURL", length = 512)
 	private String mUrl;
 	@Column(name = "MROOMS")
-	private Double mRooms;
+	private Double mRooms = 0.0;
 	@Column(name = "MSIZE")
-	private Integer mSize;
+	private Integer mSize = 0;
 	@Column(name = "MRENT")
-	private Integer mRent;
+	private Integer mRent = 0;
 	// This identifier should be unique to be able to decide if the apartment is a new one or if it was already stored in the database.
 	@Column(name = "MIDENTIFIER", length = 512)
 	private String mIdentifier;
