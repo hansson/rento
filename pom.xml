@@ -285,20 +285,6 @@
 			<version>1.6.1</version>
 		</dependency>
 
-
-		<!-- <dependency> -->
-		<!-- <groupId>org.hibernate</groupId> -->
-		<!-- <artifactId>hibernate</artifactId> -->
-		<!-- <version>3.5.4-Final</version> -->
-		<!-- <type>pom</type> -->
-		<!-- </dependency> -->
-
-		<!-- <dependency> -->
-		<!-- <groupId>org.hibernate</groupId> -->
-		<!-- <artifactId>hibernate-annotations</artifactId> -->
-		<!-- <version>3.5.4-Final</version> -->
-		<!-- </dependency> -->
-
 		<!-- CGLIB -->
 		<dependency>
 			<groupId>cglib</groupId>

@@ -137,7 +137,7 @@
 				<div class="span7">
 					<h3 class="footer-title" style="padding-left: 5px">Kontakt</h3>
 					<p style="padding-left: 5px">kontakt@rento.nu</p>
-					<!-- <a href="http://github.com/hansson/rento" style="padding-left: 5px">Github project</a> -->
+					<a href="http://github.com/hansson/rento" style="padding-left: 5px">Github project</a>
 				</div>
 			</div>
 		</div>
