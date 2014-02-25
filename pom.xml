@@ -299,6 +299,13 @@
 			<version>3.12.1.GA</version>
 		</dependency>
 
+		<!-- GZIP -->
+		<dependency>
+			<groupId>com.googlecode.webutilities</groupId>
+			<artifactId>webutilities</artifactId>
+			<version>0.0.6</version>
+		</dependency>
+
 
 	</dependencies>
 </project>
