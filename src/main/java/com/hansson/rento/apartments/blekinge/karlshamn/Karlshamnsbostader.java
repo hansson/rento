@@ -23,7 +23,6 @@ public class Karlshamnsbostader extends ApartmentUtils implements ApartmentsInte
 
 	private static final String LANDLORD = "Karlshamnsbost&auml;der";
 	private static final String BASE_URL = "http://sokbostad.karlshamnsbostader.se/";
-	private final static String USER_AGENT = "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/28.0.1500.72 Safari/537.36";
 	private Logger mLog = LoggerFactory.getLogger("rento");
 
 	@Override
@@ -68,8 +67,10 @@ public class Karlshamnsbostader extends ApartmentUtils implements ApartmentsInte
 							String rooms = doc.getElementById("Label2").text().replaceAll("\\D", "");
 							if(rooms.equalsIgnoreCase("stud")) {
 								apartment.setRooms(1d);
-							} else {
+							} else if(!rooms.trim().equals("")){
 								apartment.setRooms(Double.valueOf(rooms));
+							} else {
+								apartment.setRooms(0d);
 							}
 							apartment.setStudent(doc.getElementById("Label1").text().equalsIgnoreCase("studentrum"));
 							apartmentList.add(apartment);

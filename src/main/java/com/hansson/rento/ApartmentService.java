@@ -30,6 +30,7 @@ import com.hansson.rento.apartments.multiple.CAFastigheter;
 import com.hansson.rento.apartments.multiple.HSBSydost;
 import com.hansson.rento.apartments.multiple.Heimstaden;
 import com.hansson.rento.apartments.multiple.Krebo;
+import com.hansson.rento.apartments.multiple.M2Gruppen;
 import com.hansson.rento.apartments.multiple.PBAFastigheter;
 import com.hansson.rento.apartments.multiple.SolvedalsForvaltning;
 import com.hansson.rento.apartments.multiple.SvenskaBostadsfonden;
@@ -55,7 +56,8 @@ public class ApartmentService {
 		// Add new implementations of the ApartmentsInterface here to include
 		// them in the scan loop
 		{
-			add(new Karlshamnsbostader());
+			add(new M2Gruppen());
+			
 			//Växjö
 			add(new BoplatsVaxjo());
 			add(new BoplatsVaxjoStudent());
@@ -63,6 +65,7 @@ public class ApartmentService {
 			//Karlshamn
 			add(new Hermanssonbolagen());
 //			add(new JnVonBergen());
+			add(new Karlshamnsbostader());
 			add(new KjellsonsSkogOchFastighetsForvaltning());
 			add(new SolvedalsForvaltning());
 			add(new StrandbergsFastigheter());
