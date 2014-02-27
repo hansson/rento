@@ -1,4 +1,4 @@
-# [Rento](https://www.rento.nu)
+# [Rento](http://www.rento.nu)
 [![Build Status](https://travis-ci.org/hansson/rento.png?branch=master)](https://travis-ci.org/hansson/rento)
 
 Licensed under GPL-3, see license.txt for full license. Also check out https://tldrlegal.com/license/gnu-general-public-license-v3-(gpl-3) for a summary
