@@ -57,7 +57,6 @@ public class ApartmentService {
 		// them in the scan loop
 		{
 
-			add(new Akelius());
 			
 			//Växjö
 			add(new BoplatsVaxjo());
@@ -84,7 +83,7 @@ public class ApartmentService {
 			add(new TrossoWamoFastigheter());
 			add(new Utklippan());
 			//Multiple
-
+			add(new Akelius());
 			add(new BroBizForvaltningsAB());
 			add(new CAFastigheter());
 			add(new Heimstaden());
