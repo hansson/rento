@@ -37,7 +37,7 @@ public class Akelius extends ApartmentUtils implements ApartmentsInterface {
 
 	private final static String LANDLORD = "Akelius";
 	private final static String REQUEST_URL = "http://marknad.akelius.se/API/Service/SearchServiceHandler.ashx";
-	private final static String BASE_URL = "http://www.akelius.se/web/soklagenhet.asp?seekAreas=";
+	private final static String BASE_URL = "http://marknad.akelius.se/pgObjectInformation.aspx?company=1&obj=";
 
 	private List<Integer> mCities = new LinkedList<Integer>() {
 
@@ -106,7 +106,7 @@ public class Akelius extends ApartmentUtils implements ApartmentsInterface {
 		for (BaseJsonApartment result : results) {
 			Apartment apartment = new Apartment(LANDLORD);
 			apartment.setStudent(false);
-			apartment.setUrl(BASE_URL + city);
+			apartment.setUrl(BASE_URL + result.getObjectNo());
 			apartment.setAddress(result.getStreet());
 			apartment.setCity(result.getPlaceName());
 			apartment.setRent(result.getRentPerMonthSort());

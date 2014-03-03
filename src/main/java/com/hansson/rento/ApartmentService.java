@@ -56,7 +56,8 @@ public class ApartmentService {
 		// Add new implementations of the ApartmentsInterface here to include
 		// them in the scan loop
 		{
-			add(new M2Gruppen());
+
+			add(new Akelius());
 			
 			//Växjö
 			add(new BoplatsVaxjo());
@@ -83,12 +84,13 @@ public class ApartmentService {
 			add(new TrossoWamoFastigheter());
 			add(new Utklippan());
 			//Multiple
-			add(new Akelius());
+
 			add(new BroBizForvaltningsAB());
 			add(new CAFastigheter());
 			add(new Heimstaden());
 			add(new HSBSydost());
 			add(new Krebo());
+			add(new M2Gruppen());
 			add(new PBAFastigheter());
 			add(new SvenskaBostadsfonden());
 		}

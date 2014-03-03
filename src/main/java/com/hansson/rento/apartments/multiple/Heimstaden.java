@@ -36,11 +36,15 @@ public class Heimstaden extends ApartmentUtils implements ApartmentsInterface {
 					apartment.setIdentifier(element.attr("id"));
 					apartment.setUrl(BASE_URL + element.getElementsByTag("a").attr("href"));
 					apartment.setAddress(element.getElementsByTag("h5").text());
-					apartment.setRooms(Double.valueOf(element.getElementsByClass("listItemLeftBottom").text().replaceAll("\\D", "")));
+					String rooms = element.getElementsByClass("listItemLeftBottom").text().replaceAll(",", ".");
+					Pattern p = Pattern.compile("\\d+\\.{0,1}\\d{0,1}");
+					Matcher matcher = p.matcher(rooms);
+					matcher.find();
+					apartment.setRooms(Double.valueOf(matcher.group()));
 					apartment.setRent(Integer.valueOf(element.getElementsByClass("listItemRightBottom").text().replaceAll("\\D", "")));
 					doc = connect(apartment.getUrl());
-					Pattern sizePattern = Pattern.compile("\\d{2,}(,\\d){0,1} m2");
-					Matcher matcher = sizePattern.matcher(doc.getElementsByTag("h1").text());
+					p = Pattern.compile("\\d{2,}(,\\d){0,1} m2");
+					matcher = p.matcher(doc.getElementsByTag("h1").text());
 					while (matcher.find()) {
 						apartment.setSize(Integer.valueOf(matcher.group().replaceAll("m2| |,\\d", "")));
 					}
