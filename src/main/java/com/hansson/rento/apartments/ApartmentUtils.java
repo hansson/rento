@@ -107,7 +107,8 @@ public abstract class ApartmentUtils {
 			apartmentList = new ApartmentInfoFromTable().handle(doc, baseUrl, landlord, false);
 			break;
 		case BLOCKET:
-			apartmentList = new ApartmentInfoFromBlocket().handle(doc, landlord);
+			//apartmentList = new ApartmentInfoFromBlocket().handle(doc, landlord);
+			apartmentList = new LinkedList<Apartment>();
 			break;
 		default:
 			apartmentList = new LinkedList<Apartment>();
