@@ -28,6 +28,12 @@ public class ApiController {
 		model.addAttribute("apidata", "This be api root");
 		return "api";
 	}
+	
+	@RequestMapping(value = "/api/apartment", method = RequestMethod.POST)
+	public String getApartment(Locale locale, Model model, @RequestParam("apartment") int apartment) {
+		model.addAttribute("apidata", new Gson().toJson(mApartmentDAO.find(apartment)));
+		return "api";
+	}
 
 	@RequestMapping(value = "/api/apartments", method = RequestMethod.GET)
 	public String getApartments(Locale locale, Model model) {
