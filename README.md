@@ -14,3 +14,55 @@ more cities in the future!
 * Karlshamn
 * Karlskrona
 * Växjö
+* 
+
+## API
+
+###Objects###
+
+####Apartment####
+Name          | type
+------------- | -------------
+mId           | int
+mArea         | String
+mCity         | String
+mAddress      | String
+mUrl          | String
+mRooms        | Double
+mSize         | int
+mRent         | int
+mIdentifier   | Strubg
+mLandlord     | String
+mAdded        | Date
+mStudent      | boolean
+
+###Requests###
+
+####POST - /api/apartment####
+Get a single apartment from apartment id.
+
+Parameters    | type
+------------- | -------------
+apartment     | int (ex. 4578)
+
+__Response:__ Apartment json object
+
+---
+
+####GET - /api/apartments####
+Get default apartments (all apartments in Karlskrona)
+
+__Response:__ Json array of apartment objects
+
+---
+
+####POST - /api/apartments####
+Get all apartments from a specific city.
+
+Parameters    | type
+------------- | -------------
+city          | String (ex. Karlskrona), the "all"-keyword can be used to get a list of all apartments from every city
+
+__Response:__ Json array of apartment objects
+
+---
