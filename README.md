@@ -31,7 +31,7 @@ mUrl          | String
 mRooms        | Double
 mSize         | int
 mRent         | int
-mIdentifier   | Strubg
+mIdentifier   | String (optional)
 mLandlord     | String
 mAdded        | Date
 mStudent      | boolean
