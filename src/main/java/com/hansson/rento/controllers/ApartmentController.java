@@ -77,13 +77,14 @@ public class ApartmentController {
 		String city;
 		if(split.length > 0) {
 			city = split[1];
-			model.addAttribute("city", city);
+			model.addAttribute("infoCity", city);
 		} else {
 			city = "Karlskrona";
-			model.addAttribute("city", "Sverige");
+			model.addAttribute("infoCity", "Sverige");
 		}
 		city = HtmlUtil.textToHtml(city);
 		model.addAttribute("apartments", new Gson().toJson(mApartmentDAO.findAllByCity(city)));
+		model.addAttribute("city", city);
 		return "view_apartments";
 	}
 	
