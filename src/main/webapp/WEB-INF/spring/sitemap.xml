@@ -33,6 +33,11 @@
 		<priority>1</priority>
 	</url>
 	<url>
+		<loc>http://www.rento.nu/Braås</loc>
+		<changefreq>daily</changefreq>
+		<priority>1</priority>
+	</url>
+	<url>
 		<loc>http://www.rento.nu/Bromölla</loc>
 		<changefreq>daily</changefreq>
 		<priority>1</priority>
