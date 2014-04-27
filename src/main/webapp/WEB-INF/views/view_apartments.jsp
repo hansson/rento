@@ -8,6 +8,8 @@
 	<meta lang="sv">
 	<meta http-equiv="content-language" content="sv" />
 	<meta name="language" content="sv" />
+	<meta name="description" content="Hitta lediga lägenheter i ${city}! Att behöva leta igenom över 20 hyresvärdar om dagen kan vara väldigt tröttsamt, vi på Rento.nu gör detta  åt dig så att du lätt ska kunna se nya lägenheter och spendera din tid på roligare saker!" />
+	<meta name="keywords" content="${city}, lediga, lägenheter, hyra, lägenhet, studentlägenhet, bostad" />
 	
 	<!-- Kill the cache! -->
 	<meta http-equiv="cache-control" content="max-age=0" />
