@@ -43,6 +43,11 @@
 		<priority>1</priority>
 	</url>
 	<url>
+		<loc>http://www.rento.nu/Duved</loc>
+		<changefreq>daily</changefreq>
+		<priority>1</priority>
+	</url>
+	<url>
 		<loc>http://www.rento.nu/Enköping</loc>
 		<changefreq>daily</changefreq>
 		<priority>1</priority>
@@ -54,6 +59,11 @@
 	</url>
 	<url>
 		<loc>http://www.rento.nu/Göteborg</loc>
+		<changefreq>daily</changefreq>
+		<priority>1</priority>
+	</url>
+	<url>
+		<loc>http://www.rento.nu/Gråbo</loc>
 		<changefreq>daily</changefreq>
 		<priority>1</priority>
 	</url>
@@ -89,6 +99,16 @@
 	</url>
 	<url>
 		<loc>http://www.rento.nu/Hörby</loc>
+		<changefreq>daily</changefreq>
+		<priority>1</priority>
+	</url>
+	<url>
+		<loc>http://www.rento.nu/Jämjö</loc>
+		<changefreq>daily</changefreq>
+		<priority>1</priority>
+	</url>
+	<url>
+		<loc>http://www.rento.nu/Järpen</loc>
 		<changefreq>daily</changefreq>
 		<priority>1</priority>
 	</url>
@@ -143,12 +163,22 @@
 		<priority>1</priority>
 	</url>
 	<url>
+		<loc>http://www.rento.nu/Kållered</loc>
+		<changefreq>daily</changefreq>
+		<priority>1</priority>
+	</url>
+	<url>
 		<loc>http://www.rento.nu/Köpingsvik</loc>
 		<changefreq>daily</changefreq>
 		<priority>1</priority>
 	</url>
 	<url>
 		<loc>http://www.rento.nu/Laholm</loc>
+		<changefreq>daily</changefreq>
+		<priority>1</priority>
+	</url>
+	<url>
+		<loc>http://www.rento.nu/Lammhult</loc>
 		<changefreq>daily</changefreq>
 		<priority>1</priority>
 	</url>
@@ -178,6 +208,11 @@
 		<priority>1</priority>
 	</url>
 	<url>
+		<loc>http://www.rento.nu/Lyckeby</loc>
+		<changefreq>daily</changefreq>
+		<priority>1</priority>
+	</url>
+	<url>
 		<loc>http://www.rento.nu/Lysekil</loc>
 		<changefreq>daily</changefreq>
 		<priority>1</priority>
@@ -194,6 +229,16 @@
 	</url>
 	<url>
 		<loc>http://www.rento.nu/Motala</loc>
+		<changefreq>daily</changefreq>
+		<priority>1</priority>
+	</url>
+		<url>
+		<loc>http://www.rento.nu/Myresjö</loc>
+		<changefreq>daily</changefreq>
+		<priority>1</priority>
+	</url>
+			<url>
+		<loc>http://www.rento.nu/Märsta</loc>
 		<changefreq>daily</changefreq>
 		<priority>1</priority>
 	</url>
@@ -214,6 +259,11 @@
 	</url>
 	<url>
 		<loc>http://www.rento.nu/Nynäshamn</loc>
+		<changefreq>daily</changefreq>
+		<priority>1</priority>
+	</url>
+		<url>
+		<loc>http://www.rento.nu/Olofström</loc>
 		<changefreq>daily</changefreq>
 		<priority>1</priority>
 	</url>
@@ -239,6 +289,11 @@
 	</url>
 	<url>
 		<loc>http://www.rento.nu/Ronneby</loc>
+		<changefreq>daily</changefreq>
+		<priority>1</priority>
+	</url>
+		<url>
+		<loc>http://www.rento.nu/Rottne</loc>
 		<changefreq>daily</changefreq>
 		<priority>1</priority>
 	</url>
@@ -324,6 +379,11 @@
 	</url>
 	<url>
 		<loc>http://www.rento.nu/Sölvesborg</loc>
+		<changefreq>daily</changefreq>
+		<priority>1</priority>
+	</url>
+		<url>
+		<loc>http://www.rento.nu/Tjureda</loc>
 		<changefreq>daily</changefreq>
 		<priority>1</priority>
 	</url>
