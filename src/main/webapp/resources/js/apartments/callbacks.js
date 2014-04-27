@@ -1,4 +1,5 @@
-$('#apartment-table-body').load('/apartments');
+//$('#apartment-table-body').load('/apartments');
+
 
 $('#city-form').on('submit', function(event) {
 
@@ -7,7 +8,10 @@ $('#city-form').on('submit', function(event) {
     $(".ui-autocomplete").hide();
 
     $.post(link,$(this).serialize(),function(data, status) {
-    	$('#apartment-table-body').html(data);
+    	data = JSON.parse(data);
+    	aOrig = data;
+    	a = data.slice(0);
+    	updateFilters();
     });
 
     return false; // dont post it automatically

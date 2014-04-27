@@ -1,0 +1,7 @@
+User-agent: Googlebot
+Allow: /
+Sitemap: http://www.rento.nu/sitemap.xml
+
+User-agent: *
+Allow: /
+Sitemap: http://www.rento.nu/sitemap.xml

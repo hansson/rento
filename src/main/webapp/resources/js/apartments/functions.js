@@ -105,11 +105,11 @@ function replaceSpecialCharacters(replaceString) {
 function updateFilters() {
 	a = [];
 	
-	for (var i = 0 ; i < a_orig.length ; i++) { 
+	for (var i = 0 ; i < aOrig.length ; i++) { 
 		
-		var currentRooms = a_orig[i].mRooms;
-		var currentRent = a_orig[i].mRent;
-		var currentSize = a_orig[i].mSize;
+		var currentRooms = aOrig[i].mRooms;
+		var currentRent = aOrig[i].mRent;
+		var currentSize = aOrig[i].mSize;
 		
 		//Fix high and null values and set to the slider max to be able to decide if they should be in or not
 		if(!currentRooms || currentRooms > 6) {
@@ -137,15 +137,15 @@ function updateFilters() {
 			continue;
 		}
 		
-		if(a_orig[i].mStudent && !$("#student-apartment").is(":checked") ) {
+		if(aOrig[i].mStudent && !$("#student-apartment").is(":checked") ) {
 			continue;
 		}
 		
-		if(!a_orig[i].mStudent && !$("#non-student-apartment").is(":checked") ) {
+		if(!aOrig[i].mStudent && !$("#non-student-apartment").is(":checked") ) {
 			continue;
 		}
 		
-		a.push(a_orig[i]);
+		a.push(aOrig[i]);
 	}
 	sortApartments($.cookie('sorted'),$.cookie('sorted-asc') == "true");
 }

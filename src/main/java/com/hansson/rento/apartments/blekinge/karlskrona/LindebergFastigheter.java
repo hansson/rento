@@ -43,6 +43,7 @@ public class LindebergFastigheter extends ApartmentUtils implements ApartmentsIn
 						if(roomsAndAddress[0].equals("Inga lediga lägenheter")) {
 							break;
 						}
+						roomsAndAddress[0] = roomsAndAddress[0].replaceAll(",", ".");
 						apartment.setRooms(Double.valueOf(roomsAndAddress[0]));
 						apartment.setAddress(roomsAndAddress[1]);
 						apartment.setIdentifier(matcher.group());

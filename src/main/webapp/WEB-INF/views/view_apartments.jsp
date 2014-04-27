@@ -45,7 +45,9 @@
 	
 	  ga('create', 'UA-47281562-1', 'rento.nu');
 	  ga('send', 'pageview');
-	
+	  
+	  var aOrig = ${apartments};
+      var a = aOrig.slice(0);
 	</script>
 </head>
 
@@ -66,7 +68,7 @@
 				<h1>Lediga l&auml;genheter</h1>
 				<form class="no-margin" action="/apartments" method="post" id="city-form">
 					<input id="city-autocomplete" name="city" type="text"
-						value="Karlskrona" placeholder="Ort">
+						value="${city}" placeholder="Ort">
 				</form>
 			</div>
 		</div>
@@ -165,7 +167,7 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-
+			sortApartments($.cookie('sorted'),$.cookie('sorted-asc') == "true");
 		});
 
 		$(function() {
@@ -201,69 +203,69 @@
 
 		$(function() {
 			$("#room-slider").slider(
-					{
-						range : true,
-						min : 1,
-						max : 6,
-						values : [ 1, 6 ],
-						slide : function(event, ui) {
-							var toValue = ui.values[1];
-							if (toValue == 6) {
-								toValue = '6+';
-							}
-							$("#room-range").html(
-									"Rum, " + ui.values[0] + " - " + toValue);
-						},
-						stop : function(event, ui) {
-							updateFilters();
+				{
+					range : true,
+					min : 1,
+					max : 6,
+					values : [ 1, 6 ],
+					slide : function(event, ui) {
+						var toValue = ui.values[1];
+						if (toValue == 6) {
+							toValue = '6+';
 						}
-					});
+						$("#room-range").html(
+								"Rum, " + ui.values[0] + " - " + toValue);
+					},
+					stop : function(event, ui) {
+						updateFilters();
+					}
+				});
 		});
 
 		$(function() {
 			$("#rent-slider").slider(
-					{
-						range : true,
-						min : 0,
-						max : 20000,
-						values : [ 0, 20000 ],
-						step : 100,
-						slide : function(event, ui) {
-							var toValue = ui.values[1];
-							if (toValue == 20000) {
-								toValue = '20000+';
-							}
-							$("#rent-range").html(
-									"Hyra, " + ui.values[0] + " kr - "
-											+ toValue + " kr");
-						},
-						stop : function(event, ui) {
-							updateFilters();
+				{
+					range : true,
+					min : 0,
+					max : 20000,
+					values : [ 0, 20000 ],
+					step : 100,
+					slide : function(event, ui) {
+						var toValue = ui.values[1];
+						if (toValue == 20000) {
+							toValue = '20000+';
 						}
-					});
+						$("#rent-range").html(
+								"Hyra, " + ui.values[0] + " kr - "
+										+ toValue + " kr");
+					},
+					stop : function(event, ui) {
+						updateFilters();
+					}
+				});
 		});
 
 		$(function() {
 			$("#size-slider").slider(
-					{
-						range : true,
-						min : 0,
-						max : 200,
-						values : [ 0, 200 ],
-						step : 5,
-						slide : function(event, ui) {
-							var toValue = ui.values[1];
-							if (toValue == 200) {
-								toValue = '200+';
-							}
-							$("#size-range").html(
-									"Storlek, " + ui.values[0] + " kvm - "
-											+ toValue + " kvm");
-						},
-						stop : function(event, ui) {
-							updateFilters();
+				{
+					range : true,
+					min : 0,
+					max : 200,
+					values : [ 0, 200 ],
+					step : 5,
+					slide : function(event, ui) {
+						var toValue = ui.values[1];
+						if (toValue == 200) {
+							toValue = '200+';
 						}
-					});
+						$("#size-range").html(
+								"Storlek, " + ui.values[0] + " kvm - "
+										+ toValue + " kvm");
+					},
+					stop : function(event, ui) {
+						updateFilters();
+					}
+				});
 		});
 	</script>
 	

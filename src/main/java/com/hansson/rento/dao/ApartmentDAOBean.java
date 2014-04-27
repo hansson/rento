@@ -70,7 +70,7 @@ public class ApartmentDAOBean implements ApartmentDAO {
 	@Transactional
 	public List<Apartment> findAllByCity(String city) {
 		Session session = mSessionFactory.getCurrentSession();
-		city = WordUtils.capitalize(city);
+		city = WordUtils.capitalizeFully(city);
 		Query query = session.createQuery("from Apartment a where mCity = '" + city + "' ORDER BY mAdded DESC");
 		return (List<Apartment>) query.list();
 	}

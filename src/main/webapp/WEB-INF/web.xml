@@ -39,7 +39,7 @@
 		</init-param>
 		<init-param>
 			<param-name>ignoreURLPattern</param-name>
-			<param-value>.*\.(flv|mp3|mpg)</param-value> <!-- regex -->
+			<param-value>.*\.(flv|mp3|mpg|xml)</param-value> <!-- regex -->
 		</init-param>
 		<init-param>
 			<param-name>ignoreMimes</param-name>
@@ -51,6 +51,7 @@
 		<filter-name>compressionFilter</filter-name>
 		<url-pattern>*</url-pattern>
 	</filter-mapping>
+	
 
 	<!-- <filter> -->
 	<!-- <filter-name>springSecurityFilterChain</filter-name> -->
