@@ -18,7 +18,7 @@
 	<meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
 	<meta http-equiv="pragma" content="no-cache" />
 	
-	<title>${city} - Rento.nu - L&auml;ttare hyresl&auml;genheter</title>
+	<title> Rento.nu - ${city} - L&auml;ttare hyresl&auml;genheter  </title>
 	
 	<!-- Loading Bootstrap -->
 	<link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet">
