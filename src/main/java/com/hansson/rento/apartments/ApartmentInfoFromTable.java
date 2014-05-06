@@ -16,8 +16,8 @@ public class ApartmentInfoFromTable extends ApartmentUtils {
 
 	public List<Apartment> handle(Document doc, String baseUrl, String landlord, boolean singlePage) {
 		List<Apartment> apartmentList = null;
-		Elements elements = doc.getElementsByTag("th");
-		elements.addAll(doc.getElementsByTag("tr"));
+		Elements elements = doc.getElementsByTag("tr");
+//		elements.addAll(doc.getElementsByTag("tr"));
 		// Try to find columns for city, address, price, etc.
 
 		Columns cols = new Columns();
