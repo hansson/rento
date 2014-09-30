@@ -39,7 +39,7 @@ public class PBAFastigheter extends ApartmentUtils implements ApartmentsInterfac
 					String informationText = element.getElementsByTag("span").get(2).text();
 
 					Pattern p = Pattern.compile("Adress: .+?,");
-					Matcher matcher = p.matcher(informationText);
+					Matcher matcher = p.matcher(informationText); 
 					matcher.find();
 					apartment.setAddress(matcher.group().replace("Adress: ", "").replace(",", ""));
 

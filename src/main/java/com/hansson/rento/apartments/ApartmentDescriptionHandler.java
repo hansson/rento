@@ -26,7 +26,7 @@ public class ApartmentDescriptionHandler {
 		return "";
 	}
 	
-	protected String getSizeFromDescription(String description) {
+	protected String getSizeFromDescription(String description) { 
 		description = description.toLowerCase();
 		Pattern p = Pattern.compile("[\\d]+m2");
 		Matcher matcher = p.matcher(description);

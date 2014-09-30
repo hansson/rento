@@ -38,7 +38,7 @@ public class StrandbergsFastigheter extends ApartmentUtils implements Apartments
 						apartment.setSize(Integer.valueOf(element.getElementsByAttributeValue("data-label", "Storlek").text()));
 						apartment.setRent(Integer.valueOf(element.getElementsByAttributeValue("data-label", "Hyra").text()));
 						apartmentList.add(apartment);
-					}
+					} 
 				} catch (Exception e) {
 					mLog.error(LANDLORD + " error on element #" + apartments.indexOf(element));
 					e.printStackTrace();

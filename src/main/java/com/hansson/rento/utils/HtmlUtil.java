@@ -20,10 +20,11 @@ public class HtmlUtil {
 			html = html.replace("ä", "&auml;");
 			html = html.replace("ö", "&ouml;");
 			html = html.replace("Å", "&Aring;");
-			html = html.replace("Ä", "&Auml;");
+			html = html.replace("Ä", "&Auml;"); 
 			html = html.replace("Ö", "&Ouml;");
 		}
 		return html;
 	}
 
 }
+ 

@@ -30,7 +30,7 @@ public class PBAStudent implements ApartmentsInterface {
 		apartment.setAddress("Gamla Infartsvägen 3 A");
 		apartment.setStudent(true);
 		apartment.setUrl("http://www.pba.se/page/16/studentbostader.aspx");
-		apartments.add(apartment);
+		apartments.add(apartment); 
 		return apartments ;
 	}
 	

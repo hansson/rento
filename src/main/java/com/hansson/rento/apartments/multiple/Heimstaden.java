@@ -31,7 +31,7 @@ public class Heimstaden extends ApartmentUtils implements ApartmentsInterface {
 		if (doc != null) {
 			Elements apartments = doc.getElementsByClass("listItem");
 			for (Element element : apartments) {
-				try {
+				try { 
 					Apartment apartment = new Apartment(LANDLORD);
 					apartment.setIdentifier(element.attr("id"));
 					apartment.setUrl(BASE_URL + element.getElementsByTag("a").attr("href"));
