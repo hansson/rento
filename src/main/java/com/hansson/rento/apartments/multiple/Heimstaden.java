@@ -50,7 +50,7 @@ public class Heimstaden extends ApartmentUtils implements ApartmentsInterface {
 					}
 					Elements elementsByTag = doc.getElementsByTag("h3");
 					for (Element infoElement : elementsByTag) {
-						if (infoElement.text().equalsIgnoreCase("Område")) {
+						if (infoElement.text().equalsIgnoreCase("Omr\u00e5de")) {
 							apartment.setArea(infoElement.nextElementSibling().text());
 						} else if (infoElement.text().equalsIgnoreCase("Ort")) {
 							apartment.setCity(WordUtils.capitalize(infoElement.nextElementSibling().text().toLowerCase()));

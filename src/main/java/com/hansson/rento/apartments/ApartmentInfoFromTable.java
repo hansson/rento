@@ -195,7 +195,7 @@ public class ApartmentInfoFromTable extends ApartmentUtils {
 
 	private boolean cellIsAreaHeader(Element cell) {
 		String text = cell.text().replace(":", "");
-		return text.equalsIgnoreCase("område");
+		return text.equalsIgnoreCase("omr\u00e5de");
 	}
 
 	private boolean cellIsAddressHeader(Element cell) {
@@ -215,7 +215,7 @@ public class ApartmentInfoFromTable extends ApartmentUtils {
 
 	private boolean cellIsRentHeader(Element cell) {
 		String text = cell.text().replace(":", "");
-		return text.equalsIgnoreCase("hyra") || text.equalsIgnoreCase("pris") || text.equalsIgnoreCase("hyra/mån");
+		return text.equalsIgnoreCase("hyra") || text.equalsIgnoreCase("pris") || text.equalsIgnoreCase("hyra/m\u00e5n");
 	}
 
 }

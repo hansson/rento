@@ -35,7 +35,7 @@ public class M2Gruppen extends ApartmentUtils implements ApartmentsInterface {
 					for (int i = 0; i < children.size(); i++) {
 						if (children.get(i).text().equalsIgnoreCase("adress")) {
 							apartment.setAddress(children.get(i + 1).text());
-						} else if (children.get(i).text().equalsIgnoreCase("område")) {
+						} else if (children.get(i).text().equalsIgnoreCase("omr\u00e5de")) {
 							apartment.setArea(children.get(i + 1).text());
 						} else if (children.get(i).text().equalsIgnoreCase("ort")) {
 							apartment.setCity(children.get(i + 1).text());

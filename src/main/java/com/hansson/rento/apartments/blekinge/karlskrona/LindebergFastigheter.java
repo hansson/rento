@@ -40,7 +40,7 @@ public class LindebergFastigheter extends ApartmentUtils implements ApartmentsIn
 						doc = connect(BASE_URL + "ajax.aspx?content=3&" + matcher.group());
 						Element header = doc.getElementsByTag("h1").get(0);
 						String[] roomsAndAddress = header.text().split(" r o k ");
-						if(roomsAndAddress[0].equals("Inga lediga lägenheter")) {
+						if(roomsAndAddress[0].equals("Inga lediga l\u00e4genheter")) {
 							break;
 						}
 						roomsAndAddress[0] = roomsAndAddress[0].replaceAll(",", ".");

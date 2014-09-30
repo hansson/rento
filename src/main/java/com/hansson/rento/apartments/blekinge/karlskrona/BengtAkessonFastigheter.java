@@ -70,7 +70,7 @@ public class BengtAkessonFastigheter extends ApartmentUtils implements Apartment
 				for (Element info : element.getElementsByTag("td")) {
 					if (info.text().contains("rum:")) {
 						apartment.setRooms(Double.valueOf(info.text().split(" ")[2].replaceAll(",", ".")));
-					} else if (info.text().contains("Månadshyra")) {
+					} else if (info.text().contains("M\u00e5nadshyra")) {
 						apartment.setRent(Integer.valueOf(info.text().replaceAll("\\D", "")));
 					} else if(info.text().contains("Boyta")) {
 						apartment.setSize(Integer.valueOf(info.text().replaceAll("\\D", "")));

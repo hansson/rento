@@ -6,9 +6,9 @@ import org.junit.Test;
 
 public class ApartmentDescriptionHandlerTest {
 	
-	private final static String DESCRIPTION_1 = "Lägenheten ligger på andra våning med balkong. Hyran är 10 000:-/mån. I hyran ingår kabel-TV samt tvättmaskin. Varmhyra. Uppsagd till 1 maj, kan lämnas tidigare.";
-	private final static String DESCRIPTION_2 = "Fin lägenhet i centrala Bromölla. Den ligger på andra våning med balkong. Hiss finns i fastigheten. Hyran är 10000:-/mån. Varmhyra. Carport finns att hyra. Ledig från 1 mars.";
-	private final static String DESCRIPTION_3 = "Marstrand 4-5 Hantverkaregatan 23 9 lägenheter 3 rum och kök på 100m2. Radhuslägenhet med egen ingång samt egen gräsmatta utanför ytterdörren. Lägenheten är i två plan. Möjlighet till att hyra P plats och garage på gården. Hyra: 10000kr/månad 2013 års hyressättning Ledig from 1/3-2014";
+	private final static String DESCRIPTION_1 = "L\u00e4genheten ligger p\u00e5 andra v\u00e5ning med balkong. Hyran \u00e4r 10 000:-/m\u00e5n. I hyran ing\u00e5r kabel-TV samt tv\u00e4ttmaskin. Varmhyra. Uppsagd till 1 maj, kan l\u00e4mnas tidigare.";
+	private final static String DESCRIPTION_2 = "Fin l\u00e4genhet i centrala Brom\u00f6lla. Den ligger p\u00e5 andra v\u00e5ning med balkong. Hiss finns i fastigheten. Hyran \u00e4r 10000:-/m\u00e5n. Varmhyra. Carport finns att hyra. Ledig fr\u00e5n 1 mars.";
+	private final static String DESCRIPTION_3 = "Marstrand 4-5 Hantverkaregatan 23 9 l\u00e4genheter 3 rum och k\u00f6k p\u00e5 100m2. Radhusl\u00e4genhet med egen ing\u00e5ng samt egen gr\u00e4smatta utanf\u00f6r ytterd\u00f6rren. L\u00e4genheten \u00e4r i tv\u00e5 plan. M\u00f6jlighet till att hyra P plats och garage p\u00e5 g\u00e5rden. Hyra: 10000kr/m\u00e5nad 2013 \u00e5rs hyress\u00e4ttning Ledig from 1/3-2014";
 	private final static String[] PRICE_DESCRIPTION_ARRAY = {DESCRIPTION_1, DESCRIPTION_2, DESCRIPTION_3};
 	private final static String[] ADDRESS_DESCRIPTION_ARRAY = {DESCRIPTION_3};
 	private final static String[] SIZE_DESCRIPTION_ARRAY = {DESCRIPTION_3};

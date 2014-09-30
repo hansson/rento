@@ -27,7 +27,7 @@ public class PBAStudent implements ApartmentsInterface {
 		apartment.setRent(4400);
 		apartment.setRooms(1.0);
 		apartment.setSize(37);
-		apartment.setAddress("Gamla Infartsvägen 3 A");
+		apartment.setAddress("Gamla Infartsv\u00e4gen 3 A");
 		apartment.setStudent(true);
 		apartment.setUrl("http://www.pba.se/page/16/studentbostader.aspx");
 		apartments.add(apartment); 

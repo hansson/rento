@@ -28,7 +28,7 @@ public class StrandbergsFastigheter extends ApartmentUtils implements Apartments
 			Elements apartments = doc.getElementsByTag("tr");
 			for (Element element : apartments) {
 				try {
-					if (element.getElementsByAttributeValue("data-label", "Typ").text().equals("Lägenhet")) {
+					if (element.getElementsByAttributeValue("data-label", "Typ").text().equals("L\u00e4genhet")) {
 						Apartment apartment = new Apartment(LANDLORD);
 						apartment.setUrl(BASE_URL);
 						apartment.setStudent(false);

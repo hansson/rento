@@ -7,7 +7,7 @@ public class ApartmentDescriptionHandler {
 	
 	protected String getRentFromDescription(String description) {
 		description = description.toLowerCase();
-		Pattern p = Pattern.compile("[\\d ]+(?:\\:-|kr)/mån");
+		Pattern p = Pattern.compile("[\\d ]+(?:\\:-|kr)/m\u00e5n");
 		Matcher matcher = p.matcher(description);
 		if (matcher.find()) {
 			String rent = matcher.group();
@@ -18,7 +18,7 @@ public class ApartmentDescriptionHandler {
 	}
 	
 	protected String getAddressFromDescription(String description) {
-		Pattern p = Pattern.compile("[A-Za-zÅÄÖåäö]{5,} [\\d]+ ");
+		Pattern p = Pattern.compile("[A-Za-z\u00c5\u00c4\u00d6\u00e5\u00e4\u00f6]{5,} [\\d]+ ");
 		Matcher matcher = p.matcher(description);
 		if (matcher.find()) {
 			return matcher.group().trim();
@@ -41,7 +41,7 @@ public class ApartmentDescriptionHandler {
 	
 	protected String getRoomsFromDescription(String description) {
 		description = description.toLowerCase();
-		Pattern p = Pattern.compile("[\\d ]+rum och kök");
+		Pattern p = Pattern.compile("[\\d ]+rum och k\u00f6k");
 		Matcher matcher = p.matcher(description);
 		if (matcher.find()) {
 			String rooms = matcher.group();

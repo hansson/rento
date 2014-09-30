@@ -59,7 +59,7 @@ public class ApartmentService {
 			add(new M2Gruppen());
 
 			
-			//Växjö
+			//V\u00e4xj\u00f6
 			add(new BoplatsVaxjo());
 			add(new BoplatsVaxjoStudent());
 			

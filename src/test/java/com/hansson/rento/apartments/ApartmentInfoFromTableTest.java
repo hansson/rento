@@ -7,7 +7,7 @@ public class ApartmentInfoFromTableTest {
 
 	@Test
 	public void testCheckIsValidCityOrArea() {
-		String[] validArea = { "TestOmråde", "Test Område" };
+		String[] validArea = { "TestOmr\u00e5de", "Test Omr\u00e5de" };
 		ApartmentInfoFromTable handler = new ApartmentInfoFromTable();
 		for (String area : validArea) {
 			Assert.assertEquals(true, handler.checkIsValidCityOrArea(area));
@@ -16,7 +16,7 @@ public class ApartmentInfoFromTableTest {
 
 	@Test
 	public void testCheckIsInvalidCityOrArea() {
-		String[] validArea = { "TestOmråde2", "asdasd.", "asdasd!", "asdasd?", "" };
+		String[] validArea = { "TestOmr\u00e5de2", "asdasd.", "asdasd!", "asdasd?", "" };
 		ApartmentInfoFromTable handler = new ApartmentInfoFromTable();
 		for (String area : validArea) {
 			Assert.assertEquals(false, handler.checkIsValidCityOrArea(area));
