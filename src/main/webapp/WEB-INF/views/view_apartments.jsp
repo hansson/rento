@@ -8,8 +8,8 @@
 	<meta lang="sv">
 	<meta http-equiv="content-language" content="sv" />
 	<meta name="language" content="sv" />
-	<meta name="description" content="Hitta lediga lägenheter i ${infoCity}! Att behöva leta igenom över 20 hyresvärdar om dagen kan vara väldigt tröttsamt, vi på Rento.nu gör detta  åt dig så att du lätt ska kunna se nya lägenheter och spendera din tid på roligare saker!" />
-	<meta name="keywords" content="${infoCity}, lediga, lägenheter, hyra, lägenhet, studentlägenhet, bostad" />
+	<meta name="description" content="Hitta lediga lÃ¤genheter i ${infoCity}! Att behÃ¶va leta igenom Ã¶ver 20 hyresvÃ¤rdar om dagen kan vara vÃ¤ldigt trÃ¶ttsamt, vi pÃ¥ Rento.nu gÃ¶r detta  Ã¥t dig sÃ¥ att du lÃ¤tt ska kunna se nya lÃ¤genheter och spendera din tid pÃ¥ roligare saker!" />
+	<meta name="keywords" content="${infoCity}, lediga, lÃ¤genheter, hyra, lÃ¤genhet, studentlÃ¤genhet, bostad" />
 	
 	<!-- Kill the cache! -->
 	<meta http-equiv="cache-control" content="max-age=0" />
@@ -140,7 +140,7 @@
 			<div class="row">
 				<div class="span7">
 					<h3 class="footer-title" style="padding-left: 5px">Kontakt</h3>
-					<p style="padding-left: 5px">kontakt@rento.nu</p>
+					<p style="padding-left: 5px">tobias@tobiashansson.nu</p>
 					<a href="http://github.com/hansson/rento" style="padding-left: 5px">Github project</a>
 				</div>
 			</div>
